@@ -70,7 +70,6 @@ public class GeoAlarmAdapter extends RecyclerView.Adapter<GeoAlarmAdapter.AlarmH
         } else {
             return mAlarms.size();
         }
-
     }
 
     public interface MyClickListener {
