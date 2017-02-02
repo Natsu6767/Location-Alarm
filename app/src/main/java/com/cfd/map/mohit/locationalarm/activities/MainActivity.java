@@ -49,7 +49,12 @@ public class MainActivity extends AppCompatActivity {
     public void setAlarm(View view){
         startActivityForResult(new Intent(this,SetAlarmActivity.class),1);
     }
-   
+
+    //Use to set info for new alarm
+    public void setAlarm(String name, double location, boolean vibrate, int ringtone){
+        mAlarms.add(new Alarm(name, location, vibrate, ringtone));
+    }
+
 
 
     @Override
