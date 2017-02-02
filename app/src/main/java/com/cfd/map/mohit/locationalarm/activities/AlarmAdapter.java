@@ -64,7 +64,12 @@ public class AlarmAdapter extends RecyclerView.Adapter<AlarmAdapter.AlarmHolder>
 
     @Override
     public int getItemCount() {
-        return mAlarms.size();
+        try {
+            return mAlarms.size();
+        }catch (NullPointerException e){
+            e.printStackTrace();
+        }
+        return 0;
     }
 
     public interface MyClickListener {
