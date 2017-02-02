@@ -1,5 +1,6 @@
 package com.cfd.map.mohit.locationalarm.activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -50,8 +51,6 @@ public class CustomPlacePicker extends AppCompatActivity implements OnMapReadyCa
         marker = map.addMarker(new MarkerOptions()
                 .position(new LatLng(-34, 151))
                 .title("Marker"));
-        LatLng sydney = new LatLng(-34, 151);
-        //map.moveCamera(CameraUpdateFactory.newLatLng(sydney));
         map.setOnCameraMoveListener(new GoogleMap.OnCameraMoveListener() {
             @Override
             public void onCameraMove() {
@@ -59,9 +58,19 @@ public class CustomPlacePicker extends AppCompatActivity implements OnMapReadyCa
                 marker.setPosition(lat);
             }
         });
+        try {
+            mMap.setMyLocationEnabled(true);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public void setLocation(View view){
-        Toast.makeText(this,marker.getPosition().toString(), Toast.LENGTH_SHORT).show();
+        LatLng pos = marker.getPosition();
+        Intent intent = new Intent();
+        intent.putExtra("latitude",pos.latitude);
+        intent.putExtra("longitude",pos.longitude);
+        setResult(RESULT_OK,intent);
+        finish();
     }
 }
