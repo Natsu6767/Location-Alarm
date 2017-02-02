@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                 locationSet.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startActivityForResult(new Intent(MainActivity.this, SetAlarmActivity.class), 1);
+                        startActivityForResult(new Intent(MainActivity.this, CustomPlacePicker.class), 1);
                     }
                 });
 
