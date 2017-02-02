@@ -66,13 +66,13 @@ public class MainActivity extends AppCompatActivity {
                         .setCancelable(false)
                         .setPositiveButton("OK",
                                 new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog,int id) {
+                                    public void onClick(DialogInterface dialog, int id) {
                                         //Sets the alarm. Code needs to be entered
                                     }
                                 })
                         .setNegativeButton("Cancel",
                                 new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog,int id) {
+                                    public void onClick(DialogInterface dialog, int id) {
                                         dialog.cancel();
                                     }
                                 });
@@ -116,14 +116,10 @@ public class MainActivity extends AppCompatActivity {
         ((GeoAlarmAdapter) mAdapter).setOnItemClickListener(new GeoAlarmAdapter.MyClickListener() {
             @Override
             public void onItemClick(int position, View v) {
-            //On click event for row items
+                //On click event for row items
 
             }
         });
     }
 
-    public void time(View view){
-        Intent intent = new Intent(MainActivity.this, TimeAlarmActivity.class);
-        startActivity(intent);
-    }
 }

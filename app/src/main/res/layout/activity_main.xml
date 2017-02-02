@@ -23,13 +23,6 @@
         android:layout_margin="@dimen/fab_margin"
         app:backgroundTint="#fff"
         android:src="@drawable/ic_alarm_add_black_24dp" />
-
-    <Button
-        android:id="@+id/time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="proto time alarm"
-        android:onClick="time"/>
-
+    
 
 </LinearLayout>

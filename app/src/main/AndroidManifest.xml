@@ -29,7 +29,6 @@
         </activity>
         <activity android:name=".activities.SetAlarmActivity" />
         <activity android:name=".activities.CustomPlacePicker" />
-        <activity android:name=".activities.TimeAlarmActivity"></activity>
     </application>
 
 </manifest>
