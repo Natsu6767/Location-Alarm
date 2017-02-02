@@ -17,8 +17,8 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private AlarmAdapter mAdapter;
-    private ArrayList<Alarm> mAlarms;
+    private GeoAlarmAdapter mAdapter;
+    private ArrayList<GeoAlarm> mAlarms;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        mAlarms = new ArrayList<Alarm>();
+        mAlarms = new ArrayList<GeoAlarm>();
 
         //Implements RecyclerView
         RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.alarm_list);
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);//sets the RecyclerView as Vertical
         mRecyclerView.setLayoutManager(layoutManager);
-        mAdapter = new AlarmAdapter(mAlarms);
+        mAdapter = new GeoAlarmAdapter(mAlarms);
         mRecyclerView.setAdapter(mAdapter);
         //Adds horizontal bar after each item
         RecyclerView.ItemDecoration itemDecoration =
@@ -60,19 +60,24 @@ public class MainActivity extends AppCompatActivity {
 
     //Use to set info for new alarm
     public void setAlarm(String name, double location, boolean vibrate, int ringtone) {
-        mAlarms.add(new Alarm(name, location, vibrate, ringtone));
+        mAlarms.add(new GeoAlarm(name, location, vibrate, ringtone));
     }
 
 
     @Override
     protected void onResume() {
         super.onResume();
-        ((AlarmAdapter) mAdapter).setOnItemClickListener(new AlarmAdapter.MyClickListener() {
+        ((GeoAlarmAdapter) mAdapter).setOnItemClickListener(new GeoAlarmAdapter.MyClickListener() {
             @Override
             public void onItemClick(int position, View v) {
-
+            //On click event for row items
 
             }
         });
+    }
+
+    public void time(View view){
+        Intent intent = new Intent(MainActivity.this, TimeAlarmActivity.class);
+        startActivity(intent);
     }
 }
