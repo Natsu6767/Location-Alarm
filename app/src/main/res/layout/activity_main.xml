@@ -23,6 +23,6 @@
         android:layout_margin="@dimen/fab_margin"
         app:backgroundTint="#fff"
         android:src="@drawable/ic_alarm_add_black_24dp" />
-
+    
 
 </LinearLayout>

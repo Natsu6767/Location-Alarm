@@ -19,16 +19,17 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class CustomPlacePicker extends AppCompatActivity implements OnMapReadyCallback{
+public class CustomPlacePicker extends AppCompatActivity implements OnMapReadyCallback {
     MapFragment mapFragment;
     private GoogleMap mMap;
     PlaceAutocompleteFragment autocompleteFragment;
     Marker marker;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_custom_place_picker);
-        mapFragment = (MapFragment)getFragmentManager().findFragmentById(R.id.map);
+        mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         autocompleteFragment = (PlaceAutocompleteFragment) getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
         autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
@@ -65,12 +66,13 @@ public class CustomPlacePicker extends AppCompatActivity implements OnMapReadyCa
         }
     }
 
-    public void setLocation(View view){
+    public void setLocation(View view) {
         LatLng pos = marker.getPosition();
         Intent intent = new Intent();
-        intent.putExtra("latitude",pos.latitude);
-        intent.putExtra("longitude",pos.longitude);
-        setResult(RESULT_OK,intent);
+        intent.putExtra("latitude", pos.latitude);
+        intent.putExtra("longitude", pos.longitude);
+        setResult(RESULT_OK, intent);
         finish();
     }
+
 }
