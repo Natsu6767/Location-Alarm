@@ -2,6 +2,7 @@ package com.cfd.map.mohit.locationalarm.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -27,6 +28,15 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_main);
+        //Buton used to set the alarm
+        FloatingActionButton setAlarm = (FloatingActionButton) findViewById(R.id.set_alarm);
+        //On click listener for setting the alarm button
+        setAlarm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivityForResult(new Intent(MainActivity.this, SetAlarmActivity.class), 1);
+            }
+        });
 
 
         mAlarms = new ArrayList<Alarm>();
@@ -45,16 +55,13 @@ public class MainActivity extends AppCompatActivity {
                 new DividerItemDecoration(this, LinearLayoutManager.VERTICAL);
         mRecyclerView.addItemDecoration(itemDecoration);
 
-    }
-    public void setAlarm(View view){
-        startActivityForResult(new Intent(this,SetAlarmActivity.class),1);
+
     }
 
     //Use to set info for new alarm
-    public void setAlarm(String name, double location, boolean vibrate, int ringtone){
+    public void setAlarm(String name, double location, boolean vibrate, int ringtone) {
         mAlarms.add(new Alarm(name, location, vibrate, ringtone));
     }
-
 
 
     @Override
