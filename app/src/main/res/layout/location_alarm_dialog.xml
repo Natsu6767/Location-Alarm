@@ -44,7 +44,27 @@
             tools:text="My Label" />
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ringtone: " />
+
+        <Spinner
+            android:id="@+id/ringtone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></Spinner>
+    </LinearLayout>
+
+    <CheckBox
+        android:id="@+id/vibration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Vibration" />
 
 
 </LinearLayout>
