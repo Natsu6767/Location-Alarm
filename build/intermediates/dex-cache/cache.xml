@@ -88,7 +88,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="ad92af8806c15cb2af1f88e3d337c24a1d42d509">
+        sha1="a1f564af7591bed2960528c476910115996d23d1">
         <dex dex="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_5f62388afb9a1886545f11a2b29be393961e2d2a\classes.dex" />
     </item>
     <item
@@ -133,7 +133,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="efd3a0acc9ce52a0a3bb5168d41a806a78984ef0">
+        sha1="d41788a124fc8645d1cc811f0b4b28171eb22e72">
         <dex dex="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_10c6eedca40ae6670bc3c2d97e372bb4ef827fd8\classes.dex" />
     </item>
     <item

@@ -12,14 +12,15 @@ public class GeoAlarm {
     private boolean mVibration;
     private Ringtone mRingtone;
     private LocationCoordiante mLocationCoordinate;
-    private int radius;
+    private int mRadius;
 
-    public GeoAlarm(String name, LocationCoordiante locationCoordinate, boolean vibration, Ringtone ringtone, String ringtoneName) {
+    public GeoAlarm(String name, LocationCoordiante locationCoordinate, boolean vibration, Ringtone ringtone, String ringtoneName,int radius) {
         mName = name;
         mLocationCoordinate = locationCoordinate;
         mVibration = vibration;
         mRingtone = ringtone;
         mRingtoneName = ringtoneName;
+        mRadius = radius;
     }
 
     //Setter Methods
@@ -31,6 +32,31 @@ public class GeoAlarm {
         mRingtone = value;
 
     }
+
+    public void setmRingtone(Ringtone mRingtone) {
+        this.mRingtone = mRingtone;
+    }
+
+    public void setmName(String mName) {
+        this.mName = mName;
+    }
+
+    public void setmRingtoneName(String mRingtoneName) {
+        this.mRingtoneName = mRingtoneName;
+    }
+
+    public void setmVibration(boolean mVibration) {
+        this.mVibration = mVibration;
+    }
+
+    public void setmLocationCoordinate(LocationCoordiante mLocationCoordinate) {
+        this.mLocationCoordinate = mLocationCoordinate;
+    }
+
+    public void setmRadius(int mRadius) {
+        this.mRadius = mRadius;
+    }
+
     public void setVibration(boolean vib){
         mVibration = vib;
     }
@@ -55,5 +81,29 @@ public class GeoAlarm {
 
     public String getRingtoneName() {
         return mRingtoneName;
+    }
+
+    public String getmName() {
+        return mName;
+    }
+
+    public String getmRingtoneName() {
+        return mRingtoneName;
+    }
+
+    public boolean ismVibration() {
+        return mVibration;
+    }
+
+    public Ringtone getmRingtone() {
+        return mRingtone;
+    }
+
+    public LocationCoordiante getmLocationCoordinate() {
+        return mLocationCoordinate;
+    }
+
+    public int getmRadius() {
+        return mRadius;
     }
 }

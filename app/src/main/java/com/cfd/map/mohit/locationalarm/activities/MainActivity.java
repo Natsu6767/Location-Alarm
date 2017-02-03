@@ -38,39 +38,37 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
-
+    // Database
+    AlarmDatabase alarmDatabase;
     final Context context = MainActivity.this;
     final private int REQUEST_CODE = 1;
     double lati, lang;
     RecyclerView mRecyclerView;
-
     TextView posi;
-
-
     // Location variables
     LocationManager locationManager;
     LocationListener locationListener;
     LatLng alarmPos;
     private GeoAlarmAdapter mAdapter;
     private ArrayList<GeoAlarm> mAlarms;
-    private double radius = 10;
+    private int radius = 10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //alarmPos = new LatLng(0, 0);
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         locationListener = new LocationListener() {
             public void onLocationChanged(Location location) {
                 LatLng loc = new LatLng(location.getLatitude(), location.getLongitude());
+                if(alarmPos!=null) {
+                    if (calculateDis(alarmPos, loc) < radius) {
 
-                if (calculateDis(alarmPos, loc) < radius) {
-
-                    Toast.makeText(MainActivity.this, "You have arrived", Toast.LENGTH_SHORT).show();
-                    // locationManager.removeUpdates(locationListener);
+                        Toast.makeText(MainActivity.this, "You have arrived", Toast.LENGTH_SHORT).show();
+                        // locationManager.removeUpdates(locationListener);
+                    }
+                    posi.setText(calculateDis(alarmPos, loc) + "");
+                    Log.d("Location", "" + calculateDis(alarmPos, loc));
                 }
-                posi.setText(calculateDis(alarmPos, loc) + "");
-                Log.d("Location", "" + calculateDis(alarmPos, loc));
                 // Toast.makeText(MainActivity.this,""+ calculateDis(alarmPos.latitude,alarmPos.longitude),Toast.LENGTH_LONG).show();
             }
 
@@ -97,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
         setAlarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Toast.makeText(context,""+alarmDatabase.getAllData(), Toast.LENGTH_SHORT).show();
                 startActivityForResult(new Intent(MainActivity.this, CustomPlacePicker.class), REQUEST_CODE);
             }
         });
@@ -117,14 +115,18 @@ public class MainActivity extends AppCompatActivity {
                 new DividerItemDecoration(this, LinearLayoutManager.VERTICAL);
         mRecyclerView.addItemDecoration(itemDecoration);
 
+
+        // adding database
+        alarmDatabase = new AlarmDatabase(this);
+
     }
 
     //Use to set info for new alarm
     public void setAlarm(String name, LocationCoordiante location, boolean vibrate, Ringtone ringtone, String ringtoneName) {
-        mAlarms.add(new GeoAlarm(name, location, vibrate, ringtone, ringtoneName));
-
+        GeoAlarm geoAlarm = new GeoAlarm(name, location, vibrate, ringtone, ringtoneName,radius);
+        mAlarms.add(geoAlarm);
+        alarmDatabase.insertData(geoAlarm);
         mAdapter.addItem(mAdapter.getItemCount());
-
         mRecyclerView.scrollToPosition(mAdapter.getItemCount() - 1);
     }
 
@@ -188,7 +190,6 @@ public class MainActivity extends AppCompatActivity {
                                                 mAlarms.get(position).setRingtone(ringtoneSelect.getSelectedItem().toString(),
                                                         ringtones.get(ringtoneSelect.getSelectedItem()));
                                                 mAlarms.get(position).setVibration(vibration.isChecked());
-
                                                 mAdapter.refreshItem(position);
                                             }
                                         })
@@ -198,7 +199,6 @@ public class MainActivity extends AppCompatActivity {
                                                 dialog.cancel();
                                             }
                                         });
-
                         // create alert dialog
                         AlertDialog alertDialog = alertDialogBuilder.create();
 
@@ -210,6 +210,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         );
+
     }
 
     @Override
@@ -290,6 +291,8 @@ startActivityForResult(new Intent(MainActivity.this, CustomPlacePicker.class), R
                                                 new LocationCoordiante(lati, lang), vibration.isChecked(),
                                                 ringtones.get(ringtoneSelect.getSelectedItem()),
                                                 ringtoneSelect.getSelectedItem().toString());
+
+                                      //  alarmDatabase.insertData(userInput.getText().toString());
                                     }
                                 })
                         .setNegativeButton("Cancel",
@@ -317,14 +320,14 @@ startActivityForResult(new Intent(MainActivity.this, CustomPlacePicker.class), R
         double φ2 = Math.PI * myLoc.latitude / 180;
         double Δφ = φ2 - φ1;
         double Δλ = Math.PI * (destiny.longitude - myLoc.longitude) / 180;
-
-        double a = Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
-                Math.cos(φ1) * Math.cos(φ2) *
-                        Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
+        double a = Math.sin(Δφ / 2) * Math.sin(Δφ / 2) + Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
         double d = R * c;
         return d;
+    }
+    public void loadData(){
+
     }
 
 }
