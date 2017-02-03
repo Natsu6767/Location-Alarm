@@ -21,7 +21,7 @@ public class GeoAlarmAdapter extends RecyclerView.Adapter<GeoAlarmAdapter.AlarmH
     private static MyClickListener myClickListener;
 
     public GeoAlarmAdapter(ArrayList<GeoAlarm> myAlarms) {
-        myAlarms = myAlarms;
+        mAlarms = myAlarms;
     }
 
     public static class AlarmHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -89,4 +89,15 @@ public class GeoAlarmAdapter extends RecyclerView.Adapter<GeoAlarmAdapter.AlarmH
         public void onItemClick(int position, View v);
 
     }
+
+    void addItem(GeoAlarm dataObj, int index){
+        mAlarms.add(dataObj);
+        notifyItemInserted(index);
+    }
+
+    void deleteItem(int index) {
+        mAlarms.remove(index);
+        notifyItemRemoved(index);
+    }
+
 }
