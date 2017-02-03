@@ -4,6 +4,9 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.database.Cursor;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
@@ -16,6 +19,8 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -25,6 +30,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cfd.map.mohit.locationalarm.R;
+import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -39,10 +45,40 @@ public class MainActivity extends AppCompatActivity {
     double lati, lang;
     RecyclerView mRecyclerView;
 
+    // Location variables
+    LocationManager locationManager;
+    LocationListener locationListener;
+    LatLng alarmPos;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        alarmPos = new LatLng(0,0);
+        locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+        locationListener = new LocationListener() {
+            public void onLocationChanged(Location location) {
+                LatLng  loc = new LatLng(location.getLatitude(),location.getLongitude());
+                if(calculateDis(alarmPos,loc)<100){
+                    Toast.makeText(MainActivity.this, "You have arrived", Toast.LENGTH_SHORT).show();
+                    locationManager.removeUpdates(locationListener);
+                }
+                Log.d("Location",""+ calculateDis(alarmPos,loc));
+               // Toast.makeText(MainActivity.this,""+ calculateDis(alarmPos.latitude,alarmPos.longitude),Toast.LENGTH_LONG).show();
+            }
 
+            public void onStatusChanged(String provider, int status, Bundle extras) {}
+
+            public void onProviderEnabled(String provider) {}
+
+            public void onProviderDisabled(String provider) {
+
+            }
+        };
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
         //Buton used to set the alarm
         FloatingActionButton setAlarm = (FloatingActionButton) findViewById(R.id.set_alarm);
@@ -52,12 +88,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 startActivityForResult(new Intent(MainActivity.this, CustomPlacePicker.class), REQUEST_CODE);
-
-
             }
         });
-
-
         mAlarms = new ArrayList<GeoAlarm>();
 
         //Implements RecyclerView
@@ -104,8 +136,11 @@ public class MainActivity extends AppCompatActivity {
         Log.d("Intent", "" + resultCode);
         if (resultCode == RESULT_OK) {
             if (requestCode == REQUEST_CODE) {
+                // coordinates for destination
                 lati = data.getDoubleExtra("latitude", 0);
                 lang = data.getDoubleExtra("longitude", 0);
+                alarmPos = new LatLng(lati,lang);
+                Log.d("location",alarmPos.toString());
                 Toast.makeText(this, "" + lati + ", " + lang, Toast.LENGTH_SHORT).show();
 
                 //Creates the dialog for configuring the new alarm
@@ -130,7 +165,6 @@ public class MainActivity extends AppCompatActivity {
                 Cursor cursor = manager.getCursor();
                 cursor.moveToFirst();
                 while (!cursor.isAfterLast()) {
-
                     ringtones.put(cursor.getString(RingtoneManager.TITLE_COLUMN_INDEX), manager.getRingtone(cursor.getPosition()));
                     cursor.moveToNext();
                 }
@@ -150,7 +184,6 @@ public class MainActivity extends AppCompatActivity {
                 locationSet.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
                         startActivityForResult(new Intent(MainActivity.this, CustomPlacePicker.class), REQUEST_CODE);
                     }
 
@@ -187,4 +220,21 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+    // distance formula from current location
+    private double calculateDis(LatLng destiny,LatLng myLoc){
+        double R = 6371e3; // metres
+        double φ1 = Math.PI*destiny.latitude/180;
+        double φ2 = Math.PI*myLoc.latitude/180;
+        double Δφ = φ2-φ1;
+        double Δλ = Math.PI*(destiny.longitude-myLoc.longitude)/180;
+
+        double a = Math.sin(Δφ/2) * Math.sin(Δφ/2) +
+                Math.cos(φ1) * Math.cos(φ2) *
+                        Math.sin(Δλ/2) * Math.sin(Δλ/2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+
+        double d = R * c;
+        return d;
+    }
+
 }
