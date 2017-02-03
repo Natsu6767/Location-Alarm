@@ -27,6 +27,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.cfd.map.mohit.locationalarm.R;
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
     LatLng alarmPos;
     private GeoAlarmAdapter mAdapter;
     private ArrayList<GeoAlarm> mAlarms;
-    private double radius = 100;
+    private double radius = 10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,9 +67,9 @@ public class MainActivity extends AppCompatActivity {
                 if (calculateDis(alarmPos, loc) < radius) {
 
                     Toast.makeText(MainActivity.this, "You have arrived", Toast.LENGTH_SHORT).show();
-                   // locationManager.removeUpdates(locationListener);
+                    // locationManager.removeUpdates(locationListener);
                 }
-                posi.setText(calculateDis(alarmPos, loc)+"");
+                posi.setText(calculateDis(alarmPos, loc) + "");
                 Log.d("Location", "" + calculateDis(alarmPos, loc));
                 // Toast.makeText(MainActivity.this,""+ calculateDis(alarmPos.latitude,alarmPos.longitude),Toast.LENGTH_LONG).show();
             }
@@ -89,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
 
-        posi = (TextView)findViewById(R.id.positoion);
+        posi = (TextView) findViewById(R.id.positoion);
         //Buton used to set the alarm
         FloatingActionButton setAlarm = (FloatingActionButton) findViewById(R.id.set_alarm);
         //On click listener for setting the alarm button
@@ -236,9 +237,16 @@ public class MainActivity extends AppCompatActivity {
 
                 final EditText userInput = (EditText) promptsView.findViewById(R.id.alarm_name_input);
                 TextView locationShow = (TextView) promptsView.findViewById(R.id.location_coordinates);
-//Button locationSet = (Button) promptsView.findViewById(R.id.select_location);
+
                 final Spinner ringtoneSelect = (Spinner) promptsView.findViewById(R.id.ringtone);
                 final CheckBox vibration = (CheckBox) promptsView.findViewById(R.id.vibration);
+                TimePicker expectedTime = (TimePicker) promptsView.findViewById(R.id.expected_time);
+
+                expectedTime = new TimePicker(MainActivity.this);
+                expectedTime.setIs24HourView(true);
+                int hour = expectedTime.getCurrentHour();
+                int minute = expectedTime.getCurrentMinute();
+
 
 //Use to retreive ringtones from the phone
                 final Map<String, Ringtone> ringtones = new HashMap<>();

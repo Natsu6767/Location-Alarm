@@ -12,6 +12,7 @@ public class GeoAlarm {
     private boolean mVibration;
     private Ringtone mRingtone;
     private LocationCoordiante mLocationCoordinate;
+    private int radius;
 
     public GeoAlarm(String name, LocationCoordiante locationCoordinate, boolean vibration, Ringtone ringtone, String ringtoneName) {
         mName = name;

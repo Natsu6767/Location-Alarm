@@ -17,12 +17,6 @@
             android:layout_weight="1"
             android:hint="Select Location" />
 
-        <Button
-            android:id="@+id/select_location"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_margin="5dp"
-            android:background="@drawable/ic_add_location_black_24dp" />
 
     </LinearLayout>
 
@@ -38,7 +32,7 @@
 
         <EditText
             android:id="@+id/alarm_name_input"
-            android:layout_width="0dp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             tools:text="My Label" />
@@ -65,6 +59,35 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Vibration" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Range: " />
+
+        <EditText
+            android:id="@+id/range"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            tools:text="my Range" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Expected Time of Arival: " />
+
+   <TimePicker
+       android:id="@+id/expected_time"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"></TimePicker>
 
 
 </LinearLayout>
