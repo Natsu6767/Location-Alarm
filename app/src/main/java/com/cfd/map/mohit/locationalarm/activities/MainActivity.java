@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     final Context context = MainActivity.this;
     final private int REQUEST_CODE = 1;
     double lati, lang;
+    RecyclerView mRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         mAlarms = new ArrayList<GeoAlarm>();
 
         //Implements RecyclerView
-        RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.alarm_list);
+        mRecyclerView  = (RecyclerView) findViewById(R.id.alarm_list);
         mRecyclerView.setHasFixedSize(true);
         final LinearLayoutManager layoutManager;
         layoutManager = new LinearLayoutManager(this);
@@ -78,6 +79,10 @@ public class MainActivity extends AppCompatActivity {
     //Use to set info for new alarm
     public void setAlarm(String name, LocationCoordiante location, boolean vibrate, Ringtone ringtone, String ringtoneName) {
         mAlarms.add(new GeoAlarm(name, location, vibrate, ringtone, ringtoneName));
+
+        mAdapter.addItem(mAlarms.get(mAlarms.size() - 1), mAdapter.getItemCount());
+
+        mRecyclerView.scrollToPosition(mAdapter.getItemCount() - 1);
     }
 
 
@@ -161,7 +166,8 @@ public class MainActivity extends AppCompatActivity {
                                         //Sets the alarm. Code needs to be entered
                                         setAlarm(userInput.getText().toString(),
                                                 new LocationCoordiante(lati, lang), vibration.isChecked(),
-                                                ringtones.get(ringtoneSelect.getSelectedItem()), ringtoneSelect.getSelectedItem().toString());
+                                                ringtones.get(ringtoneSelect.getSelectedItem()),
+                                                ringtoneSelect.getSelectedItem().toString());
                                     }
                                 })
                         .setNegativeButton("Cancel",
