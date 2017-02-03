@@ -71,7 +71,7 @@ public class GeoAlarmAdapter extends RecyclerView.Adapter<GeoAlarmAdapter.AlarmH
         holder.alarmName.setText(mAlarms.get(position).getName());
         holder.alarmLocation.setText(mAlarms.get(position).getLocationCoordinate());
         holder.alarmRingtone.setText(mAlarms.get(position).getRingtoneName());
-        holder.alarmVibration.setSelected(mAlarms.get(position).getVibration());
+        holder.alarmVibration.setChecked(mAlarms.get(position).getVibration());
 
     }
 
