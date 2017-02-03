@@ -24,6 +24,12 @@
         android:layout_marginRight="45dp"
         app:backgroundTint="#fff"
         android:src="@drawable/ic_alarm_add_black_24dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/positoion"
+        android:text="position"/>
     
 
 </RelativeLayout>
