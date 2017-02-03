@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     final private int REQUEST_CODE = 1;
     double lati, lang;
     RecyclerView mRecyclerView;
+    TextView posi;
 
     // Location variables
     LocationManager locationManager;
@@ -59,10 +60,11 @@ public class MainActivity extends AppCompatActivity {
         locationListener = new LocationListener() {
             public void onLocationChanged(Location location) {
                 LatLng loc = new LatLng(location.getLatitude(), location.getLongitude());
-                if (calculateDis(alarmPos, loc) < 100) {
+                if (calculateDis(alarmPos, loc) < 5) {
                     Toast.makeText(MainActivity.this, "You have arrived", Toast.LENGTH_SHORT).show();
-                    locationManager.removeUpdates(locationListener);
+                   // locationManager.removeUpdates(locationListener);
                 }
+                posi.setText(calculateDis(alarmPos, loc)+"");
                 Log.d("Location", "" + calculateDis(alarmPos, loc));
                 // Toast.makeText(MainActivity.this,""+ calculateDis(alarmPos.latitude,alarmPos.longitude),Toast.LENGTH_LONG).show();
             }
@@ -82,6 +84,8 @@ public class MainActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
+
+        posi = (TextView)findViewById(R.id.positoion);
         //Buton used to set the alarm
         FloatingActionButton setAlarm = (FloatingActionButton) findViewById(R.id.set_alarm);
         //On click listener for setting the alarm button
