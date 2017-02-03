@@ -1,54 +1,46 @@
 package com.cfd.map.mohit.locationalarm.activities;
 
+import android.media.Ringtone;
+
 /**
  * Created by Mohit on 2/2/2017.
  */
 
 public class GeoAlarm {
 
-    private String mName;
-    private double mLocationCoordinate;
+    private String mName, mRingtoneName;
     private boolean mVibration;
-    private int mRingtone;
+    private Ringtone mRingtone;
+    private LocationCoordiante mLocationCoordinate;
 
-    public GeoAlarm(String name, double locationCoordinate, boolean vibration, int ringtone) {
+    public GeoAlarm(String name, LocationCoordiante locationCoordinate, boolean vibration, Ringtone ringtone, String ringtoneName) {
         mName = name;
         mLocationCoordinate = locationCoordinate;
         mVibration = vibration;
         mRingtone = ringtone;
+        mRingtoneName = ringtoneName;
     }
 
-    //Setter Methods
-    public void setName(String name) {
-        mName = name;
-    }
-
-    public void setLocationCoordinate(double locationCoordinate) {
-        mLocationCoordinate = locationCoordinate;
-    }
-
-    public void setVibration(boolean vibration) {
-        mVibration = vibration;
-    }
-
-    public void setRingtone(int ringtone) {
-        mRingtone = ringtone;
-    }
 
     //Getter Methods
     public String getName() {
         return mName;
     }
 
-    public double getLocationCoordinate() {
-        return mLocationCoordinate;
+    public String getLocationCoordinate() {
+
+        return ("" + mLocationCoordinate.longitude + ", " + mLocationCoordinate.latitude);
     }
 
     public boolean getVibration() {
         return mVibration;
     }
 
-    public int getRingtone() {
+    public Ringtone getRingtone() {
         return mRingtone;
+    }
+
+    public String getRingtoneName() {
+        return mRingtoneName;
     }
 }
