@@ -12,27 +12,29 @@ public class GeoAlarm {
     private boolean mVibration;
     private Ringtone mRingtone;
     private LocationCoordiante mLocationCoordinate;
-    private int mRadius;
+    private int mRadius, mTime;
 
-    public GeoAlarm(String name, LocationCoordiante locationCoordinate, boolean vibration, Ringtone ringtone, String ringtoneName,int radius) {
+    public GeoAlarm(String name, LocationCoordiante locationCoordinate, boolean vibration,
+                    Ringtone ringtone, String ringtoneName, int radius, int time) {
         mName = name;
         mLocationCoordinate = locationCoordinate;
         mVibration = vibration;
         mRingtone = ringtone;
         mRingtoneName = ringtoneName;
         mRadius = radius;
+        mTime = time;
     }
 
     //Setter Methods
-    public void setName(String name){
+    public void setName(String name) {
         mName = name;
     }
-    public void setRingtone(String name, Ringtone value){
+
+    public void setRingtone(String name, Ringtone value) {
         mRingtoneName = name;
         mRingtone = value;
 
     }
-
     public void setmRingtone(Ringtone mRingtone) {
         this.mRingtone = mRingtone;
     }
@@ -59,6 +61,13 @@ public class GeoAlarm {
 
     public void setVibration(boolean vib){
         mVibration = vib;
+    }
+
+    public void setRadius(int r){
+        mRadius = r;
+    }
+    public void setTime(int t){
+        mTime = t;
     }
 
     //Getter Methods
@@ -103,7 +112,11 @@ public class GeoAlarm {
         return mLocationCoordinate;
     }
 
-    public int getmRadius() {
+    public int getRadius() {
         return mRadius;
+    }
+
+    public int getTime() {
+        return mTime;
     }
 }
