@@ -120,8 +120,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Use to set info for new alarm
-    public void setAlarm(String name, LocationCoordiante location, boolean vibrate, Ringtone ringtone, String ringtoneName) {
-        mAlarms.add(new GeoAlarm(name, location, vibrate, ringtone, ringtoneName));
+    public void setAlarm(String name, LocationCoordiante location, boolean vibrate,
+                         Ringtone ringtone, String ringtoneName, int range, int time) {
+        mAlarms.add(new GeoAlarm(name, location, vibrate, ringtone, ringtoneName, range, time));
 
         mAdapter.addItem(mAdapter.getItemCount());
 
@@ -153,6 +154,8 @@ public class MainActivity extends AppCompatActivity {
                         vibration.setChecked(mAlarms.get(position).getVibration());
                         locationShow.setText(mAlarms.get(position).getLocationCoordinate());
                         userInput.setText(mAlarms.get(position).getName());
+                        final EditText range = (EditText) promptsView.findViewById(R.id.range);
+                        range.setText("" + mAlarms.get(position).getRadius());
 
                         //Use to retreive ringtones from the phone
                         final Map<String, Ringtone> ringtones = new HashMap<>();
@@ -188,6 +191,8 @@ public class MainActivity extends AppCompatActivity {
                                                 mAlarms.get(position).setRingtone(ringtoneSelect.getSelectedItem().toString(),
                                                         ringtones.get(ringtoneSelect.getSelectedItem()));
                                                 mAlarms.get(position).setVibration(vibration.isChecked());
+                                                mAlarms.get(position).setRadius(Integer.parseInt(range.getText().toString()));
+
 
                                                 mAdapter.refreshItem(position);
                                             }
@@ -237,7 +242,7 @@ public class MainActivity extends AppCompatActivity {
 
                 final EditText userInput = (EditText) promptsView.findViewById(R.id.alarm_name_input);
                 TextView locationShow = (TextView) promptsView.findViewById(R.id.location_coordinates);
-
+                final EditText range = (EditText) promptsView.findViewById(R.id.range);
                 final Spinner ringtoneSelect = (Spinner) promptsView.findViewById(R.id.ringtone);
                 final CheckBox vibration = (CheckBox) promptsView.findViewById(R.id.vibration);
                 TimePicker expectedTime = (TimePicker) promptsView.findViewById(R.id.expected_time);
@@ -246,6 +251,7 @@ public class MainActivity extends AppCompatActivity {
                 expectedTime.setIs24HourView(true);
                 int hour = expectedTime.getCurrentHour();
                 int minute = expectedTime.getCurrentMinute();
+                final int second = (hour * 3600) + (minute * 60);
 
 
 //Use to retreive ringtones from the phone
@@ -258,7 +264,7 @@ public class MainActivity extends AppCompatActivity {
                     ringtones.put(cursor.getString(RingtoneManager.TITLE_COLUMN_INDEX), manager.getRingtone(cursor.getPosition()));
                     cursor.moveToNext();
                 }
-//cursor.close();
+
 
 //Extracts the names of the ringtones
                 final ArrayList<String> ringtoneNames = new ArrayList<String>();
@@ -270,14 +276,7 @@ public class MainActivity extends AppCompatActivity {
                         android.R.layout.simple_spinner_item, ringtoneNames);
                 dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 ringtoneSelect.setAdapter(dataAdapter);
-/**********************************************************************************************************************
- locationSet.setOnClickListener(new View.OnClickListener() {
-@Override public void onClick(View v) {
-startActivityForResult(new Intent(MainActivity.this, CustomPlacePicker.class), REQUEST_CODE);
-}
 
-});
- ***********************************************************************************************************************/
 
                 // set dialog message
                 alertDialogBuilder
@@ -289,7 +288,8 @@ startActivityForResult(new Intent(MainActivity.this, CustomPlacePicker.class), R
                                         setAlarm(userInput.getText().toString(),
                                                 new LocationCoordiante(lati, lang), vibration.isChecked(),
                                                 ringtones.get(ringtoneSelect.getSelectedItem()),
-                                                ringtoneSelect.getSelectedItem().toString());
+                                                ringtoneSelect.getSelectedItem().toString(),
+                                                Integer.parseInt(range.getText().toString()), second);
                                     }
                                 })
                         .setNegativeButton("Cancel",

@@ -27,7 +27,7 @@ public class GeoAlarmAdapter extends RecyclerView.Adapter<GeoAlarmAdapter.AlarmH
     public static class AlarmHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         //declare view items for each view in alarm_item.xml
-        TextView alarmName, alarmLocation, alarmRingtone;
+        TextView alarmName, alarmLocation, alarmRingtone, alarmRange;
         CheckBox alarmVibration;
 
 
@@ -39,6 +39,7 @@ public class GeoAlarmAdapter extends RecyclerView.Adapter<GeoAlarmAdapter.AlarmH
             alarmLocation = (TextView) v.findViewById(R.id.alarm_location);
             alarmRingtone = (TextView) v.findViewById(R.id.alarm_ringtone);
             alarmVibration = (CheckBox) v.findViewById(R.id.alarm_vibration);
+            alarmRange = (TextView) v.findViewById(R.id.show_range);
 
 
             v.setOnClickListener(this);
@@ -72,6 +73,7 @@ public class GeoAlarmAdapter extends RecyclerView.Adapter<GeoAlarmAdapter.AlarmH
         holder.alarmLocation.setText(mAlarms.get(position).getLocationCoordinate());
         holder.alarmRingtone.setText(mAlarms.get(position).getRingtoneName());
         holder.alarmVibration.setChecked(mAlarms.get(position).getVibration());
+        holder.alarmRange.setText("" + mAlarms.get(position).getRadius());
 
     }
 
