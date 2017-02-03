@@ -21,6 +21,18 @@ public class GeoAlarm {
         mRingtoneName = ringtoneName;
     }
 
+    //Setter Methods
+    public void setName(String name){
+        mName = name;
+    }
+    public void setRingtone(String name, Ringtone value){
+        mRingtoneName = name;
+        mRingtone = value;
+
+    }
+    public void setVibration(boolean vib){
+        mVibration = vib;
+    }
 
     //Getter Methods
     public String getName() {

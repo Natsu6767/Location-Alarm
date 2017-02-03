@@ -90,13 +90,17 @@ public class GeoAlarmAdapter extends RecyclerView.Adapter<GeoAlarmAdapter.AlarmH
 
     }
 
-    void addItem(GeoAlarm dataObj, int index){
+    void addItem(int index){
         notifyItemInserted(index);
     }
 
     void deleteItem(int index) {
         mAlarms.remove(index);
         notifyItemRemoved(index);
+    }
+
+    void refreshItem(int index){
+        notifyItemChanged(index);
     }
 
 }
