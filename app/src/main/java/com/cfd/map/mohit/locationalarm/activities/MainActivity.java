@@ -39,6 +39,7 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     // Database
+
     AlarmDatabase alarmDatabase;
     final Context context = MainActivity.this;
     final private int REQUEST_CODE = 1;

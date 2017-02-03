@@ -16,13 +16,29 @@ public class AlarmDatabase extends SQLiteOpenHelper{
     public static final String TABLE_NAME = "GeoAlarm";
     public static final String COL_ID = "ID";
     public static final String COL_NAME = "NAME";
+    public static final String COL_RING_NAME = "RING_NAME";
+    public static final String COL_VIB = "VIB";
+    public static final String COL_LONG = "LONG";
+    public static final String COL_LATI = "LATI";
+    //private Ringtone mRingtone;
+    public static final String COL_RAD = "RAD";
+    public static final String COL_TIME = "TIME";
     public AlarmDatabase(Context context) {
         super(context, DATABASE_NAME, null, 1);
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL("create table " + TABLE_NAME + " (" +COL_ID+ " INTEGER PRIMARY KEY AUTOINCREMENT,"+COL_NAME + " TEXT)");
+        sqLiteDatabase.execSQL("create table " + TABLE_NAME + " (" +
+                COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                +COL_NAME + " TEXT,"
+                +COL_RING_NAME + " TEXT,"
+                + COL_VIB + " BOOL,"
+                + COL_LONG + " DOUBLE,"
+                + COL_LATI + " DOUBLE,"
+                + COL_RAD + " INTEGER,"
+                + COL_RAD + " LONG" +
+                ")");
     }
 
     @Override
@@ -35,6 +51,13 @@ public class AlarmDatabase extends SQLiteOpenHelper{
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_NAME,geoAlarm.getName());
+        contentValues.put(COL_RING_NAME,geoAlarm.getRingtoneName());
+        contentValues.put(COL_VIB,geoAlarm.getVibration());
+        LocationCoordiante locationCoordiante = geoAlarm.getmLocationCoordinate();
+        contentValues.put(COL_LATI,locationCoordiante.getLatitude());
+        contentValues.put(COL_LONG,locationCoordiante.getLongitude());
+        contentValues.put(COL_RAD,geoAlarm.getRadius());
+        contentValues.put(COL_TIME,geoAlarm.getTime());
         long result = db.insert(TABLE_NAME, null, contentValues);
         Log.d("add data","" + result);
         if(result ==-1)
@@ -56,12 +79,18 @@ public class AlarmDatabase extends SQLiteOpenHelper{
         // show all data
         return  buffer.toString();
     }
-    public boolean updateData(String id,String name,String surname,String marks){
+    public boolean updateData(GeoAlarm geoAlarm){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COL_ID,id);
-        contentValues.put(COL_NAME,name);
-        long result = db.update(TABLE_NAME,contentValues,"id = ?",new String[]{id});
+        contentValues.put(COL_NAME,geoAlarm.getName());
+        contentValues.put(COL_RING_NAME,geoAlarm.getRingtoneName());
+        contentValues.put(COL_VIB,geoAlarm.getVibration());
+        LocationCoordiante locationCoordiante = geoAlarm.getmLocationCoordinate();
+        contentValues.put(COL_LATI,locationCoordiante.getLatitude());
+        contentValues.put(COL_LONG,locationCoordiante.getLongitude());
+        contentValues.put(COL_RAD,geoAlarm.getRadius());
+        contentValues.put(COL_TIME,geoAlarm.getTime());
+        long result = db.update(TABLE_NAME,contentValues,"id = ?",new String[]{geoAlarm.getmId()});
         if(result!=-1){
             return true;
         }

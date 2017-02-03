@@ -13,6 +13,15 @@ public class GeoAlarm {
     private Ringtone mRingtone;
     private LocationCoordiante mLocationCoordinate;
     private int mRadius, mTime;
+    private String mId;
+
+    public String getmId() {
+        return mId;
+    }
+
+    public void setmId(String mId) {
+        this.mId = mId;
+    }
 
     public GeoAlarm(String name, LocationCoordiante locationCoordinate, boolean vibration,
                     Ringtone ringtone, String ringtoneName, int radius, int time) {
