@@ -120,4 +120,5 @@ public class GeoAlarmAdapter extends RecyclerView.Adapter<GeoAlarmAdapter.AlarmH
         MainActivity.alarmDatabase.updateData(mAlarms.get(index));
     }
 
+
 }

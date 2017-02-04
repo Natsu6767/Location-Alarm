@@ -32,6 +32,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.CustomPlacePicker" />
+
+        <service
+            android:name=".activities.GeoService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>
