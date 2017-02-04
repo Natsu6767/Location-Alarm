@@ -40,7 +40,7 @@ public class GeoService extends Service {
 
     @Override
     public IBinder onBind(Intent intent) {
-
+        // TODO: Return the communication channel to the service.
         //throw new UnsupportedOperationException("Not yet implemented");
         return null;
     }
@@ -49,7 +49,6 @@ public class GeoService extends Service {
     public void onCreate() {
         super.onCreate();
         //onStartCommand(intent,flags,startId);
-
 
     }
 
@@ -84,7 +83,7 @@ public class GeoService extends Service {
 
                                 Log.d("Service", "playing alarms");
                                 uri = Uri.parse(geoAlarm.getRingtoneUri());
-                               // playAlarm(uri);
+                                playAlarm(uri);
                                 //ringtone = ringtoneManager.getRingtone(ringtoneManager.getRingtonePosition(Uri.parse(geoAlarm.getRingtoneUri())));
 
                                 Toast.makeText(GeoService.this, "" + "You Have Arrived", Toast.LENGTH_SHORT).show();
@@ -140,7 +139,8 @@ public class GeoService extends Service {
     }
 
     public void loadAlarms() {
-        geoAlarms = MainActivity.alarmDatabase.getAllData();
+        AlarmDatabase alarmDatabase = new AlarmDatabase(getApplicationContext());
+       geoAlarms = alarmDatabase.getAllData();
     }
 
     public void playAlarm(Uri uri) {
