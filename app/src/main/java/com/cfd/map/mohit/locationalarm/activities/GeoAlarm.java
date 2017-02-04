@@ -75,7 +75,7 @@ public class GeoAlarm {
 
     public String getLocationCoordinate() {
 
-        return ("" + mLocationCoordinate.longitude + ", " + mLocationCoordinate.latitude);
+        return ("" + mLocationCoordinate.latitude + ", " + mLocationCoordinate.longitude);
     }
 
     public boolean getVibration() {

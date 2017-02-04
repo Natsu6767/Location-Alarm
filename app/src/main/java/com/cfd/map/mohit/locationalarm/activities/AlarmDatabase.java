@@ -37,8 +37,8 @@ public class AlarmDatabase extends SQLiteOpenHelper {
                 + COL_NAME + " TEXT,"//1
                 + COL_RING_NAME + " TEXT,"//2
                 + COL_VIB + " BOOL,"//3
-                + COL_LONG + " DOUBLE,"//4
-                + COL_LATI + " DOUBLE,"//5
+                + COL_LATI + " DOUBLE,"//4
+                + COL_LONG + " DOUBLE,"//5
                 + COL_RAD + " INTEGER,"//6
                 + COL_TIME + " LONG, " //7
                 + COL_RING_URI + " TEXT" + //8

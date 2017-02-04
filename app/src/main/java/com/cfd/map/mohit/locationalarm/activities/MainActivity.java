@@ -93,7 +93,8 @@ public class MainActivity extends AppCompatActivity {
         alarmDatabase = new AlarmDatabase(this);
         //shows all of the alarms present in the database
         showAlarms();
-       // startService(new Intent(this,GeoService.class));
+        stopService(new Intent(this,GeoService.class));
+       startService(new Intent(this,GeoService.class));
 
     }
 
@@ -205,15 +206,6 @@ public class MainActivity extends AppCompatActivity {
                 lati = data.getDoubleExtra("latitude", 0);
                 lang = data.getDoubleExtra("longitude", 0);
 
-                    Log.d("pos",lati+ " " + lang);
-                    //geoService.setAlarmPos(new LatLng(lati, lang));
-                //stopService(new Intent(this,GeoService.class));
-                Intent intent = new Intent(this,GeoService.class);
-                intent.putExtra("latitude",lati);
-                intent.putExtra("longitude",lang);
-                //startService(intent);
-               // Log.d("location", alarmPos.toString());
-                Toast.makeText(this, "" + lati + ", " + lang, Toast.LENGTH_SHORT).show();
                 //Creates the dialog for configuring the new alarm
                 LayoutInflater li = LayoutInflater.from(context);
                 View promptsView = li.inflate(R.layout.location_alarm_dialog, null);
@@ -272,6 +264,10 @@ public class MainActivity extends AppCompatActivity {
                                                 new LocationCoordiante(lati, lang), vibration.isChecked(),
                                                 ringtones.get(ringtoneSelect.getSelectedItem()), ringtoneSelect.getSelectedItem().toString(),
                                                 Integer.parseInt(range.getText().toString()), second);
+
+                                        //stopService(new Intent(context,GeoService.class));
+                                        Intent intent = new Intent(context,GeoService.class);
+                                        startService(intent);
                                     }
                                 })
                         .setNegativeButton("Cancel",

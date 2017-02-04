@@ -7,6 +7,9 @@ import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.media.MediaPlayer;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Binder;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -15,6 +18,8 @@ import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import java.io.IOException;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -22,9 +27,10 @@ public class GeoService extends Service {
 
     LocationListener locationListener;
     LocationManager locationManager;
-    private int radius = 10;
-    private LatLng alarmPos ;
     private ArrayList<GeoAlarm> geoAlarms;
+    private RingtoneManager ringtoneManager;
+    private MediaPlayer ringtone;
+
     public GeoService() {
     }
 
@@ -37,17 +43,12 @@ public class GeoService extends Service {
     }
 
     @Override
-    public void onCreate() {
-        super.onCreate();
-    }
-
-    @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         super.onStartCommand(intent, flags, startId);
-        //alarmPos = new LatLng(0,0);
+
         loadAlarms();
-        alarmPos = new LatLng(intent.getDoubleExtra("latitude",1),intent.getDoubleExtra("longitude",1));
-        Toast.makeText(this,"starting sevices",Toast.LENGTH_LONG).show();
+        Log.d("Service", "loading alarms");
+        Toast.makeText(this, "starting sevices", Toast.LENGTH_LONG).show();
 
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         locationListener = new LocationListener() {
@@ -56,44 +57,56 @@ public class GeoService extends Service {
                 //makeUseOfNewLocation(location);
                 LatLng loc = new LatLng(location.getLatitude(), location.getLongitude());
 
-                if(geoAlarms!=null){
-                    for(GeoAlarm geoAlarm:geoAlarms){
-                        if(calculateDis(geoAlarm.getLatLang(),loc)<geoAlarm.getRadius()){
+                if (geoAlarms != null ) {
+                    if (!geoAlarms.isEmpty()) {
+                        for (GeoAlarm geoAlarm : geoAlarms) {
 
+                            Log.d("Service", "checking alarms");
+                            System.out.println(calculateDis(geoAlarm.getLatLang(), loc) + "");
+                            System.out.println(geoAlarm.getLatLang() + "");
+                            if (calculateDis(geoAlarm.getLatLang(), loc) < geoAlarm.getRadius()) {
+                                ringtoneManager = new RingtoneManager(GeoService.this);
+                                ringtoneManager.setType(RingtoneManager.TYPE_ALARM);
+
+                                Log.d("Service", "playing alarms");
+                                playAlarm(Uri.parse(geoAlarm.getRingtoneUri()));
+                                //ringtone = ringtoneManager.getRingtone(ringtoneManager.getRingtonePosition(Uri.parse(geoAlarm.getRingtoneUri())));
+
+                                Toast.makeText(GeoService.this, "" + "You Have Arrived", Toast.LENGTH_SHORT).show();
+
+                                geoAlarms.remove(geoAlarm);
+                                break;
+                            }
                         }
                     }
                 }
-                if (alarmPos != null) {
-                    Log.d("Location", alarmPos.toString());
-                    if (calculateDis(alarmPos, loc) < radius) {
 
-                        Toast.makeText(GeoService.this, "You have arrived", Toast.LENGTH_SHORT).show();
-                        stopSelf();
 
-                    }
-                    Log.d("Location", "" + calculateDis(alarmPos, loc));
-                }
             }
 
-            public void onStatusChanged(String provider, int status, Bundle extras) {}
+            public void onStatusChanged(String provider, int status, Bundle extras) {
+            }
 
-            public void onProviderEnabled(String provider) {}
+            public void onProviderEnabled(String provider) {
+            }
 
-            public void onProviderDisabled(String provider) {}
+            public void onProviderDisabled(String provider) {
+            }
         };
 
 // Register the listener with the Location Manager to receive location updates
-       // locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
+        // locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, locationListener);
 
         Toast.makeText(this, "Service Started", Toast.LENGTH_SHORT).show();
-        return START_REDELIVER_INTENT;
+        return START_STICKY;
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         Toast.makeText(this, "Stopping Service", Toast.LENGTH_SHORT).show();
+        Log.d("Service", "stopping service");
         locationManager.removeUpdates(locationListener);
     }
 
@@ -110,13 +123,23 @@ public class GeoService extends Service {
         double d = R * c;
         return d;
     }
-    public void setAlarm(LatLng alarm){
-        alarmPos = new LatLng(alarm.latitude,alarm.longitude);
-        Log.d("position",alarm.toString());
+
+    public void loadAlarms() {
+        geoAlarms = MainActivity.alarmDatabase.getAllData();
     }
 
-    public void loadAlarms(){
-        geoAlarms = MainActivity.alarmDatabase.getAllData();
+    public void playAlarm(Uri uri) {
+
+        try {
+            ringtone = new MediaPlayer();
+            ringtone.setDataSource(GeoService.this, uri);
+            ringtone.setLooping(true);
+            ringtone.prepare();
+            ringtone.start();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }
