@@ -13,6 +13,15 @@ public class GeoAlarm {
     private Ringtone mRingtone;
     private LocationCoordiante mLocationCoordinate;
     private int mRadius, mTime;
+    private String mId;
+
+    public String getmId() {
+        return mId;
+    }
+
+    public void setmId(String mId) {
+        this.mId = mId;
+    }
 
     public GeoAlarm(String name, LocationCoordiante locationCoordinate, boolean vibration,
                     Ringtone ringtone, String ringtoneName, int radius, int time) {
@@ -35,8 +44,31 @@ public class GeoAlarm {
         mRingtone = value;
 
     }
+    public void setmRingtone(Ringtone mRingtone) {
+        this.mRingtone = mRingtone;
+    }
 
-    public void setVibration(boolean vib) {
+    public void setmName(String mName) {
+        this.mName = mName;
+    }
+
+    public void setmRingtoneName(String mRingtoneName) {
+        this.mRingtoneName = mRingtoneName;
+    }
+
+    public void setmVibration(boolean mVibration) {
+        this.mVibration = mVibration;
+    }
+
+    public void setmLocationCoordinate(LocationCoordiante mLocationCoordinate) {
+        this.mLocationCoordinate = mLocationCoordinate;
+    }
+
+    public void setmRadius(int mRadius) {
+        this.mRadius = mRadius;
+    }
+
+    public void setVibration(boolean vib){
         mVibration = vib;
     }
 
@@ -67,6 +99,26 @@ public class GeoAlarm {
 
     public String getRingtoneName() {
         return mRingtoneName;
+    }
+
+    public String getmName() {
+        return mName;
+    }
+
+    public String getmRingtoneName() {
+        return mRingtoneName;
+    }
+
+    public boolean ismVibration() {
+        return mVibration;
+    }
+
+    public Ringtone getmRingtone() {
+        return mRingtone;
+    }
+
+    public LocationCoordiante getmLocationCoordinate() {
+        return mLocationCoordinate;
     }
 
     public int getRadius() {

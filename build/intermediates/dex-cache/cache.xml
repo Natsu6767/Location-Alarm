@@ -88,8 +88,13 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
+<<<<<<< HEAD
+        sha1="a1f564af7591bed2960528c476910115996d23d1">
+        <dex dex="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_5f62388afb9a1886545f11a2b29be393961e2d2a\classes.dex" />
+=======
         sha1="0d191c1a09e4892d059e5ce749e4ad4e08129e35">
         <dex dex="D:\Projects\Android_Projects\LocationAlarm\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-25.1.1_888c8423bfdc8e08e9da718939aa55653be26dea\classes.dex" />
+>>>>>>> master
     </item>
     <item
         is-multidex="true"
@@ -133,8 +138,13 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
+<<<<<<< HEAD
+        sha1="d41788a124fc8645d1cc811f0b4b28171eb22e72">
+        <dex dex="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_10c6eedca40ae6670bc3c2d97e372bb4ef827fd8\classes.dex" />
+=======
         sha1="c03bf57f358aa10d253f21989e93bcf6014b3b17">
         <dex dex="D:\Projects\Android_Projects\LocationAlarm\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-25.1.1_897e607bd6ffe55328f6aa84d8b10e2aed7c3725\classes.dex" />
+>>>>>>> master
     </item>
     <item
         is-multidex="true"

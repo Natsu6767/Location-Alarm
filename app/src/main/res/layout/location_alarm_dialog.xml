@@ -17,7 +17,6 @@
             android:layout_weight="1"
             android:hint="Select Location" />
 
-
     </LinearLayout>
 
     <LinearLayout
