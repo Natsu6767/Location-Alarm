@@ -83,10 +83,5 @@
         android:layout_height="wrap_content"
         android:text="Expected Time of Arival: " />
 
-    <TimePicker
-        android:id="@+id/expected_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"></TimePicker>
-
 
 </LinearLayout>

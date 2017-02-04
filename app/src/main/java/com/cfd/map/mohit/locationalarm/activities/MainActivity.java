@@ -100,8 +100,8 @@ public class MainActivity extends AppCompatActivity {
 
     //Use to set info for new alarm
     public void setAlarm(String name, LocationCoordiante location, boolean vibrate,
-                         String ringtone, String ringtoneName, int range, int time) {
-        GeoAlarm geoAlarm = new GeoAlarm(name, location, vibrate, ringtone, ringtoneName, range, time);
+                         String ringtone, String ringtoneName, int range) {
+        GeoAlarm geoAlarm = new GeoAlarm(name, location, vibrate, ringtone, ringtoneName, range);
         alarmDatabase.insertData(geoAlarm);
         geoAlarm.setmId(alarmDatabase.getId());
         mAlarms.add(geoAlarm);
@@ -220,13 +220,8 @@ public class MainActivity extends AppCompatActivity {
                 final EditText range = (EditText) promptsView.findViewById(R.id.range);
                 final Spinner ringtoneSelect = (Spinner) promptsView.findViewById(R.id.ringtone);
                 final CheckBox vibration = (CheckBox) promptsView.findViewById(R.id.vibration);
-                TimePicker expectedTime = (TimePicker) promptsView.findViewById(R.id.expected_time);
 
-                expectedTime = new TimePicker(MainActivity.this);
-                expectedTime.setIs24HourView(true);
-                int hour = expectedTime.getCurrentHour();
-                int minute = expectedTime.getCurrentMinute();
-                final int second = (hour * 3600) + (minute * 60);
+
 
 
 //Use to retreive ringtones from the phone
@@ -263,7 +258,7 @@ public class MainActivity extends AppCompatActivity {
                                         setAlarm(userInput.getText().toString(),
                                                 new LocationCoordiante(lati, lang), vibration.isChecked(),
                                                 ringtones.get(ringtoneSelect.getSelectedItem()), ringtoneSelect.getSelectedItem().toString(),
-                                                Integer.parseInt(range.getText().toString()), second);
+                                                Integer.parseInt(range.getText().toString()));
 
                                         //stopService(new Intent(context,GeoService.class));
                                         Intent intent = new Intent(context,GeoService.class);
