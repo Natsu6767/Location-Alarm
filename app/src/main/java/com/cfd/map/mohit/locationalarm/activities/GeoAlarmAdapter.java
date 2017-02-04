@@ -80,7 +80,11 @@ public class GeoAlarmAdapter extends RecyclerView.Adapter<GeoAlarmAdapter.AlarmH
         holder.alarmDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                MainActivity.alarmDatabase.delete(mAlarms.get(position).getmId());
                 deleteItem(position);
+
+
             }
         });
 
@@ -113,6 +117,7 @@ public class GeoAlarmAdapter extends RecyclerView.Adapter<GeoAlarmAdapter.AlarmH
 
     void refreshItem(int index) {
         notifyItemChanged(index);
+        MainActivity.alarmDatabase.updateData(mAlarms.get(index));
     }
 
 }

@@ -19,17 +19,17 @@
         tools:text="Location Coordinates" />
 
     <CheckBox
-        android:layout_below="@id/alarm_location"
         android:id="@+id/alarm_vibration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/alarm_location"
         android:text="Vibration" />
 
     <LinearLayout
         android:id="@+id/one"
-        android:layout_below="@id/alarm_vibration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/alarm_vibration"
         android:orientation="horizontal">
 
         <TextView
@@ -46,14 +46,14 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_below="@id/one"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@id/one">
 
         <TextView
-            android:text="Range"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="Range" />
 
         <TextView
             android:id="@+id/show_range"
@@ -68,7 +68,7 @@
         android:layout_height="48dp"
         android:layout_alignParentRight="true"
         android:layout_margin="10dp"
-        android:background="@drawable/ic_delete_black_48dp"/>
+        android:background="@drawable/ic_delete_black_48dp" />
 
 
 </RelativeLayout>

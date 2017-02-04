@@ -62,11 +62,13 @@ public class AlarmDatabase extends SQLiteOpenHelper {
         contentValues.put(COL_RAD, geoAlarm.getRadius());
         contentValues.put(COL_TIME, geoAlarm.getTime());
         long result = db.insert(TABLE_NAME, null, contentValues);
+
         Log.d("add data", "" + result);
-        if (result == -1)
+        if (result == -1) {
             return false;
-        else
+        } else {
             return true;
+        }
     }
 
     public ArrayList<GeoAlarm> getAllData() {
@@ -76,17 +78,7 @@ public class AlarmDatabase extends SQLiteOpenHelper {
             //show message
             return null;
         }
-       /* StringBuffer buffer = new StringBuffer();
-        while(res.moveToNext()){
-            buffer.append("Id :"+ res.getString(0)+"\n");
-            buffer.append("NAME :"+ res.getString(1)+"\n");
-            buffer.append("RING :"+ res.getString(2)+"\n");
-            buffer.append("VIB :"+ res.getString(3)+"\n");
-            buffer.append("LONG :"+ res.getString(4)+"\n");
-            buffer.append("LATI :"+ res.getString(5)+"\n");
-            buffer.append("RAD :"+ res.getString(6)+"\n");
-            buffer.append("TIME :"+ res.getString(7)+"\n");
-            */
+
         ArrayList<GeoAlarm> alarms = new ArrayList<>();
         if (cursor != null) {
             if (cursor.moveToNext()) {
@@ -129,15 +121,15 @@ public class AlarmDatabase extends SQLiteOpenHelper {
         return false;
     }
 
-    public Integer delete(String Id) {
+    public Integer delete(int Id) {
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.delete(TABLE_NAME, "ID = ?", new String[]{Id});
+        return db.delete(TABLE_NAME, "ID = ?", new String[]{"" + Id});
     }
 
     public int getId() {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("select id from " + TABLE_NAME + " ORDER BY ID DESC LIMIT 1;", null);
-
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + " ORDER BY ID DESC LIMIT 1;", null);
+        cursor.moveToFirst();
         return cursor.getInt(0);
     }
 }

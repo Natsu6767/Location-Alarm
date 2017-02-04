@@ -19,9 +19,11 @@ public class GeoAlarm {
     public int getmId() {
         return mId;
     }
-    public GeoAlarm(){
+
+    public GeoAlarm() {
 
     }
+
     public void setmId(int mId) {
         this.mId = mId;
     }
@@ -57,14 +59,15 @@ public class GeoAlarm {
         mLocationCoordinate = locationCoordinate;
     }
 
-    public void setVibration(boolean vib){
+    public void setVibration(boolean vib) {
         mVibration = vib;
     }
 
-    public void setRadius(int r){
+    public void setRadius(int r) {
         mRadius = r;
     }
-    public void setTime(long t){
+
+    public void setTime(long t) {
         mTime = t;
     }
 
