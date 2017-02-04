@@ -12,16 +12,17 @@ public class GeoAlarm {
     private boolean mVibration;
     private Ringtone mRingtone;
     private LocationCoordiante mLocationCoordinate;
-    private int mRadius, mTime;
-    private String mId;
+    private int mRadius;
+    private long mTime;
+    private int mId;
 
-    public String getmId() {
+    public int getmId() {
         return mId;
     }
     public GeoAlarm(){
 
     }
-    public void setmId(String mId) {
+    public void setmId(int mId) {
         this.mId = mId;
     }
 
@@ -46,28 +47,14 @@ public class GeoAlarm {
         mRingtone = value;
 
     }
-    public void setmRingtone(Ringtone mRingtone) {
-        this.mRingtone = mRingtone;
-    }
-
-    public void setmName(String mName) {
-        this.mName = mName;
-    }
 
     public void setmRingtoneName(String mRingtoneName) {
         this.mRingtoneName = mRingtoneName;
     }
 
-    public void setmVibration(boolean mVibration) {
-        this.mVibration = mVibration;
-    }
 
-    public void setmLocationCoordinate(LocationCoordiante mLocationCoordinate) {
-        this.mLocationCoordinate = mLocationCoordinate;
-    }
-
-    public void setmRadius(int mRadius) {
-        this.mRadius = mRadius;
+    public void setLocationCoordinate(LocationCoordiante locationCoordinate) {
+        mLocationCoordinate = locationCoordinate;
     }
 
     public void setVibration(boolean vib){
@@ -77,7 +64,7 @@ public class GeoAlarm {
     public void setRadius(int r){
         mRadius = r;
     }
-    public void setTime(int t){
+    public void setTime(long t){
         mTime = t;
     }
 
@@ -103,20 +90,8 @@ public class GeoAlarm {
         return mRingtoneName;
     }
 
-    public String getmName() {
-        return mName;
-    }
-
     public String getmRingtoneName() {
         return mRingtoneName;
-    }
-
-    public boolean ismVibration() {
-        return mVibration;
-    }
-
-    public Ringtone getmRingtone() {
-        return mRingtone;
     }
 
     public LocationCoordiante getmLocationCoordinate() {
@@ -127,7 +102,7 @@ public class GeoAlarm {
         return mRadius;
     }
 
-    public int getTime() {
+    public long getTime() {
         return mTime;
     }
 }

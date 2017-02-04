@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
@@ -29,6 +30,7 @@ public class GeoAlarmAdapter extends RecyclerView.Adapter<GeoAlarmAdapter.AlarmH
         //declare view items for each view in alarm_item.xml
         TextView alarmName, alarmLocation, alarmRingtone, alarmRange;
         CheckBox alarmVibration;
+        Button alarmDelete;
 
 
         public AlarmHolder(View v) {
@@ -40,6 +42,7 @@ public class GeoAlarmAdapter extends RecyclerView.Adapter<GeoAlarmAdapter.AlarmH
             alarmRingtone = (TextView) v.findViewById(R.id.alarm_ringtone);
             alarmVibration = (CheckBox) v.findViewById(R.id.alarm_vibration);
             alarmRange = (TextView) v.findViewById(R.id.show_range);
+            alarmDelete = (Button) v.findViewById(R.id.alarm_delete);
 
 
             v.setOnClickListener(this);
@@ -66,7 +69,7 @@ public class GeoAlarmAdapter extends RecyclerView.Adapter<GeoAlarmAdapter.AlarmH
     }
 
     @Override
-    public void onBindViewHolder(GeoAlarmAdapter.AlarmHolder holder, int position) {
+    public void onBindViewHolder(GeoAlarmAdapter.AlarmHolder holder, final int position) {
 
         //Set values to the alarm_item layout (custom row)
         holder.alarmName.setText(mAlarms.get(position).getName());
@@ -74,6 +77,12 @@ public class GeoAlarmAdapter extends RecyclerView.Adapter<GeoAlarmAdapter.AlarmH
         holder.alarmRingtone.setText(mAlarms.get(position).getRingtoneName());
         holder.alarmVibration.setChecked(mAlarms.get(position).getVibration());
         holder.alarmRange.setText("" + mAlarms.get(position).getRadius());
+        holder.alarmDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deleteItem(position);
+            }
+        });
 
     }
 
@@ -92,16 +101,17 @@ public class GeoAlarmAdapter extends RecyclerView.Adapter<GeoAlarmAdapter.AlarmH
 
     }
 
-    void addItem(int index){
+    void addItem(int index) {
         notifyItemInserted(index);
     }
 
     void deleteItem(int index) {
         mAlarms.remove(index);
         notifyItemRemoved(index);
+        notifyItemRangeChanged(index, mAlarms.size());
     }
 
-    void refreshItem(int index){
+    void refreshItem(int index) {
         notifyItemChanged(index);
     }
 
