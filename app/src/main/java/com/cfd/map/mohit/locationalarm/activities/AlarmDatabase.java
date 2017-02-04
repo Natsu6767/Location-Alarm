@@ -2,7 +2,6 @@ package com.cfd.map.mohit.locationalarm.activities;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -14,7 +13,7 @@ import java.util.ArrayList;
  * Created by Arihant Jain on 2/3/2017.
  */
 
-public class AlarmDatabase extends SQLiteOpenHelper{
+public class AlarmDatabase extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "AlarmDatabase.DB";
     public static final String TABLE_NAME = "GeoAlarm";
     public static final String COL_ID = "ID";
@@ -26,6 +25,7 @@ public class AlarmDatabase extends SQLiteOpenHelper{
     //private Ringtone mRingtone;
     public static final String COL_RAD = "RAD";
     public static final String COL_TIME = "TIME";
+
     public AlarmDatabase(Context context) {
         super(context, DATABASE_NAME, null, 1);
     }
@@ -33,95 +33,104 @@ public class AlarmDatabase extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL("create table " + TABLE_NAME + " (" +
-                COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-                +COL_NAME + " TEXT,"
-                +COL_RING_NAME + " TEXT,"
-                + COL_VIB + " BOOL,"
-                + COL_LONG + " DOUBLE,"
-                + COL_LATI + " DOUBLE,"
-                + COL_RAD + " INTEGER,"
-                + COL_TIME + " LONG" +
+                COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"//0
+                + COL_NAME + " TEXT,"//1
+                + COL_RING_NAME + " TEXT,"//2
+                + COL_VIB + " BOOL,"//3
+                + COL_LONG + " DOUBLE,"//4
+                + COL_LATI + " DOUBLE,"//5
+                + COL_RAD + " INTEGER,"//6
+                + COL_TIME + " LONG" +//7
                 ")");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldv, int newv) {
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+TABLE_NAME);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(sqLiteDatabase);
     }
 
-    public boolean insertData(GeoAlarm geoAlarm){
+    public boolean insertData(GeoAlarm geoAlarm) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COL_NAME,geoAlarm.getName());
-        contentValues.put(COL_RING_NAME,geoAlarm.getRingtoneName());
-        contentValues.put(COL_VIB,geoAlarm.getVibration());
+        contentValues.put(COL_NAME, geoAlarm.getName());
+        contentValues.put(COL_RING_NAME, geoAlarm.getRingtoneName());
+        contentValues.put(COL_VIB, geoAlarm.getVibration());
         LocationCoordiante locationCoordiante = geoAlarm.getmLocationCoordinate();
-        contentValues.put(COL_LATI,locationCoordiante.getLatitude());
-        contentValues.put(COL_LONG,locationCoordiante.getLongitude());
-        contentValues.put(COL_RAD,geoAlarm.getRadius());
-        contentValues.put(COL_TIME,geoAlarm.getTime());
+        contentValues.put(COL_LATI, locationCoordiante.getLatitude());
+        contentValues.put(COL_LONG, locationCoordiante.getLongitude());
+        contentValues.put(COL_RAD, geoAlarm.getRadius());
+        contentValues.put(COL_TIME, geoAlarm.getTime());
         long result = db.insert(TABLE_NAME, null, contentValues);
-        Log.d("add data","" + result);
-        if(result ==-1)
+
+        Log.d("add data", "" + result);
+        if (result == -1) {
             return false;
-        else
+        } else {
             return true;
+        }
     }
-    public ArrayList<GeoAlarm> getAllData(){ SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("select * from "+TABLE_NAME,null);
-        if(cursor.getCount() == 0){
+
+    public ArrayList<GeoAlarm> getAllData() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("select * from " + TABLE_NAME + ";", null);
+        if (cursor.getCount() == 0) {
             //show message
             return null;
         }
-       /* StringBuffer buffer = new StringBuffer();
-        while(res.moveToNext()){
-            buffer.append("Id :"+ res.getString(0)+"\n");
-            buffer.append("NAME :"+ res.getString(1)+"\n");
-            buffer.append("RING :"+ res.getString(2)+"\n");
-            buffer.append("VIB :"+ res.getString(3)+"\n");
-            buffer.append("LONG :"+ res.getString(4)+"\n");
-            buffer.append("LATI :"+ res.getString(5)+"\n");
-            buffer.append("RAD :"+ res.getString(6)+"\n");
-            buffer.append("TIME :"+ res.getString(7)+"\n");
-            */
-        ArrayList<GeoAlarm> alarms = new ArrayList<>();
-            if (cursor != null) {
-                if (cursor.moveToNext()) {
-                    do {
-                        GeoAlarm geoAlarm = new GeoAlarm();
-                        geoAlarm.setmId(cursor.getString(0));
-                        geoAlarm.setName(cursor.getString(1));
-                        geoAlarm.setmRingtoneName(cursor.getString(3));
-                        geoAlarm.setVibration(Integer.parseInt(cursor.getString(4)) == 1);
-                        alarms.add(geoAlarm);
-                    }
-                    while (cursor.moveToNext());
 
+        ArrayList<GeoAlarm> alarms = new ArrayList<>();
+        if (cursor != null) {
+            if (cursor.moveToNext()) {
+                do {
+                    GeoAlarm geoAlarm = new GeoAlarm();
+                    geoAlarm.setmId(cursor.getInt(0));
+                    geoAlarm.setName(cursor.getString(1));
+                    geoAlarm.setmRingtoneName(cursor.getString(2));
+                    geoAlarm.setVibration(Integer.parseInt(cursor.getString(3)) == 1);
+                    geoAlarm.setLocationCoordinate(new LocationCoordiante(cursor.getDouble(4), cursor.getDouble(5)));
+                    geoAlarm.setRadius(cursor.getInt(6));
+                    geoAlarm.setTime(cursor.getLong(7));
+
+
+                    alarms.add(geoAlarm);
                 }
+                while (cursor.moveToNext());
+
             }
+        }
         // show all data
-        return  alarms;
+        return alarms;
     }
-    public boolean updateData(GeoAlarm geoAlarm){
+
+    public boolean updateData(GeoAlarm geoAlarm) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COL_NAME,geoAlarm.getName());
-        contentValues.put(COL_RING_NAME,geoAlarm.getRingtoneName());
-        contentValues.put(COL_VIB,geoAlarm.getVibration());
+        contentValues.put(COL_NAME, geoAlarm.getName());
+        contentValues.put(COL_RING_NAME, geoAlarm.getRingtoneName());
+        contentValues.put(COL_VIB, geoAlarm.getVibration());
         LocationCoordiante locationCoordiante = geoAlarm.getmLocationCoordinate();
-        contentValues.put(COL_LATI,locationCoordiante.getLatitude());
-        contentValues.put(COL_LONG,locationCoordiante.getLongitude());
-        contentValues.put(COL_RAD,geoAlarm.getRadius());
-        contentValues.put(COL_TIME,geoAlarm.getTime());
-        long result = db.update(TABLE_NAME,contentValues,"id = ?",new String[]{geoAlarm.getmId()});
-        if(result!=-1){
+        contentValues.put(COL_LATI, locationCoordiante.getLatitude());
+        contentValues.put(COL_LONG, locationCoordiante.getLongitude());
+        contentValues.put(COL_RAD, geoAlarm.getRadius());
+        contentValues.put(COL_TIME, geoAlarm.getTime());
+        long result = db.update(TABLE_NAME, contentValues, "id = ?", new String[]{"" + geoAlarm.getmId()});
+        if (result != -1) {
             return true;
         }
         return false;
     }
-    public Integer delete(String Id){
+
+    public Integer delete(int Id) {
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.delete(TABLE_NAME,"ID = ?",new String[]{Id});
+        return db.delete(TABLE_NAME, "ID = ?", new String[]{"" + Id});
+    }
+
+    public int getId() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + " ORDER BY ID DESC LIMIT 1;", null);
+        cursor.moveToFirst();
+        return cursor.getInt(0);
     }
 }
+

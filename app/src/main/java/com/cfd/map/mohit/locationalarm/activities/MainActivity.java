@@ -40,7 +40,7 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
     // Database
 
-    AlarmDatabase alarmDatabase;
+    static AlarmDatabase alarmDatabase;
     final Context context = MainActivity.this;
     final private int REQUEST_CODE = 1;
     double lati, lang;
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     LocationListener locationListener;
     LatLng alarmPos;
     private GeoAlarmAdapter mAdapter;
-    private ArrayList<GeoAlarm> mAlarms;
+    static public ArrayList<GeoAlarm> mAlarms;
     private int radius = 10;
 
     @Override
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         locationListener = new LocationListener() {
             public void onLocationChanged(Location location) {
                 LatLng loc = new LatLng(location.getLatitude(), location.getLongitude());
-                if(alarmPos!=null) {
+                if (alarmPos != null) {
                     if (calculateDis(alarmPos, loc) < radius) {
 
                         Toast.makeText(MainActivity.this, "You have arrived", Toast.LENGTH_SHORT).show();
@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
         setAlarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context,""+alarmDatabase.getAllData(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "" + alarmDatabase.getAllData(), Toast.LENGTH_SHORT).show();
                 startActivityForResult(new Intent(MainActivity.this, CustomPlacePicker.class), REQUEST_CODE);
             }
         });
@@ -119,6 +119,8 @@ public class MainActivity extends AppCompatActivity {
 
         // adding database
         alarmDatabase = new AlarmDatabase(this);
+        //shows all of the alarms present in the database
+        showAlarms();
 
     }
 
@@ -127,10 +129,12 @@ public class MainActivity extends AppCompatActivity {
                          Ringtone ringtone, String ringtoneName, int range, int time) {
         GeoAlarm geoAlarm = new GeoAlarm(name, location, vibrate, ringtone, ringtoneName, range, time);
         alarmDatabase.insertData(geoAlarm);
+        geoAlarm.setmId(alarmDatabase.getId());
         mAlarms.add(geoAlarm);
         mAdapter.addItem(mAdapter.getItemCount());
         mRecyclerView.scrollToPosition(mAdapter.getItemCount() - 1);
     }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -165,7 +169,8 @@ public class MainActivity extends AppCompatActivity {
                         Cursor cursor = manager.getCursor();
                         cursor.moveToFirst();
                         while (!cursor.isAfterLast()) {
-                            ringtones.put(cursor.getString(RingtoneManager.TITLE_COLUMN_INDEX), manager.getRingtone(cursor.getPosition()));
+                            ringtones.put(cursor.getString(RingtoneManager.TITLE_COLUMN_INDEX),
+                                    manager.getRingtone(cursor.getPosition()));
                             cursor.moveToNext();
                         }
 
@@ -213,7 +218,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         );
-       // showAlarms();
 
     }
 
@@ -288,7 +292,8 @@ public class MainActivity extends AppCompatActivity {
                                         setAlarm(userInput.getText().toString(),
                                                 new LocationCoordiante(lati, lang), vibration.isChecked(),
                                                 ringtones.get(ringtoneSelect.getSelectedItem()), ringtoneSelect.getSelectedItem().toString(),
-                                                Integer.parseInt(range.getText().toString()), second);}
+                                                Integer.parseInt(range.getText().toString()), second);
+                                    }
                                 })
                         .setNegativeButton("Cancel",
                                 new DialogInterface.OnClickListener() {
@@ -324,12 +329,18 @@ public class MainActivity extends AppCompatActivity {
 
 
     // loading old alarms
-    private void showAlarms(){
-        mAlarms = alarmDatabase.getAllData();
-        for(GeoAlarm geoAlarm:mAlarms){
-            mAlarms.add(geoAlarm);
-            mAdapter.addItem(mAdapter.getItemCount());
-            mRecyclerView.scrollToPosition(mAdapter.getItemCount() - 1);
+    private void showAlarms() {
+
+        ArrayList<GeoAlarm> geoAlarms = alarmDatabase.getAllData();
+
+        if (geoAlarms == null) {
+
+        } else {
+            for (GeoAlarm geoAlarm1 : geoAlarms) {
+                mAlarms.add(geoAlarm1);
+                mAdapter.addItem(mAdapter.getItemCount());
+                mRecyclerView.scrollToPosition(mAdapter.getItemCount() - 1);
+            }
         }
     }
 }

@@ -3,11 +3,10 @@ package com.cfd.map.mohit.locationalarm.activities;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import com.cfd.map.mohit.locationalarm.R;
 import com.google.android.gms.common.api.Status;
@@ -74,7 +73,7 @@ public class CustomPlacePicker extends AppCompatActivity implements OnMapReadyCa
                 return;
             }
             mMap.setMyLocationEnabled(true);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

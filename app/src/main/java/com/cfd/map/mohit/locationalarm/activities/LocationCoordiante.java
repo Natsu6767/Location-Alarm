@@ -8,7 +8,7 @@ public class LocationCoordiante {
 
     public double latitude, longitude;
 
-    public LocationCoordiante(double x, double y){
+    public LocationCoordiante(double x, double y) {
         latitude = x;
         longitude = y;
     }

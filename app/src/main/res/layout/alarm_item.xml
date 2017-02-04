@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
@@ -15,17 +15,21 @@
         android:id="@+id/alarm_location"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/alarm_name"
         tools:text="Location Coordinates" />
 
     <CheckBox
         android:id="@+id/alarm_vibration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/alarm_location"
         android:text="Vibration" />
 
     <LinearLayout
+        android:id="@+id/one"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/alarm_vibration"
         android:orientation="horizontal">
 
         <TextView
@@ -43,12 +47,13 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@id/one">
 
         <TextView
-            android:text="Range"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="Range" />
 
         <TextView
             android:id="@+id/show_range"
@@ -57,5 +62,13 @@
 
     </LinearLayout>
 
+    <Button
+        android:id="@+id/alarm_delete"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentRight="true"
+        android:layout_margin="10dp"
+        android:background="@drawable/ic_delete_black_48dp" />
 
-</LinearLayout>
+
+</RelativeLayout>
