@@ -15,7 +15,6 @@ public class GeoAlarm {
     private String mRingtone;
     private LocationCoordiante mLocationCoordinate;
     private int mRadius;
-    private long mTime;
     private int mId;
 
     public int getmId() {
@@ -31,14 +30,13 @@ public class GeoAlarm {
     }
 
     public GeoAlarm(String name, LocationCoordiante locationCoordinate, boolean vibration,
-                    String ringtone, String ringtoneName, int radius, int time) {
+                    String ringtone, String ringtoneName, int radius) {
         mName = name;
         mLocationCoordinate = locationCoordinate;
         mVibration = vibration;
         mRingtone = ringtone;
         mRingtoneName = ringtoneName;
         mRadius = radius;
-        mTime = time;
     }
 
     //Setter Methods
@@ -64,9 +62,6 @@ public class GeoAlarm {
         mRadius = r;
     }
 
-    public void setTime(long t) {
-        mTime = t;
-    }
 
     //Getter Methods
     public String getName() {
@@ -96,10 +91,6 @@ public class GeoAlarm {
 
     public int getRadius() {
         return mRadius;
-    }
-
-    public long getTime() {
-        return mTime;
     }
 
     public LatLng getLatLang() {

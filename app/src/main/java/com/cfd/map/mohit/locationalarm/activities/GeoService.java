@@ -30,21 +30,35 @@ public class GeoService extends Service {
     private ArrayList<GeoAlarm> geoAlarms;
     private RingtoneManager ringtoneManager;
     private MediaPlayer ringtone;
-
+    private Uri uri;
+    Intent intent;
+    int flags;
+    int startId;
     public GeoService() {
     }
 
 
     @Override
     public IBinder onBind(Intent intent) {
-        // TODO: Return the communication channel to the service.
+
         //throw new UnsupportedOperationException("Not yet implemented");
         return null;
     }
 
     @Override
+    public void onCreate() {
+        super.onCreate();
+        //onStartCommand(intent,flags,startId);
+
+
+    }
+
+    @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         super.onStartCommand(intent, flags, startId);
+        this.intent = intent;
+        this.flags = flags;
+        this.startId = startId;
 
         loadAlarms();
         Log.d("Service", "loading alarms");
@@ -69,7 +83,8 @@ public class GeoService extends Service {
                                 ringtoneManager.setType(RingtoneManager.TYPE_ALARM);
 
                                 Log.d("Service", "playing alarms");
-                                playAlarm(Uri.parse(geoAlarm.getRingtoneUri()));
+                                uri = Uri.parse(geoAlarm.getRingtoneUri());
+                               // playAlarm(uri);
                                 //ringtone = ringtoneManager.getRingtone(ringtoneManager.getRingtonePosition(Uri.parse(geoAlarm.getRingtoneUri())));
 
                                 Toast.makeText(GeoService.this, "" + "You Have Arrived", Toast.LENGTH_SHORT).show();
