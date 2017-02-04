@@ -93,13 +93,14 @@ public class MainActivity extends AppCompatActivity {
         alarmDatabase = new AlarmDatabase(this);
         //shows all of the alarms present in the database
         showAlarms();
-       // startService(new Intent(this,GeoService.class));
+        stopService(new Intent(this,GeoService.class));
+       startService(new Intent(this,GeoService.class));
 
     }
 
     //Use to set info for new alarm
     public void setAlarm(String name, LocationCoordiante location, boolean vibrate,
-                         Ringtone ringtone, String ringtoneName, int range, int time) {
+                         String ringtone, String ringtoneName, int range, int time) {
         GeoAlarm geoAlarm = new GeoAlarm(name, location, vibrate, ringtone, ringtoneName, range, time);
         alarmDatabase.insertData(geoAlarm);
         geoAlarm.setmId(alarmDatabase.getId());
@@ -136,20 +137,20 @@ public class MainActivity extends AppCompatActivity {
                         range.setText("" + mAlarms.get(position).getRadius());
 
                         //Use to retreive ringtones from the phone
-                        final Map<String, Ringtone> ringtones = new HashMap<>();
+                        final Map<String, String> ringtones = new HashMap<>();
                         RingtoneManager manager = new RingtoneManager(MainActivity.this);
                         manager.setType(RingtoneManager.TYPE_ALARM);
                         Cursor cursor = manager.getCursor();
                         cursor.moveToFirst();
                         while (!cursor.isAfterLast()) {
                             ringtones.put(cursor.getString(RingtoneManager.TITLE_COLUMN_INDEX),
-                                    manager.getRingtone(cursor.getPosition()));
+                                    manager.getRingtone(cursor.getPosition()).toString());
                             cursor.moveToNext();
                         }
 
                         //Extracts the names of the ringtones
                         final ArrayList<String> ringtoneNames = new ArrayList<String>();
-                        for (Map.Entry<String, Ringtone> entry : ringtones.entrySet()) {
+                        for (Map.Entry<String, String> entry : ringtones.entrySet()) {
                             ringtoneNames.add(entry.getKey());
                         }
                         //Puts the values in the ringtone spinner
@@ -205,15 +206,6 @@ public class MainActivity extends AppCompatActivity {
                 lati = data.getDoubleExtra("latitude", 0);
                 lang = data.getDoubleExtra("longitude", 0);
 
-                    Log.d("pos",lati+ " " + lang);
-                    //geoService.setAlarmPos(new LatLng(lati, lang));
-                stopService(new Intent(this,GeoService.class));
-                Intent intent = new Intent(this,GeoService.class);
-                intent.putExtra("latitude",lati);
-                intent.putExtra("longitude",lang);
-                startService(intent);
-               // Log.d("location", alarmPos.toString());
-                Toast.makeText(this, "" + lati + ", " + lang, Toast.LENGTH_SHORT).show();
                 //Creates the dialog for configuring the new alarm
                 LayoutInflater li = LayoutInflater.from(context);
                 View promptsView = li.inflate(R.layout.location_alarm_dialog, null);
@@ -238,20 +230,20 @@ public class MainActivity extends AppCompatActivity {
 
 
 //Use to retreive ringtones from the phone
-                final Map<String, Ringtone> ringtones = new HashMap<>();
+                final Map<String, String> ringtones = new HashMap<>();
                 RingtoneManager manager = new RingtoneManager(MainActivity.this);
                 manager.setType(RingtoneManager.TYPE_ALARM);
                 Cursor cursor = manager.getCursor();
                 cursor.moveToFirst();
                 while (!cursor.isAfterLast()) {
-                    ringtones.put(cursor.getString(RingtoneManager.TITLE_COLUMN_INDEX), manager.getRingtone(cursor.getPosition()));
+                    ringtones.put(cursor.getString(RingtoneManager.TITLE_COLUMN_INDEX), manager.getRingtoneUri(cursor.getPosition()).toString());
                     cursor.moveToNext();
                 }
 
 
 //Extracts the names of the ringtones
                 final ArrayList<String> ringtoneNames = new ArrayList<String>();
-                for (Map.Entry<String, Ringtone> entry : ringtones.entrySet()) {
+                for (Map.Entry<String, String> entry : ringtones.entrySet()) {
                     ringtoneNames.add(entry.getKey());
                 }
                 //Puts the values in the ringtone spinner
@@ -272,6 +264,10 @@ public class MainActivity extends AppCompatActivity {
                                                 new LocationCoordiante(lati, lang), vibration.isChecked(),
                                                 ringtones.get(ringtoneSelect.getSelectedItem()), ringtoneSelect.getSelectedItem().toString(),
                                                 Integer.parseInt(range.getText().toString()), second);
+
+                                        //stopService(new Intent(context,GeoService.class));
+                                        Intent intent = new Intent(context,GeoService.class);
+                                        startService(intent);
                                     }
                                 })
                         .setNegativeButton("Cancel",
