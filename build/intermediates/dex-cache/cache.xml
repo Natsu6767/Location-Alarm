@@ -3,202 +3,192 @@
 
     <item
         is-multidex="true"
-        jar="D:\Projects\Android_Projects\LocationAlarm\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.1.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="e2719c102dca3a7a5b02ce07f769362da6ddb4ab">
-        <dex dex="D:\Projects\Android_Projects\LocationAlarm\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-fragment-25.1.1_0e69529bb75ebaaca4ddbaed873a91ac235e3544\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="D:\Projects\Android_Projects\LocationAlarm\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.1.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="3e04ac8ca644ea7baddf6fdcf72e15c79e9df94a">
-        <dex dex="D:\Projects\Android_Projects\LocationAlarm\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-ui-25.1.1_203afbbdcb4f177686ba986e1b513b61ccba6d49\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="D:\Projects\Android_Projects\LocationAlarm\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\10.0.1\jars\classes.jar"
+        jar="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\10.0.1\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="27777b3cad3c20b1acab19f6e37fe3e03371bf6e">
-        <dex dex="D:\Projects\Android_Projects\LocationAlarm\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-maps-10.0.1_d140703e984711379ea579c138189136db9b1815\classes.dex" />
+        <dex dex="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-maps-10.0.1_62a4eca545c343237447bc7296d2c26ee60108ec\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="D:\Projects\Android_Projects\LocationAlarm\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\25.1.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="ecb496cc08dd52551fc5ec6db3bc0632e95a89bb">
-        <dex dex="D:\Projects\Android_Projects\LocationAlarm\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-25.1.1_17489ed0ffbae97d0791f0c297bf84f57759e700\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="D:\Projects\Android_Projects\LocationAlarm\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="6addaba208e21c6da776d0ca75b6b23a6ccd5499">
-        <dex dex="D:\Projects\Android_Projects\LocationAlarm\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-tasks-10.0.1_385bcbb7113b9412d9d2fec023abc9d373ae0dae\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="D:\Projects\Android_Projects\LocationAlarm\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\25.1.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="c9649557905bf7a80fca9e0d54cbcb7662627860">
-        <dex dex="D:\Projects\Android_Projects\LocationAlarm\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-25.1.1_9eb894c9991b2e9e6c9079d9b60cccd30374c817\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="D:\Projects\Android_Projects\LocationAlarm\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-places\10.0.1\jars\classes.jar"
+        jar="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-places\10.0.1\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="f3e51e9c5233b8897f61e08a6a27bc36283c2724">
-        <dex dex="D:\Projects\Android_Projects\LocationAlarm\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-places-10.0.1_914bbdcb258c2004371838674aacc0f4021a0966\classes.dex" />
+        <dex dex="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-places-10.0.1_2c2fe4b14170fbd2cbe75215a5144c5c63539c31\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="D:\Projects\Android_Projects\LocationAlarm\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-location\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="44a694d4095be84c2888764b1f7256b385c030ad">
-        <dex dex="D:\Projects\Android_Projects\LocationAlarm\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-location-10.0.1_9bebb9881acf3219420544e05fb11fa6ed5f7fb0\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="D:\Projects\Android_Projects\LocationAlarm\app\build\intermediates\exploded-aar\com.android.support\support-v4\25.1.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="D:\Projects\Android_Projects\LocationAlarm\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-25.1.1_2b2001d366466da8665a5cbb5231664df6c8a5e1\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="D:\Projects\Android_Projects\LocationAlarm\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\25.1.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-<<<<<<< HEAD
-        sha1="a1f564af7591bed2960528c476910115996d23d1">
-        <dex dex="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_5f62388afb9a1886545f11a2b29be393961e2d2a\classes.dex" />
-=======
-        sha1="0d191c1a09e4892d059e5ce749e4ad4e08129e35">
-        <dex dex="D:\Projects\Android_Projects\LocationAlarm\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-25.1.1_888c8423bfdc8e08e9da718939aa55653be26dea\classes.dex" />
->>>>>>> master
-    </item>
-    <item
-        is-multidex="true"
-        jar="D:\Projects\Android_Projects\LocationAlarm\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="ba7c87bac088edc405b5d18cc76b0c2101cf2991">
-        <dex dex="D:\Projects\Android_Projects\LocationAlarm\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_620e13e21ec47e0b3746af821a98fcef55470c58\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="D:\Projects\Android_Projects\LocationAlarm\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="fb707465537996b937ca8ad61c0433b935149ce1">
-        <dex dex="D:\Projects\Android_Projects\LocationAlarm\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_0a2737738b5b9a7658db4dc47da16fe76043ff04\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="D:\Projects\Android_Projects\LocationAlarm\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.1.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="02741d05d4b697fba5e279e9881aaa1da0ca7c7f">
-        <dex dex="D:\Projects\Android_Projects\LocationAlarm\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-compat-25.1.1_dcb1deb7856ecd1cd328328316c1d7fffaa059ab\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="D:\Projects\Android_Projects\LocationAlarm\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.1.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="0fb891e8f0cfba0513043a7bb357513d229ca2cd">
-        <dex dex="D:\Projects\Android_Projects\LocationAlarm\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-utils-25.1.1_0185c3221b2c363fd89aba8f67c4403be00126c8\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="D:\Projects\Android_Projects\LocationAlarm\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\25.1.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-<<<<<<< HEAD
-        sha1="d41788a124fc8645d1cc811f0b4b28171eb22e72">
-        <dex dex="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_10c6eedca40ae6670bc3c2d97e372bb4ef827fd8\classes.dex" />
-=======
-        sha1="c03bf57f358aa10d253f21989e93bcf6014b3b17">
-        <dex dex="D:\Projects\Android_Projects\LocationAlarm\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-25.1.1_897e607bd6ffe55328f6aa84d8b10e2aed7c3725\classes.dex" />
->>>>>>> master
-    </item>
-    <item
-        is-multidex="true"
-        jar="D:\Projects\Android_Projects\LocationAlarm\app\build\intermediates\exploded-aar\com.android.support\design\25.1.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="cd7951e04cfb9a8bf008d544a478d9a8d8192d38">
-        <dex dex="D:\Projects\Android_Projects\LocationAlarm\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-design-25.1.1_bdbc8c3c1ef025b308d9034b6e35e08da69c59b6\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="D:\Projects\Android_Projects\LocationAlarm\app\build\intermediates\exploded-aar\com.android.support\transition\25.1.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="15b049fedbd8e3926bf99d9e45dfc9b2a1043bb9">
-        <dex dex="D:\Projects\Android_Projects\LocationAlarm\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-transition-25.1.1_f5fff22f9cac34e93c2f18af1ac6d20f4d70dab0\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Mohit\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\25.1.1\support-annotations-25.1.1.jar"
+        jar="C:\Users\Arihant Jain\AppData\Local\Android\Sdk\extras\android\m2repository\com\android\support\support-annotations\25.1.1\support-annotations-25.1.1.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="b59b6ee8d6ecc03e672d253800430343493a6ed8">
-        <dex dex="D:\Projects\Android_Projects\LocationAlarm\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-25.1.1_81d3331fb3efbd1e83943cfb94f2ee4b389a13eb\classes.dex" />
+        <dex dex="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-25.1.1_6c688e427b4faaf03d8322212aa56625545e3218\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="D:\Projects\Android_Projects\LocationAlarm\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="756f6297eef79784f5e356dcd4f39865028b2bd0">
-        <dex dex="D:\Projects\Android_Projects\LocationAlarm\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-basement-10.0.1_73e5019e40dfa4d2560af147e00439ea3fef7c0a\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="D:\Projects\Android_Projects\LocationAlarm\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.1.1\jars\classes.jar"
+        jar="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.1.1\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="7bde4c34162092e0a77e7f12dc85ed77c484cf5c">
-        <dex dex="D:\Projects\Android_Projects\LocationAlarm\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-media-compat-25.1.1_88551948122142bf47d31039b997f2661de8ef77\classes.dex" />
+        <dex dex="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-media-compat-25.1.1_8667f7461e955b2231d0f2cf3d52d71595b757bd\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="D:\Projects\Android_Projects\LocationAlarm\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\10.0.1\jars\classes.jar"
+        jar="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0fb891e8f0cfba0513043a7bb357513d229ca2cd">
+        <dex dex="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-utils-25.1.1_d0ad0d59dd490dec01baf438eb2c0aff463326e6\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-location\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="44a694d4095be84c2888764b1f7256b385c030ad">
+        <dex dex="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-location-10.0.1_3e4cb1d3014d3937d5881fcc8f07e68d317cf8cc\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\25.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ecb496cc08dd52551fc5ec6db3bc0632e95a89bb">
+        <dex dex="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-25.1.1_7f50e798bb9a066cb59bc05193eb7d228a3a1d29\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="3e04ac8ca644ea7baddf6fdcf72e15c79e9df94a">
+        <dex dex="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-ui-25.1.1_dc58f6f198546ac2026bbb3f6f15c93b9daa32e4\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\10.0.1\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="25438f55fc6d906a0e72f30b21487541430ede43">
-        <dex dex="D:\Projects\Android_Projects\LocationAlarm\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-base-10.0.1_4924b345cef5ab4e9053c5ce567f862dfc648873\classes.dex" />
+        <dex dex="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-base-10.0.1_23e02ea87673582f70755e5cdaefc56c7606e61f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="756f6297eef79784f5e356dcd4f39865028b2bd0">
+        <dex dex="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-basement-10.0.1_b2e8a6bdaa5f3ddb304af9506262add2256129b9\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\exploded-aar\com.android.support\design\25.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="cd7951e04cfb9a8bf008d544a478d9a8d8192d38">
+        <dex dex="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-design-25.1.1_587cd1b625ddf9f6baefad082f0a668eed85eb51\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="5e9983210372942e97ff6f39d6202562f0700d75">
+        <dex dex="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_5f62388afb9a1886545f11a2b29be393961e2d2a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\exploded-aar\com.android.support\transition\25.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="15b049fedbd8e3926bf99d9e45dfc9b2a1043bb9">
+        <dex dex="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-transition-25.1.1_00d0e36f6a453859795c9182d8cdf99460c14cff\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\25.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0d191c1a09e4892d059e5ce749e4ad4e08129e35">
+        <dex dex="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-25.1.1_ecbcb8a26685f72b9998a2b4b45685a95d9d9b3b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\exploded-aar\com.android.support\support-v4\25.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-25.1.1_07020ad410dd26de2d450c27069138fadd90bb63\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="6addaba208e21c6da776d0ca75b6b23a6ccd5499">
+        <dex dex="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-tasks-10.0.1_3415e7501abb57a04a6d7a887ee23fd3aa589275\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="02741d05d4b697fba5e279e9881aaa1da0ca7c7f">
+        <dex dex="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-compat-25.1.1_cf3c92f5bed5d34769f79abe7d03f496c99717db\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\25.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c9649557905bf7a80fca9e0d54cbcb7662627860">
+        <dex dex="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-25.1.1_63b241d2517f62642877e58cfd994bbeba2b2a23\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\25.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c03bf57f358aa10d253f21989e93bcf6014b3b17">
+        <dex dex="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-25.1.1_b035cd451c5c514d5a85c158be5636a00dec6e56\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="bb0f67edf07a731a825ea4f746a1b80544621489">
+        <dex dex="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_10c6eedca40ae6670bc3c2d97e372bb4ef827fd8\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e2719c102dca3a7a5b02ce07f769362da6ddb4ab">
+        <dex dex="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-fragment-25.1.1_9bac226a1bcc2dd5ad2fa360eb8e2b4bc3a6be7d\classes.dex" />
     </item>
 
 </items>

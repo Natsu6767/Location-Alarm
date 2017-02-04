@@ -18,7 +18,9 @@ public class GeoAlarm {
     public String getmId() {
         return mId;
     }
+    public GeoAlarm(){
 
+    }
     public void setmId(String mId) {
         this.mId = mId;
     }

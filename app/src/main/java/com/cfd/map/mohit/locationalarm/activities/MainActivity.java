@@ -125,7 +125,9 @@ public class MainActivity extends AppCompatActivity {
     //Use to set info for new alarm
     public void setAlarm(String name, LocationCoordiante location, boolean vibrate,
                          Ringtone ringtone, String ringtoneName, int range, int time) {
-        mAlarms.add(new GeoAlarm(name, location, vibrate, ringtone, ringtoneName, range, time));
+        GeoAlarm geoAlarm = new GeoAlarm(name, location, vibrate, ringtone, ringtoneName, range, time);
+        alarmDatabase.insertData(geoAlarm);
+        mAlarms.add(geoAlarm);
         mAdapter.addItem(mAdapter.getItemCount());
         mRecyclerView.scrollToPosition(mAdapter.getItemCount() - 1);
     }
@@ -211,6 +213,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         );
+       // showAlarms();
 
     }
 
@@ -318,8 +321,15 @@ public class MainActivity extends AppCompatActivity {
         double d = R * c;
         return d;
     }
-    public void loadData(){
 
+
+    // loading old alarms
+    private void showAlarms(){
+        mAlarms = alarmDatabase.getAllData();
+        for(GeoAlarm geoAlarm:mAlarms){
+            mAlarms.add(geoAlarm);
+            mAdapter.addItem(mAdapter.getItemCount());
+            mRecyclerView.scrollToPosition(mAdapter.getItemCount() - 1);
+        }
     }
-
 }
