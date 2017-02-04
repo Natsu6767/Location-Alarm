@@ -2,10 +2,13 @@ package com.cfd.map.mohit.locationalarm.activities;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+
+import java.util.ArrayList;
 
 /**
  * Created by Arihant Jain on 2/3/2017.
@@ -37,7 +40,7 @@ public class AlarmDatabase extends SQLiteOpenHelper{
                 + COL_LONG + " DOUBLE,"
                 + COL_LATI + " DOUBLE,"
                 + COL_RAD + " INTEGER,"
-                + COL_RAD + " LONG" +
+                + COL_TIME + " LONG" +
                 ")");
     }
 
@@ -65,19 +68,40 @@ public class AlarmDatabase extends SQLiteOpenHelper{
         else
             return true;
     }
-    public String getAllData(){ SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.rawQuery("select * from "+TABLE_NAME,null);
-        if(res.getCount() == 0){
+    public ArrayList<GeoAlarm> getAllData(){ SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("select * from "+TABLE_NAME,null);
+        if(cursor.getCount() == 0){
             //show message
-            return "" ;
+            return null;
         }
-        StringBuffer buffer = new StringBuffer();
+       /* StringBuffer buffer = new StringBuffer();
         while(res.moveToNext()){
             buffer.append("Id :"+ res.getString(0)+"\n");
             buffer.append("NAME :"+ res.getString(1)+"\n");
-        }
+            buffer.append("RING :"+ res.getString(2)+"\n");
+            buffer.append("VIB :"+ res.getString(3)+"\n");
+            buffer.append("LONG :"+ res.getString(4)+"\n");
+            buffer.append("LATI :"+ res.getString(5)+"\n");
+            buffer.append("RAD :"+ res.getString(6)+"\n");
+            buffer.append("TIME :"+ res.getString(7)+"\n");
+            */
+        ArrayList<GeoAlarm> alarms = new ArrayList<>();
+            if (cursor != null) {
+                if (cursor.moveToNext()) {
+                    do {
+                        GeoAlarm geoAlarm = new GeoAlarm();
+                        geoAlarm.setmId(cursor.getString(0));
+                        geoAlarm.setName(cursor.getString(1));
+                        geoAlarm.setmRingtoneName(cursor.getString(3));
+                        geoAlarm.setVibration(Integer.parseInt(cursor.getString(4)) == 1);
+                        alarms.add(geoAlarm);
+                    }
+                    while (cursor.moveToNext());
+
+                }
+            }
         // show all data
-        return  buffer.toString();
+        return  alarms;
     }
     public boolean updateData(GeoAlarm geoAlarm){
         SQLiteDatabase db = this.getWritableDatabase();
