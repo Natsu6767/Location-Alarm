@@ -1,9 +1,11 @@
 package com.cfd.map.mohit.locationalarm.activities;
 
 import android.app.AlertDialog;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -11,6 +13,7 @@ import android.database.Cursor;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
@@ -46,49 +49,18 @@ public class MainActivity extends AppCompatActivity {
     double lati, lang;
     RecyclerView mRecyclerView;
     TextView posi;
-    // Location variables
-    LocationManager locationManager;
-    LocationListener locationListener;
-    LatLng alarmPos;
+    private GeoService geoService;
     private GeoAlarmAdapter mAdapter;
     static public ArrayList<GeoAlarm> mAlarms;
-    private int radius = 10;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-        locationListener = new LocationListener() {
-            public void onLocationChanged(Location location) {
-                LatLng loc = new LatLng(location.getLatitude(), location.getLongitude());
-                if (alarmPos != null) {
-                    if (calculateDis(alarmPos, loc) < radius) {
-
-                        Toast.makeText(MainActivity.this, "You have arrived", Toast.LENGTH_SHORT).show();
-                        // locationManager.removeUpdates(locationListener);
-                    }
-                    posi.setText(calculateDis(alarmPos, loc) + "");
-                    Log.d("Location", "" + calculateDis(alarmPos, loc));
-                }
-                // Toast.makeText(MainActivity.this,""+ calculateDis(alarmPos.latitude,alarmPos.longitude),Toast.LENGTH_LONG).show();
-            }
-
-            public void onStatusChanged(String provider, int status, Bundle extras) {
-            }
-
-            public void onProviderEnabled(String provider) {
-            }
-
-            public void onProviderDisabled(String provider) {
-
-            }
-        };
-        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
-
+        geoService = new GeoService();
         posi = (TextView) findViewById(R.id.positoion);
         //Buton used to set the alarm
         FloatingActionButton setAlarm = (FloatingActionButton) findViewById(R.id.set_alarm);
@@ -121,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
         alarmDatabase = new AlarmDatabase(this);
         //shows all of the alarms present in the database
         showAlarms();
+       // startService(new Intent(this,GeoService.class));
 
     }
 
@@ -228,13 +201,19 @@ public class MainActivity extends AppCompatActivity {
         if (resultCode == RESULT_OK) {
             if (requestCode == REQUEST_CODE) {
                 // coordinates for destination
+
                 lati = data.getDoubleExtra("latitude", 0);
                 lang = data.getDoubleExtra("longitude", 0);
-                alarmPos = new LatLng(lati, lang);
 
-                Log.d("location", alarmPos.toString());
+                    Log.d("pos",lati+ " " + lang);
+                    //geoService.setAlarmPos(new LatLng(lati, lang));
+                stopService(new Intent(this,GeoService.class));
+                Intent intent = new Intent(this,GeoService.class);
+                intent.putExtra("latitude",lati);
+                intent.putExtra("longitude",lang);
+                startService(intent);
+               // Log.d("location", alarmPos.toString());
                 Toast.makeText(this, "" + lati + ", " + lang, Toast.LENGTH_SHORT).show();
-
                 //Creates the dialog for configuring the new alarm
                 LayoutInflater li = LayoutInflater.from(context);
                 View promptsView = li.inflate(R.layout.location_alarm_dialog, null);
@@ -313,20 +292,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // distance formula from current location
-    private double calculateDis(LatLng destiny, LatLng myLoc) {
-        double R = 6371e3; // metres
-        double φ1 = Math.PI * destiny.latitude / 180;
-        double φ2 = Math.PI * myLoc.latitude / 180;
-        double Δφ = φ2 - φ1;
-        double Δλ = Math.PI * (destiny.longitude - myLoc.longitude) / 180;
-        double a = Math.sin(Δφ / 2) * Math.sin(Δφ / 2) + Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
-        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-
-        double d = R * c;
-        return d;
-    }
-
 
     // loading old alarms
     private void showAlarms() {
@@ -343,4 +308,5 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
 }
