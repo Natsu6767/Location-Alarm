@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     static public ArrayList<GeoAlarm> mAlarms;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         // adding database
-        alarmDatabase = new AlarmDatabase(this);
+        alarmDatabase = new AlarmDatabase(getApplicationContext());
         //shows all of the alarms present in the database
         showAlarms();
         stopService(new Intent(this,GeoService.class));
