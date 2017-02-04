@@ -2,6 +2,8 @@ package com.cfd.map.mohit.locationalarm.activities;
 
 import android.media.Ringtone;
 
+import com.google.android.gms.maps.model.LatLng;
+
 /**
  * Created by Mohit on 2/2/2017.
  */
@@ -10,7 +12,7 @@ public class GeoAlarm {
 
     private String mName, mRingtoneName;
     private boolean mVibration;
-    private Ringtone mRingtone;
+    private String mRingtone;
     private LocationCoordiante mLocationCoordinate;
     private int mRadius;
     private long mTime;
@@ -29,7 +31,7 @@ public class GeoAlarm {
     }
 
     public GeoAlarm(String name, LocationCoordiante locationCoordinate, boolean vibration,
-                    Ringtone ringtone, String ringtoneName, int radius, int time) {
+                    String ringtone, String ringtoneName, int radius, int time) {
         mName = name;
         mLocationCoordinate = locationCoordinate;
         mVibration = vibration;
@@ -44,16 +46,11 @@ public class GeoAlarm {
         mName = name;
     }
 
-    public void setRingtone(String name, Ringtone value) {
+    public void setRingtone(String name, String value) {
         mRingtoneName = name;
         mRingtone = value;
 
     }
-
-    public void setmRingtoneName(String mRingtoneName) {
-        this.mRingtoneName = mRingtoneName;
-    }
-
 
     public void setLocationCoordinate(LocationCoordiante locationCoordinate) {
         mLocationCoordinate = locationCoordinate;
@@ -85,15 +82,11 @@ public class GeoAlarm {
         return mVibration;
     }
 
-    public Ringtone getRingtone() {
+    public String getRingtoneUri() {
         return mRingtone;
     }
 
     public String getRingtoneName() {
-        return mRingtoneName;
-    }
-
-    public String getmRingtoneName() {
         return mRingtoneName;
     }
 
@@ -107,5 +100,9 @@ public class GeoAlarm {
 
     public long getTime() {
         return mTime;
+    }
+
+    public LatLng getLatLang() {
+        return new LatLng(getmLocationCoordinate().getLatitude(), getmLocationCoordinate().getLongitude());
     }
 }

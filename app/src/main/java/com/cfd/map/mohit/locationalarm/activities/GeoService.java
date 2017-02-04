@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class GeoService extends Service {
@@ -23,6 +24,7 @@ public class GeoService extends Service {
     LocationManager locationManager;
     private int radius = 10;
     private LatLng alarmPos ;
+    private ArrayList<GeoAlarm> geoAlarms;
     public GeoService() {
     }
 
@@ -43,6 +45,7 @@ public class GeoService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         super.onStartCommand(intent, flags, startId);
         //alarmPos = new LatLng(0,0);
+        loadAlarms();
         alarmPos = new LatLng(intent.getDoubleExtra("latitude",1),intent.getDoubleExtra("longitude",1));
         Toast.makeText(this,"starting sevices",Toast.LENGTH_LONG).show();
 
@@ -53,6 +56,13 @@ public class GeoService extends Service {
                 //makeUseOfNewLocation(location);
                 LatLng loc = new LatLng(location.getLatitude(), location.getLongitude());
 
+                if(geoAlarms!=null){
+                    for(GeoAlarm geoAlarm:geoAlarms){
+                        if(calculateDis(geoAlarm.getLatLang(),loc)<geoAlarm.getRadius()){
+
+                        }
+                    }
+                }
                 if (alarmPos != null) {
                     Log.d("Location", alarmPos.toString());
                     if (calculateDis(alarmPos, loc) < radius) {
@@ -105,12 +115,8 @@ public class GeoService extends Service {
         Log.d("position",alarm.toString());
     }
 
-    public LatLng getAlarmPos() {
-        return alarmPos;
-    }
-
-    public void setAlarmPos(LatLng alarmPos) {
-        this.alarmPos = alarmPos;
+    public void loadAlarms(){
+        geoAlarms = MainActivity.alarmDatabase.getAllData();
     }
 
 }
