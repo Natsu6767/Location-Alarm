@@ -6,7 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import com.cfd.map.mohit.locationalarm.R;
 
@@ -31,6 +33,7 @@ public class GeoAlarmAdapter extends RecyclerView.Adapter<GeoAlarmAdapter.AlarmH
         TextView alarmName, alarmLocation, alarmRingtone, alarmRange;
         CheckBox alarmVibration;
         Button alarmDelete;
+        ToggleButton alarmSwitch;
 
 
         public AlarmHolder(View v) {
@@ -43,6 +46,7 @@ public class GeoAlarmAdapter extends RecyclerView.Adapter<GeoAlarmAdapter.AlarmH
             alarmVibration = (CheckBox) v.findViewById(R.id.alarm_vibration);
             alarmRange = (TextView) v.findViewById(R.id.show_range);
             alarmDelete = (Button) v.findViewById(R.id.alarm_delete);
+            alarmSwitch = (ToggleButton) v.findViewById(R.id.on_off);
 
 
             v.setOnClickListener(this);
@@ -77,6 +81,7 @@ public class GeoAlarmAdapter extends RecyclerView.Adapter<GeoAlarmAdapter.AlarmH
         holder.alarmRingtone.setText(mAlarms.get(position).getRingtoneName());
         holder.alarmVibration.setChecked(mAlarms.get(position).getVibration());
         holder.alarmRange.setText("" + mAlarms.get(position).getRadius());
+        holder.alarmSwitch.setChecked(mAlarms.get(position).getStatus());
         holder.alarmDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,6 +90,30 @@ public class GeoAlarmAdapter extends RecyclerView.Adapter<GeoAlarmAdapter.AlarmH
                 deleteItem(position);
 
 
+            }
+        });
+        holder.alarmSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+
+                    mAlarms.get(position).setStatus(isChecked);
+
+                } else {
+
+                    mAlarms.get(position).setStatus(isChecked);
+
+                }
+            }
+        });
+        holder.alarmVibration.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+
+                } else {
+
+                }
             }
         });
 

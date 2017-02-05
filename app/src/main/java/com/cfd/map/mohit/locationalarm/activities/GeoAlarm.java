@@ -1,7 +1,5 @@
 package com.cfd.map.mohit.locationalarm.activities;
 
-import android.media.Ringtone;
-
 import com.google.android.gms.maps.model.LatLng;
 
 /**
@@ -11,7 +9,7 @@ import com.google.android.gms.maps.model.LatLng;
 public class GeoAlarm {
 
     private String mName, mRingtoneName;
-    private boolean mVibration;
+    private boolean mVibration, on_off;
     private String mRingtone;
     private LocationCoordiante mLocationCoordinate;
     private int mRadius;
@@ -62,6 +60,10 @@ public class GeoAlarm {
         mRadius = r;
     }
 
+    public void setStatus(boolean status) {
+        on_off = status;
+    }
+
 
     //Getter Methods
     public String getName() {
@@ -95,5 +97,9 @@ public class GeoAlarm {
 
     public LatLng getLatLang() {
         return new LatLng(getmLocationCoordinate().getLatitude(), getmLocationCoordinate().getLongitude());
+    }
+
+    public boolean getStatus() {
+        return on_off;
     }
 }
