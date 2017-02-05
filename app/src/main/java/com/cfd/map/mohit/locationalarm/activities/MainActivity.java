@@ -42,13 +42,9 @@ public class MainActivity extends AppCompatActivity {
     final private int REQUEST_CODE = 1;
     double lati, lang;
     RecyclerView mRecyclerView;
-    TextView posi;
     private GeoService geoService;
     private GeoAlarmAdapter mAdapter;
     static public ArrayList<GeoAlarm> mAlarms;
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
         geoService = new GeoService();
-        //Buton used to set the alarm
+        //Button used to set the alarm
         FloatingActionButton setAlarm = (FloatingActionButton) findViewById(R.id.set_alarm);
         //On click listener for setting the alarm button
         setAlarm.setOnClickListener(new View.OnClickListener() {
@@ -87,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         alarmDatabase = new AlarmDatabase(getApplicationContext());
         //shows all of the alarms present in the database
         showAlarms();
-        stopService(new Intent(this,GeoService.class));
+       stopService(new Intent(this,GeoService.class));
        startService(new Intent(this,GeoService.class));
 
     }

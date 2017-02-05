@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -33,6 +34,8 @@ public class GeoService extends Service {
     private Uri uri;
     private boolean shouldStop;
     NotificationManager notificationManager;
+    private SharedPreferences sharedPreferences;
+    private boolean inUse;
 
     public GeoService() {
     }
@@ -91,7 +94,7 @@ public class GeoService extends Service {
                                     ringtoneManager.setType(RingtoneManager.TYPE_ALARM);
                                     Log.d("Service", "playing alarms");
                                     uri = Uri.parse(geoAlarm.getRingtoneUri());
-                                    playAlarm(uri,i);
+                                    playAlarm(i);
                                     Toast.makeText(GeoService.this, "" + "You Have Arrived", Toast.LENGTH_SHORT).show();
                                     geoAlarms.remove(geoAlarm);
                                     break;
@@ -167,35 +170,13 @@ public class GeoService extends Service {
        geoAlarms = alarmDatabase.getAllData();
     }
 
-    public void playAlarm(Uri uri,int pos) {
-        if(ringtone!=null){
-            if(ringtone.isPlaying()){
-                return;
-            }
-        }
-        try {
-            ringtone = new MediaPlayer();
-            ringtone.setDataSource(GeoService.this, uri);
-            ringtone.setLooping(true);
-            ringtone.prepare();
-            ringtone.start();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void playAlarm(int pos) {
         Intent intent1 = new Intent(getApplicationContext(),AlarmScreenActivity.class);
         intent1.putExtra("geoAlarm",geoAlarms.get(pos));
-        //intent1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this.getApplicationContext(),0,intent1,PendingIntent.FLAG_UPDATE_CURRENT);
         intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent1);
-        /*NotificationCompat.Builder notificationCompat = new NotificationCompat.Builder(this.getApplicationContext())
-                .setContentTitle("Alarm")
-                .setContentText("Tic tok Tic")
-                .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentIntent(pendingIntent)
-                .setAutoCancel(true);
-        notificationManager.notify(1,notificationCompat.build());*/
+        stopSelf();
     }
 
 }
