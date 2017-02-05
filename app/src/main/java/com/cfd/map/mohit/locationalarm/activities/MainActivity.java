@@ -66,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
         geoService = new GeoService();
-        posi = (TextView) findViewById(R.id.positoion);
         //Buton used to set the alarm
         FloatingActionButton setAlarm = (FloatingActionButton) findViewById(R.id.set_alarm);
         //On click listener for setting the alarm button

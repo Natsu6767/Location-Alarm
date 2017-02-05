@@ -38,8 +38,10 @@
             android:enabled="true"
             android:exported="true"
             android:stopWithTask="false" />
-        <receiver android:name=".activities.AlarmReceiver"/>
 
+        <receiver android:name=".activities.AlarmReceiver" />
+
+        <activity android:name=".activities.AlarmScreenActivity"></activity>
     </application>
 
 </manifest>

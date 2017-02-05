@@ -16,11 +16,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.Toast;
-
-import com.cfd.map.mohit.locationalarm.R;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.io.IOException;
@@ -57,7 +54,6 @@ public class GeoService extends Service {
     @Override
     public int onStartCommand(final Intent intent, int flags, int startId) {
         super.onStartCommand(intent, flags, startId);
-
         loadAlarms();
         Log.d("Service", "loading alarms");
         Toast.makeText(this, "starting sevices", Toast.LENGTH_LONG).show();
@@ -167,17 +163,18 @@ public class GeoService extends Service {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Intent intent1 = new Intent(getApplicationContext(),MainActivity.class);
+        Intent intent1 = new Intent(getApplicationContext(),AlarmScreenActivity.class);
         //intent1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this.getApplicationContext(),0,intent1,PendingIntent.FLAG_UPDATE_CURRENT);
-
-        NotificationCompat.Builder notificationCompat = new NotificationCompat.Builder(this.getApplicationContext())
+        intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent1);
+        /*NotificationCompat.Builder notificationCompat = new NotificationCompat.Builder(this.getApplicationContext())
                 .setContentTitle("Alarm")
                 .setContentText("Tic tok Tic")
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true);
-        notificationManager.notify(1,notificationCompat.build());
+        notificationManager.notify(1,notificationCompat.build());*/
     }
 
 }
