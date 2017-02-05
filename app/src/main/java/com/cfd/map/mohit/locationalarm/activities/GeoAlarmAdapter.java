@@ -1,5 +1,7 @@
 package com.cfd.map.mohit.locationalarm.activities;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +21,7 @@ import java.util.ArrayList;
  */
 
 public class GeoAlarmAdapter extends RecyclerView.Adapter<GeoAlarmAdapter.AlarmHolder> {
-
+    private Context ctx;
     private ArrayList<GeoAlarm> mAlarms;
     private static MyClickListener myClickListener;
 
@@ -67,7 +69,7 @@ public class GeoAlarmAdapter extends RecyclerView.Adapter<GeoAlarmAdapter.AlarmH
     public GeoAlarmAdapter.AlarmHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.alarm_item, parent, false);
-
+        this.ctx = parent.getContext();
         AlarmHolder movieHolder = new AlarmHolder(view);
         return movieHolder;
     }
@@ -88,6 +90,8 @@ public class GeoAlarmAdapter extends RecyclerView.Adapter<GeoAlarmAdapter.AlarmH
 
                 MainActivity.alarmDatabase.delete(mAlarms.get(position).getmId());
                 deleteItem(position);
+                ctx.stopService(new Intent(ctx,GeoService.class));
+                ctx.startService(new Intent(ctx,GeoService.class));
 
 
             }
@@ -104,6 +108,9 @@ public class GeoAlarmAdapter extends RecyclerView.Adapter<GeoAlarmAdapter.AlarmH
                     mAlarms.get(position).setStatus(isChecked);
 
                 }
+                MainActivity.alarmDatabase.updateData(mAlarms.get(position));
+                ctx.stopService(new Intent(ctx,GeoService.class));
+                ctx.startService(new Intent(ctx,GeoService.class));
             }
         });
         holder.alarmVibration.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -118,6 +125,8 @@ public class GeoAlarmAdapter extends RecyclerView.Adapter<GeoAlarmAdapter.AlarmH
                     mAlarms.get(position).setVibration(isChecked);
 
                 }
+                MainActivity.alarmDatabase.updateData(mAlarms.get(position));
+
             }
         });
 
@@ -134,7 +143,7 @@ public class GeoAlarmAdapter extends RecyclerView.Adapter<GeoAlarmAdapter.AlarmH
     }
 
     public interface MyClickListener {
-        public void onItemClick(int position, View v);
+         void onItemClick(int position, View v);
 
     }
 
@@ -152,6 +161,4 @@ public class GeoAlarmAdapter extends RecyclerView.Adapter<GeoAlarmAdapter.AlarmH
         notifyItemChanged(index);
         MainActivity.alarmDatabase.updateData(mAlarms.get(index));
     }
-
-
 }

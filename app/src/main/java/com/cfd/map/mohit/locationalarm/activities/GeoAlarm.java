@@ -2,11 +2,13 @@ package com.cfd.map.mohit.locationalarm.activities;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import java.io.Serializable;
+
 /**
  * Created by Mohit on 2/2/2017.
  */
 
-public class GeoAlarm {
+public class GeoAlarm implements Serializable{
 
     private String mName, mRingtoneName;
     private boolean mVibration, on_off;

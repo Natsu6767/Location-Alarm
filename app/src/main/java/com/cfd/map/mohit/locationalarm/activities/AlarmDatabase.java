@@ -24,6 +24,7 @@ public class AlarmDatabase extends SQLiteOpenHelper {
     public static final String COL_LATI = "LATI";
     public static final String COL_RAD = "RAD";
     public static final String COL_RING_URI = "RING_URI";
+    public static final String COL_ONOFF = "ONOFF";
 
     public AlarmDatabase(Context context) {
         super(context, DATABASE_NAME, null, 1);
@@ -39,8 +40,9 @@ public class AlarmDatabase extends SQLiteOpenHelper {
                 + COL_LATI + " DOUBLE,"//4
                 + COL_LONG + " DOUBLE,"//5
                 + COL_RAD + " INTEGER,"//6
-                + COL_RING_URI + " TEXT" + //7
-                ")");
+                + COL_RING_URI + " TEXT,"//7
+                + COL_ONOFF + " BOOL"//8
+                + ")");
     }
 
     @Override
@@ -60,8 +62,8 @@ public class AlarmDatabase extends SQLiteOpenHelper {
         contentValues.put(COL_LONG, locationCoordiante.getLongitude());
         contentValues.put(COL_RAD, geoAlarm.getRadius());
         contentValues.put(COL_RING_URI, geoAlarm.getRingtoneUri());
+        contentValues.put(COL_ONOFF,geoAlarm.getStatus());
         long result = db.insert(TABLE_NAME, null, contentValues);
-
         Log.d("add data", "" + result);
         if (result == -1) {
             return false;
@@ -89,6 +91,7 @@ public class AlarmDatabase extends SQLiteOpenHelper {
                     geoAlarm.setLocationCoordinate(new LocationCoordiante(cursor.getDouble(4), cursor.getDouble(5)));
                     geoAlarm.setRadius(cursor.getInt(6));
                     geoAlarm.setRingtone(cursor.getString(2),cursor.getString(7));
+                    geoAlarm.setStatus(Integer.parseInt(cursor.getString(8)) == 1);
                     alarms.add(geoAlarm);
                 }
                 while (cursor.moveToNext());
@@ -110,6 +113,7 @@ public class AlarmDatabase extends SQLiteOpenHelper {
         contentValues.put(COL_LONG, locationCoordiante.getLongitude());
         contentValues.put(COL_RAD, geoAlarm.getRadius());
         contentValues.put(COL_RING_URI,geoAlarm.getRingtoneUri());
+        contentValues.put(COL_ONOFF,geoAlarm.getStatus());
         long result = db.update(TABLE_NAME, contentValues, "id = ?", new String[]{"" + geoAlarm.getmId()});
         if (result != -1) {
             return true;

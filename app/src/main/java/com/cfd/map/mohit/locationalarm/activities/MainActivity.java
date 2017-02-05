@@ -56,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
         geoService = new GeoService();
-        posi = (TextView) findViewById(R.id.positoion);
         //Buton used to set the alarm
         FloatingActionButton setAlarm = (FloatingActionButton) findViewById(R.id.set_alarm);
         //On click listener for setting the alarm button
@@ -97,9 +96,9 @@ public class MainActivity extends AppCompatActivity {
     public void setAlarm(String name, LocationCoordiante location, boolean vibrate,
                          String ringtone, String ringtoneName, int range) {
         GeoAlarm geoAlarm = new GeoAlarm(name, location, vibrate, ringtone, ringtoneName, range);
+        geoAlarm.setStatus(true);
         alarmDatabase.insertData(geoAlarm);
         geoAlarm.setmId(alarmDatabase.getId());
-        geoAlarm.setStatus(true);
         mAlarms.add(geoAlarm);
         mAdapter.addItem(mAdapter.getItemCount());
         mRecyclerView.scrollToPosition(mAdapter.getItemCount() - 1);

@@ -43,7 +43,6 @@ public class CustomPlacePicker extends AppCompatActivity implements OnMapReadyCa
                 marker.setPosition(place.getLatLng());
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(place.getLatLng()));
             }
-
             @Override
             public void onError(Status status) {
 
