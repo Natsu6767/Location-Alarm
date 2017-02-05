@@ -4,8 +4,10 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 
 import com.cfd.map.mohit.locationalarm.R;
@@ -22,6 +24,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class CustomPlacePicker extends AppCompatActivity implements OnMapReadyCallback {
+
     MapFragment mapFragment;
     private GoogleMap mMap;
     PlaceAutocompleteFragment autocompleteFragment;
@@ -61,21 +64,11 @@ public class CustomPlacePicker extends AppCompatActivity implements OnMapReadyCa
                 marker.setPosition(lat);
             }
         });
-        try {
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                // TODO: Consider calling
-                //    ActivityCompat#requestPermissions
-                // here to request the missing permissions, and then overriding
-                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                //                                          int[] grantResults)
-                // to handle the case where the user grants the permission. See the documentation
-                // for ActivityCompat#requestPermissions for more details.
-                return;
-            }
+        if (ActivityCompat.checkSelfPermission(CustomPlacePicker.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             mMap.setMyLocationEnabled(true);
-        } catch (Exception e) {
-            e.printStackTrace();
         }
+        Log.d("permission", "already have permission");
+
     }
 
     public void setLocation(View view) {
@@ -86,5 +79,4 @@ public class CustomPlacePicker extends AppCompatActivity implements OnMapReadyCa
         setResult(RESULT_OK, intent);
         finish();
     }
-
 }

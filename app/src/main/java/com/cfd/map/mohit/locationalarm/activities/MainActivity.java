@@ -1,11 +1,13 @@
 package com.cfd.map.mohit.locationalarm.activities;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -15,6 +17,7 @@ import android.media.RingtoneManager;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -43,6 +46,7 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
     // Database
 
+    private static final int MY_PERMISSIONS_REQUEST_FINE_LOCATION = 12;
     static AlarmDatabase alarmDatabase;
     final Context context = MainActivity.this;
     final private int REQUEST_CODE = 1;
@@ -70,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(context, "" + alarmDatabase.getAllData(), Toast.LENGTH_SHORT).show();
-                startActivityForResult(new Intent(MainActivity.this, CustomPlacePicker.class), REQUEST_CODE);
+                requestPermission();
             }
         });
         mAlarms = new ArrayList<GeoAlarm>();
@@ -300,5 +304,42 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+    private void requestPermission(){
+        if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            if (ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this,
+                    Manifest.permission.ACCESS_FINE_LOCATION)) {
+                Log.d("permission", "You have to ask for it");
+                ActivityCompat.requestPermissions(MainActivity.this,
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                        MY_PERMISSIONS_REQUEST_FINE_LOCATION);
 
+            } else {
+                Log.d("permission", "You do not need  to ask for it");
+                // No explanation needed, we can request the permission.
+                ActivityCompat.requestPermissions(MainActivity.this,
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                        MY_PERMISSIONS_REQUEST_FINE_LOCATION);
+            }
+            return;
+        }
+        startActivityForResult(new Intent(MainActivity.this, CustomPlacePicker.class), REQUEST_CODE);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == MY_PERMISSIONS_REQUEST_FINE_LOCATION) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Log.d("permission", "You have fine permission");
+
+                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                    Log.d("permission", "all things are fine");
+                    //mMap.setMyLocationEnabled(true);
+                    startActivityForResult(new Intent(MainActivity.this, CustomPlacePicker.class), REQUEST_CODE);
+                }
+
+            }
+        }
+    }
 }
