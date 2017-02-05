@@ -19,7 +19,6 @@ public class AlarmScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alarm_screen);
-        getApplicationContext().getSharedPreferences("my",0).edit().putBoolean("inUse",true).commit();
         geoAlarm = (GeoAlarm) getIntent().getSerializableExtra("geoAlarm");
         player = new MediaPlayer();
         try {
@@ -40,7 +39,6 @@ public class AlarmScreenActivity extends AppCompatActivity {
             player.stop();
             player.reset();
         }
-        getApplicationContext().getSharedPreferences("my",0).edit().putBoolean("inUse",false).commit();
         startService(new Intent(getApplicationContext(),GeoService.class));
         finish();
     }

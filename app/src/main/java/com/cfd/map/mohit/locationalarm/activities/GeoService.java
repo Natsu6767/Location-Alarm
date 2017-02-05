@@ -61,9 +61,6 @@ public class GeoService extends Service {
         loadAlarms();
         Log.d("Service", "loading alarms");
         shouldStop = true;
-        sharedPreferences = getApplicationContext().getSharedPreferences("my",0);
-        inUse = sharedPreferences.getBoolean("inUse",false);
-        Log.d("pref",""+inUse);
         if(geoAlarms !=null && !geoAlarms.isEmpty()){
             for(GeoAlarm geoAlarm:geoAlarms){
                 if(geoAlarm.getStatus()){
@@ -97,7 +94,7 @@ public class GeoService extends Service {
                                     ringtoneManager.setType(RingtoneManager.TYPE_ALARM);
                                     Log.d("Service", "playing alarms");
                                     uri = Uri.parse(geoAlarm.getRingtoneUri());
-                                    playAlarm(uri,i);
+                                    playAlarm(i);
                                     Toast.makeText(GeoService.this, "" + "You Have Arrived", Toast.LENGTH_SHORT).show();
                                     geoAlarms.remove(geoAlarm);
                                     break;
@@ -173,26 +170,13 @@ public class GeoService extends Service {
        geoAlarms = alarmDatabase.getAllData();
     }
 
-    public void playAlarm(Uri uri,int pos) {
-        if(inUse) {
-            stopSelf();
-            return;
-        }
-        Log.d("pref2",""+inUse);
+    public void playAlarm(int pos) {
         Intent intent1 = new Intent(getApplicationContext(),AlarmScreenActivity.class);
         intent1.putExtra("geoAlarm",geoAlarms.get(pos));
-        //intent1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this.getApplicationContext(),0,intent1,PendingIntent.FLAG_UPDATE_CURRENT);
         intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent1);
         stopSelf();
-        /*NotificationCompat.Builder notificationCompat = new NotificationCompat.Builder(this.getApplicationContext())
-                .setContentTitle("Alarm")
-                .setContentText("Tic tok Tic")
-                .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentIntent(pendingIntent)
-                .setAutoCancel(true);
-        notificationManager.notify(1,notificationCompat.build());*/
     }
 
 }
