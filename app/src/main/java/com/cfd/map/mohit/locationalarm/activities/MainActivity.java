@@ -12,7 +12,6 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -74,9 +73,12 @@ public class MainActivity extends AppCompatActivity {
         mAdapter = new GeoAlarmAdapter(mAlarms);
         mRecyclerView.setAdapter(mAdapter);
         //Adds horizontal bar after each item
+        /*
         RecyclerView.ItemDecoration itemDecoration =
                 new DividerItemDecoration(this, LinearLayoutManager.VERTICAL);
         mRecyclerView.addItemDecoration(itemDecoration);
+        */
+        mRecyclerView.addItemDecoration(new MyDividerItemDecoration(this));
 
 
         // adding database

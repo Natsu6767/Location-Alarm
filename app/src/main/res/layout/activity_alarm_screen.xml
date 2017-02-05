@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_alarm_screen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.cfd.map.mohit.locationalarm.activities.AlarmScreenActivity">
 
-<Button
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Off"
-    android:id="@+id/off_btn"
-    android:onClick="offAlarm"/>
-</LinearLayout>
+    <ImageView
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:layout_centerInParent="true"
+        android:src="@drawable/ic_notifications_active_black_48dp" />
+
+    <Button
+        android:id="@+id/off_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="50dp"
+        android:onClick="offAlarm"
+        android:text="Off" />
+</RelativeLayout>
