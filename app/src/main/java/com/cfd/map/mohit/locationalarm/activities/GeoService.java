@@ -168,7 +168,7 @@ public class GeoService extends Service {
     }
 
     public void playAlarm(Uri uri,int pos) {
-        if(ringtone!=null){
+        /*if(ringtone!=null){
             if(ringtone.isPlaying()){
                 return;
             }
@@ -182,7 +182,8 @@ public class GeoService extends Service {
 
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
+
         Intent intent1 = new Intent(getApplicationContext(),AlarmScreenActivity.class);
         intent1.putExtra("geoAlarm",geoAlarms.get(pos));
         //intent1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);

@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
         alarmDatabase = new AlarmDatabase(getApplicationContext());
         //shows all of the alarms present in the database
         showAlarms();
-        stopService(new Intent(this,GeoService.class));
+       stopService(new Intent(this,GeoService.class));
        startService(new Intent(this,GeoService.class));
 
     }
