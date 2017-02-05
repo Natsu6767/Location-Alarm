@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -33,6 +34,8 @@ public class GeoService extends Service {
     private Uri uri;
     private boolean shouldStop;
     NotificationManager notificationManager;
+    private SharedPreferences sharedPreferences;
+    private boolean inUse;
 
     public GeoService() {
     }
@@ -58,6 +61,9 @@ public class GeoService extends Service {
         loadAlarms();
         Log.d("Service", "loading alarms");
         shouldStop = true;
+        sharedPreferences = getApplicationContext().getSharedPreferences("my",0);
+        inUse = sharedPreferences.getBoolean("inUse",false);
+        Log.d("pref",""+inUse);
         if(geoAlarms !=null && !geoAlarms.isEmpty()){
             for(GeoAlarm geoAlarm:geoAlarms){
                 if(geoAlarm.getStatus()){
@@ -168,28 +174,18 @@ public class GeoService extends Service {
     }
 
     public void playAlarm(Uri uri,int pos) {
-        /*if(ringtone!=null){
-            if(ringtone.isPlaying()){
-                return;
-            }
+        if(inUse) {
+            stopSelf();
+            return;
         }
-        try {
-            ringtone = new MediaPlayer();
-            ringtone.setDataSource(GeoService.this, uri);
-            ringtone.setLooping(true);
-            ringtone.prepare();
-            ringtone.start();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
-
+        Log.d("pref2",""+inUse);
         Intent intent1 = new Intent(getApplicationContext(),AlarmScreenActivity.class);
         intent1.putExtra("geoAlarm",geoAlarms.get(pos));
         //intent1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this.getApplicationContext(),0,intent1,PendingIntent.FLAG_UPDATE_CURRENT);
         intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent1);
+        stopSelf();
         /*NotificationCompat.Builder notificationCompat = new NotificationCompat.Builder(this.getApplicationContext())
                 .setContentTitle("Alarm")
                 .setContentText("Tic tok Tic")
