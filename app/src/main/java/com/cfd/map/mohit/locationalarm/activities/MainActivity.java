@@ -96,9 +96,9 @@ public class MainActivity extends AppCompatActivity {
     public void setAlarm(String name, LocationCoordiante location, boolean vibrate,
                          String ringtone, String ringtoneName, int range) {
         GeoAlarm geoAlarm = new GeoAlarm(name, location, vibrate, ringtone, ringtoneName, range);
+        geoAlarm.setStatus(true);
         alarmDatabase.insertData(geoAlarm);
         geoAlarm.setmId(alarmDatabase.getId());
-        geoAlarm.setStatus(true);
         mAlarms.add(geoAlarm);
         mAdapter.addItem(mAdapter.getItemCount());
         mRecyclerView.scrollToPosition(mAdapter.getItemCount() - 1);

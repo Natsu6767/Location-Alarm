@@ -31,6 +31,7 @@ public class GeoService extends Service {
     private RingtoneManager ringtoneManager;
     private MediaPlayer ringtone;
     private Uri uri;
+    private boolean shouldStop;
     NotificationManager notificationManager;
 
     public GeoService() {
@@ -56,6 +57,18 @@ public class GeoService extends Service {
         super.onStartCommand(intent, flags, startId);
         loadAlarms();
         Log.d("Service", "loading alarms");
+        shouldStop = true;
+        if(geoAlarms !=null && !geoAlarms.isEmpty()){
+            for(GeoAlarm geoAlarm:geoAlarms){
+                if(geoAlarm.getStatus()){
+                    shouldStop = false;
+                    break;
+                }
+            }
+        }
+        if(shouldStop){
+            stopSelf();
+        }
         Toast.makeText(this, "starting sevices", Toast.LENGTH_LONG).show();
         notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
@@ -67,24 +80,31 @@ public class GeoService extends Service {
 
                 if (geoAlarms != null) {
                     if (!geoAlarms.isEmpty()) {
-                        for (GeoAlarm geoAlarm : geoAlarms) {
-
+                        for (int i=0;i<geoAlarms.size();i++) {
+                            GeoAlarm geoAlarm = geoAlarms.get(i);
                             Log.d("Service", "checking alarms");
-                            System.out.println(calculateDis(geoAlarm.getLatLang(), loc) + "");
-                            System.out.println(geoAlarm.getLatLang() + "");
-                            if (calculateDis(geoAlarm.getLatLang(), loc) < geoAlarm.getRadius()) {
-                                ringtoneManager = new RingtoneManager(GeoService.this);
-                                ringtoneManager.setType(RingtoneManager.TYPE_ALARM);
-                                Log.d("Service", "playing alarms");
-                                uri = Uri.parse(geoAlarm.getRingtoneUri());
-                                playAlarm(uri);
-                                Toast.makeText(GeoService.this, "" + "You Have Arrived", Toast.LENGTH_SHORT).show();
-
-                                geoAlarms.remove(geoAlarm);
-                                break;
+                            if (geoAlarm.getStatus()){
+                                System.out.println(calculateDis(geoAlarm.getLatLang(), loc) + "");
+                                System.out.println(geoAlarm.getLatLang() + "");
+                                if (calculateDis(geoAlarm.getLatLang(), loc) < geoAlarm.getRadius()) {
+                                    ringtoneManager = new RingtoneManager(GeoService.this);
+                                    ringtoneManager.setType(RingtoneManager.TYPE_ALARM);
+                                    Log.d("Service", "playing alarms");
+                                    uri = Uri.parse(geoAlarm.getRingtoneUri());
+                                    playAlarm(uri,i);
+                                    Toast.makeText(GeoService.this, "" + "You Have Arrived", Toast.LENGTH_SHORT).show();
+                                    geoAlarms.remove(geoAlarm);
+                                    break;
+                                }
                             }
                         }
                     }
+                    else {
+                        stopSelf();
+                    }
+                }
+                else {
+                    stopSelf();
                 }
 
 
@@ -124,7 +144,7 @@ public class GeoService extends Service {
         }
         if(ringtone!=null) {
             ringtone.stop();
-            ringtone.release();
+            ringtone.reset();
         }
     }
 
@@ -147,7 +167,7 @@ public class GeoService extends Service {
        geoAlarms = alarmDatabase.getAllData();
     }
 
-    public void playAlarm(Uri uri) {
+    public void playAlarm(Uri uri,int pos) {
         if(ringtone!=null){
             if(ringtone.isPlaying()){
                 return;
@@ -164,6 +184,7 @@ public class GeoService extends Service {
             e.printStackTrace();
         }
         Intent intent1 = new Intent(getApplicationContext(),AlarmScreenActivity.class);
+        intent1.putExtra("geoAlarm",geoAlarms.get(pos));
         //intent1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this.getApplicationContext(),0,intent1,PendingIntent.FLAG_UPDATE_CURRENT);
         intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

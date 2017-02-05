@@ -15,7 +15,11 @@ public class AlarmScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_alarm_screen);
     }
     public void offAlarm(View view){
-        stopService(new Intent(AlarmScreenActivity.this,GeoService.class));
+        //stopService(new Intent(AlarmScreenActivity.this,GeoService.class));
+        GeoAlarm geoAlarm = (GeoAlarm) getIntent().getSerializableExtra("geoAlarm");
+        geoAlarm.setStatus(false);
+        AlarmDatabase database = new AlarmDatabase(getApplicationContext());
+        database.updateData(geoAlarm);
         startActivity(new Intent(AlarmScreenActivity.this,MainActivity.class));
         finish();
        // startService(new Intent(AlarmScreenActivity.this,GeoService.class));

@@ -1,10 +1,12 @@
 package com.cfd.map.mohit.locationalarm.activities;
 
+import java.io.Serializable;
+
 /**
  * Created by Mohit on 2/3/2017.
  */
 
-public class LocationCoordiante {
+public class LocationCoordiante implements Serializable{
 
     public double latitude, longitude;
 
