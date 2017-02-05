@@ -111,7 +111,11 @@ public class GeoAlarmAdapter extends RecyclerView.Adapter<GeoAlarmAdapter.AlarmH
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
 
+                    mAlarms.get(position).setVibration(isChecked);
+
                 } else {
+
+                    mAlarms.get(position).setVibration(isChecked);
 
                 }
             }
