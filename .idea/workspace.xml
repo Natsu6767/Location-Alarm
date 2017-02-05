@@ -8,6 +8,7 @@
   <component name="ChangeListManager">
     <list default="true" id="89ccf837-0690-4d78-8592-23a951328e1c" name="Default" comment="">
 <<<<<<< HEAD
+<<<<<<< HEAD
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/cfd/map/mohit/locationalarm/activities/AlarmScreenActivity.java" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_alarm_screen.xml" />
 =======
@@ -36,15 +37,19 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
 =======
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/gradle.xml" afterPath="$PROJECT_DIR$/.idea/gradle.xml" />
+=======
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/cfd/map/mohit/locationalarm/activities/MyRingtone.java" afterPath="" />
+>>>>>>> 907ab3155c2f80dc278760661361d7326099b3f1
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/cfd/map/mohit/locationalarm/activities/GeoAlarm.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/cfd/map/mohit/locationalarm/activities/GeoAlarm.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/cfd/map/mohit/locationalarm/activities/GeoAlarmAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/cfd/map/mohit/locationalarm/activities/GeoAlarmAdapter.java" />
+<<<<<<< HEAD
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/cfd/map/mohit/locationalarm/activities/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/cfd/map/mohit/locationalarm/activities/MainActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/alarm_item.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/alarm_item.xml" />
 >>>>>>> 769fc8865bd979b5d828673b16db58a3242698d6
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/local.properties" afterPath="$PROJECT_DIR$/local.properties" />
+=======
+>>>>>>> 907ab3155c2f80dc278760661361d7326099b3f1
     </list>
     <ignored path="Location-Alarm.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -69,6 +74,7 @@
     <favorites_list name="Location-Alarm" />
   </component>
   <component name="FileEditorManager">
+<<<<<<< HEAD
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="GeoService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cfd/map/mohit/locationalarm/activities/GeoService.java">
@@ -235,6 +241,9 @@
         </entry>
       </file>
     </leaf>
+=======
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+>>>>>>> 907ab3155c2f80dc278760661361d7326099b3f1
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -1968,9 +1977,12 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/cfd/map/mohit/locationalarm/activities/CustomPlacePicker.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/alarm_item.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/cfd/map/mohit/locationalarm/activities/GeoAlarm.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/cfd/map/mohit/locationalarm/activities/GeoAlarmAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/cfd/map/mohit/locationalarm/activities/MainActivity.java" />
+<<<<<<< HEAD
 >>>>>>> 769fc8865bd979b5d828673b16db58a3242698d6
+=======
+        <option value="$PROJECT_DIR$/app/src/main/java/com/cfd/map/mohit/locationalarm/activities/GeoAlarmAdapter.java" />
+>>>>>>> 907ab3155c2f80dc278760661361d7326099b3f1
       </list>
     </option>
   </component>
@@ -2013,6 +2025,7 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
+<<<<<<< HEAD
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="Location-Alarm" />
@@ -2094,6 +2107,8 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
             </PATH_ELEMENT>
           </PATH>
+=======
+>>>>>>> 907ab3155c2f80dc278760661361d7326099b3f1
         </subPane>
       </pane>
       <pane id="PackagesPane" />
@@ -2427,7 +2442,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
 <<<<<<< HEAD
@@ -2476,7 +2491,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2518797" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2518797" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -2535,7 +2550,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#2349#2576#0" expanded="true" />
+            <element signature="e#2575#2576#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2587,6 +2605,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
 <<<<<<< HEAD
+<<<<<<< HEAD
           <folding>
             <element signature="e#2348#2575#0" expanded="true" />
             <element signature="e#2574#2575#0" expanded="true" />
@@ -2594,6 +2613,12 @@
 =======
           <folding />
 >>>>>>> 769fc8865bd979b5d828673b16db58a3242698d6
+=======
+          <folding>
+            <element signature="e#2349#2576#0" expanded="true" />
+            <element signature="e#2575#2576#0" expanded="true" />
+          </folding>
+>>>>>>> 907ab3155c2f80dc278760661361d7326099b3f1
         </state>
       </provider>
     </entry>
@@ -2658,6 +2683,7 @@
         <state relative-caret-position="2006">
           <caret line="138" column="48" selection-start-line="138" selection-start-column="48" selection-end-line="138" selection-end-column="48" />
 <<<<<<< HEAD
+<<<<<<< HEAD
           <folding>
             <element signature="e#2348#2575#0" expanded="true" />
             <element signature="e#2574#2575#0" expanded="true" />
@@ -2665,6 +2691,12 @@
 =======
           <folding />
 >>>>>>> 769fc8865bd979b5d828673b16db58a3242698d6
+=======
+          <folding>
+            <element signature="e#2349#2576#0" expanded="true" />
+            <element signature="e#2575#2576#0" expanded="true" />
+          </folding>
+>>>>>>> 907ab3155c2f80dc278760661361d7326099b3f1
         </state>
       </provider>
     </entry>
@@ -2713,6 +2745,7 @@
         <state />
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/location_alarm_dialog.xml">
 <<<<<<< HEAD
       <provider editor-type-id="android-designer2">
@@ -2746,19 +2779,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
 =======
+=======
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cfd/map/mohit/locationalarm/activities/MyRingtone.java">
+>>>>>>> 907ab3155c2f80dc278760661361d7326099b3f1
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1562">
-          <caret line="71" column="17" selection-start-line="71" selection-start-column="17" selection-end-line="71" selection-end-column="17" />
+        <state relative-caret-position="66">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
           <folding />
         </state>
       </provider>
+<<<<<<< HEAD
 >>>>>>> 769fc8865bd979b5d828673b16db58a3242698d6
       <provider editor-type-id="android-designer2">
         <state />
       </provider>
+=======
+>>>>>>> 907ab3155c2f80dc278760661361d7326099b3f1
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cfd/map/mohit/locationalarm/activities/CustomPlacePicker.java">
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
 <<<<<<< HEAD
         <state relative-caret-position="78">
           <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
@@ -2766,6 +2806,10 @@
         <state relative-caret-position="776">
           <caret line="73" column="5" selection-start-line="73" selection-start-column="5" selection-end-line="73" selection-end-column="5" />
 >>>>>>> 769fc8865bd979b5d828673b16db58a3242698d6
+=======
+        <state relative-caret-position="-44">
+          <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
+>>>>>>> 907ab3155c2f80dc278760661361d7326099b3f1
           <folding />
         </state>
       </provider>
@@ -2791,6 +2835,7 @@
         <state />
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cfd/map/mohit/locationalarm/activities/GeoService.java">
 <<<<<<< HEAD
       <provider selected="true" editor-type-id="text-editor">
@@ -2810,11 +2855,49 @@
             <element signature="e#2348#2575#0" expanded="true" />
             <element signature="e#2574#2575#0" expanded="true" />
 =======
+=======
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cfd/map/mohit/locationalarm/activities/GeoAlarmAdapter.java">
+>>>>>>> 907ab3155c2f80dc278760661361d7326099b3f1
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3498">
-          <caret line="183" column="0" selection-start-line="183" selection-start-column="0" selection-end-line="183" selection-end-column="0" />
+        <state relative-caret-position="176">
+          <caret line="20" column="22" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
+          <folding>
+            <element signature="e#3327#3716#0" expanded="true" />
+            <element signature="e#3715#3716#0" expanded="true" />
+            <element signature="e#3776#4171#0" expanded="true" />
+            <element signature="e#4170#4171#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cfd/map/mohit/locationalarm/activities/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="101" column="33" selection-start-line="101" selection-start-column="33" selection-end-line="101" selection-end-column="33" />
           <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cfd/map/mohit/locationalarm/activities/CustomPlacePicker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="776">
+          <caret line="73" column="5" selection-start-line="73" selection-start-column="5" selection-end-line="73" selection-end-column="5" />
+          <folding>
+            <element signature="e#2349#2576#0" expanded="true" />
+            <element signature="e#2575#2576#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/location_alarm_dialog.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="394">
+          <caret line="71" column="17" selection-start-line="71" selection-start-column="17" selection-end-line="71" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cfd/map/mohit/locationalarm/activities/GeoAlarm.java">
@@ -2830,6 +2913,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cfd/map/mohit/locationalarm/activities/GeoAlarmAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="314">
@@ -2861,6 +2945,12 @@
         <state relative-caret-position="468">
           <caret line="101" column="33" selection-start-line="101" selection-start-column="33" selection-end-line="101" selection-end-column="33" />
 >>>>>>> 769fc8865bd979b5d828673b16db58a3242698d6
+=======
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cfd/map/mohit/locationalarm/activities/GeoService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3498">
+          <caret line="183" column="0" selection-start-line="183" selection-start-column="0" selection-end-line="183" selection-end-column="0" />
+>>>>>>> 907ab3155c2f80dc278760661361d7326099b3f1
           <folding />
         </state>
       </provider>
