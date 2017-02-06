@@ -8,11 +8,10 @@ import java.io.Serializable;
  * Created by Mohit on 2/2/2017.
  */
 
-public class GeoAlarm implements Serializable{
+public class GeoAlarm implements Serializable {
 
-    private String mName, mRingtoneName;
+    private String mName, mRingtoneName, mRingtone, mMessage;
     private boolean mVibration, on_off;
-    private String mRingtone;
     private LocationCoordiante mLocationCoordinate;
     private int mRadius;
     private int mId;
@@ -30,13 +29,14 @@ public class GeoAlarm implements Serializable{
     }
 
     public GeoAlarm(String name, LocationCoordiante locationCoordinate, boolean vibration,
-                    String ringtone, String ringtoneName, int radius) {
+                    String ringtone, String ringtoneName, int radius, String message) {
         mName = name;
         mLocationCoordinate = locationCoordinate;
         mVibration = vibration;
         mRingtone = ringtone;
         mRingtoneName = ringtoneName;
         mRadius = radius;
+        mMessage = message;
     }
 
     //Setter Methods
@@ -64,6 +64,10 @@ public class GeoAlarm implements Serializable{
 
     public void setStatus(boolean status) {
         on_off = status;
+    }
+
+    public void setMessage(String message) {
+        mMessage = message;
     }
 
 
@@ -103,5 +107,9 @@ public class GeoAlarm implements Serializable{
 
     public boolean getStatus() {
         return on_off;
+    }
+
+    public String getMessage() {
+        return mMessage;
     }
 }

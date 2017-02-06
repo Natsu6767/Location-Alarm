@@ -1,6 +1,7 @@
 package com.cfd.map.mohit.locationalarm.activities;
 
 import android.Manifest;
+import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -16,12 +17,14 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.widget.Toast;
+
+import com.cfd.map.mohit.locationalarm.R;
 import com.google.android.gms.maps.model.LatLng;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class GeoService extends Service {
@@ -29,14 +32,8 @@ public class GeoService extends Service {
     LocationListener locationListener;
     LocationManager locationManager;
     private ArrayList<GeoAlarm> geoAlarms;
-    private RingtoneManager ringtoneManager;
-    private MediaPlayer ringtone;
-    private Uri uri;
     private boolean shouldStop;
     NotificationManager notificationManager;
-    private SharedPreferences sharedPreferences;
-    private boolean inUse;
-
     public GeoService() {
     }
 
@@ -72,7 +69,7 @@ public class GeoService extends Service {
         if(shouldStop){
             stopSelf();
         }
-        Toast.makeText(this, "starting sevices", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "starting services", Toast.LENGTH_LONG).show();
         notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         locationListener = new LocationListener() {
@@ -90,13 +87,13 @@ public class GeoService extends Service {
                                 System.out.println(calculateDis(geoAlarm.getLatLang(), loc) + "");
                                 System.out.println(geoAlarm.getLatLang() + "");
                                 if (calculateDis(geoAlarm.getLatLang(), loc) < geoAlarm.getRadius()) {
-                                    ringtoneManager = new RingtoneManager(GeoService.this);
-                                    ringtoneManager.setType(RingtoneManager.TYPE_ALARM);
+                                   // ringtoneManager = new RingtoneManager(GeoService.this);
+                                   // ringtoneManager.setType(RingtoneManager.TYPE_ALARM);
                                     Log.d("Service", "playing alarms");
-                                    uri = Uri.parse(geoAlarm.getRingtoneUri());
                                     playAlarm(i);
                                     Toast.makeText(GeoService.this, "" + "You Have Arrived", Toast.LENGTH_SHORT).show();
                                     geoAlarms.remove(geoAlarm);
+                                    stopSelf();
                                     break;
                                 }
                             }
@@ -114,12 +111,26 @@ public class GeoService extends Service {
             }
 
             public void onStatusChanged(String provider, int status, Bundle extras) {
+
             }
 
             public void onProviderEnabled(String provider) {
+                Log.d("Provider","Enabled");
             }
 
             public void onProviderDisabled(String provider) {
+                Log.d("Provider","Disabled");
+                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                PendingIntent pendingIntent = PendingIntent.getActivity(getApplication(),11,intent,0);
+                NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                Notification notification = new Notification.Builder(GeoService.this)
+                        .setSmallIcon(R.mipmap.ic_launcher)
+                        .setContentTitle("GPS is Disabled")
+                        .setContentText("On GPS")
+                        .setContentIntent(pendingIntent)
+                        .setAutoCancel(true)
+                        .build();
+                notificationManager.notify(1,notification);
             }
         };
 
@@ -141,13 +152,8 @@ public class GeoService extends Service {
         Toast.makeText(this, "Stopping Service", Toast.LENGTH_SHORT).show();
         Log.d("Service", "stopping service");
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
-                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED ) {
             locationManager.removeUpdates(locationListener);
-        }
-        if(ringtone!=null) {
-            ringtone.stop();
-            ringtone.reset();
         }
     }
 
@@ -173,10 +179,8 @@ public class GeoService extends Service {
     public void playAlarm(int pos) {
         Intent intent1 = new Intent(getApplicationContext(),AlarmScreenActivity.class);
         intent1.putExtra("geoAlarm",geoAlarms.get(pos));
-        PendingIntent pendingIntent = PendingIntent.getActivity(this.getApplicationContext(),0,intent1,PendingIntent.FLAG_UPDATE_CURRENT);
         intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent1);
-        stopSelf();
     }
 
 }

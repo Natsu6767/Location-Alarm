@@ -3,6 +3,8 @@ package com.cfd.map.mohit.locationalarm.activities;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -22,6 +24,11 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 public class CustomPlacePicker extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -72,9 +79,23 @@ public class CustomPlacePicker extends AppCompatActivity implements OnMapReadyCa
 
     public void setLocation(View view) {
         LatLng pos = marker.getPosition();
+        Geocoder geocoder;
+        List<Address> addresses = new ArrayList<>();
+        geocoder = new Geocoder(this, Locale.getDefault());
+
+        try {
+            addresses = geocoder.getFromLocation(marker.getPosition().latitude, marker.getPosition().longitude, 1);// Here 1 represent max location result to returned, by documents it recommended 1 to 5
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String address = "";
+        if(!addresses.isEmpty()){
+            address = addresses.get(0).getAddressLine(0);
+        }
         Intent intent = new Intent();
         intent.putExtra("latitude", pos.latitude);
         intent.putExtra("longitude", pos.longitude);
+        intent.putExtra("address", address);
         setResult(RESULT_OK, intent);
         finish();
     }

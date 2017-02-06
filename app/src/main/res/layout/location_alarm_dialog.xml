@@ -3,19 +3,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="16dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
+        <ImageView
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/ic_pin_drop_black_36dp" />
+
         <TextView
             android:id="@+id/location_coordinates"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="Select Location" />
+            android:hint="Select Location"
+            android:textSize="18sp" />
 
     </LinearLayout>
 
@@ -27,13 +34,18 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Label: " />
+            android:fontFamily="serif-monospace"
+            android:text="Label: "
+            android:textColor="#1976D2"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/alarm_name_input"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textSize="18sp"
             tools:text="My Label" />
     </LinearLayout>
 
@@ -45,7 +57,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ringtone: " />
+            android:fontFamily="serif-monospace"
+            android:text="Ringtone: "
+            android:textColor="#1976D2"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <Spinner
             android:id="@+id/ringtone"
@@ -57,7 +73,9 @@
         android:id="@+id/vibration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Vibration" />
+        android:fontFamily="serif-monospace"
+        android:text="Vibration"
+        android:textSize="20sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -67,7 +85,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Range: " />
+            android:fontFamily="serif-monospace"
+            android:text="Range: "
+            android:textColor="#1976D2"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/range"
@@ -75,14 +97,22 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:inputType="number"
+            android:textSize="15sp"
             tools:text="my Range" />
 
     </LinearLayout>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Expected Time of Arival: " />
+        android:fontFamily="serif-monospace"
+        android:text="Message:"
+        android:textSize="19sp" />
 
+    <EditText
+        android:id="@+id/message"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/border" />
 
 </LinearLayout>
