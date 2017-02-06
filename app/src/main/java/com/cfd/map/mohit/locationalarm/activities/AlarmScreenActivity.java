@@ -31,6 +31,8 @@ public class AlarmScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_alarm_screen);
         geoAlarm = (GeoAlarm) getIntent().getSerializableExtra("geoAlarm");
 
+        v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+
         TextView name, message;
         name = (TextView) findViewById(R.id.show_name);
         message = (TextView) findViewById(R.id.show_message);
@@ -43,7 +45,7 @@ public class AlarmScreenActivity extends AppCompatActivity {
         message.setText("" + geoAlarm.getMessage());
 
         if (geoAlarm.getVibration()) {
-            v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+
             long[] pattern = {0, 100, 1000};//to set vibration for 100 millisecond and pause of 1000 milliseconds
             v.vibrate(pattern, 0);//starts indefinite vibration
         }
