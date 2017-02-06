@@ -19,9 +19,9 @@ import android.os.IBinder;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.widget.Toast;
+
 import com.google.android.gms.maps.model.LatLng;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class GeoService extends Service {
@@ -29,7 +29,6 @@ public class GeoService extends Service {
     LocationListener locationListener;
     LocationManager locationManager;
     private ArrayList<GeoAlarm> geoAlarms;
-    private RingtoneManager ringtoneManager;
     private boolean shouldStop;
     NotificationManager notificationManager;
     public GeoService() {
@@ -85,8 +84,8 @@ public class GeoService extends Service {
                                 System.out.println(calculateDis(geoAlarm.getLatLang(), loc) + "");
                                 System.out.println(geoAlarm.getLatLang() + "");
                                 if (calculateDis(geoAlarm.getLatLang(), loc) < geoAlarm.getRadius()) {
-                                    ringtoneManager = new RingtoneManager(GeoService.this);
-                                    ringtoneManager.setType(RingtoneManager.TYPE_ALARM);
+                                   // ringtoneManager = new RingtoneManager(GeoService.this);
+                                   // ringtoneManager.setType(RingtoneManager.TYPE_ALARM);
                                     Log.d("Service", "playing alarms");
                                     playAlarm(i);
                                     Toast.makeText(GeoService.this, "" + "You Have Arrived", Toast.LENGTH_SHORT).show();
@@ -135,8 +134,7 @@ public class GeoService extends Service {
         Toast.makeText(this, "Stopping Service", Toast.LENGTH_SHORT).show();
         Log.d("Service", "stopping service");
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
-                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED ) {
             locationManager.removeUpdates(locationListener);
         }
     }
