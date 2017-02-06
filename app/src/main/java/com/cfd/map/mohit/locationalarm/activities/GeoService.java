@@ -1,6 +1,7 @@
 package com.cfd.map.mohit.locationalarm.activities;
 
 import android.Manifest;
+import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -16,10 +17,12 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.cfd.map.mohit.locationalarm.R;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
@@ -66,7 +69,7 @@ public class GeoService extends Service {
         if(shouldStop){
             stopSelf();
         }
-        Toast.makeText(this, "starting sevices", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "starting services", Toast.LENGTH_LONG).show();
         notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         locationListener = new LocationListener() {
@@ -108,12 +111,26 @@ public class GeoService extends Service {
             }
 
             public void onStatusChanged(String provider, int status, Bundle extras) {
+
             }
 
             public void onProviderEnabled(String provider) {
+                Log.d("Provider","Enabled");
             }
 
             public void onProviderDisabled(String provider) {
+                Log.d("Provider","Disabled");
+                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                PendingIntent pendingIntent = PendingIntent.getActivity(getApplication(),11,intent,0);
+                NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                Notification notification = new Notification.Builder(GeoService.this)
+                        .setSmallIcon(R.mipmap.ic_launcher)
+                        .setContentTitle("GPS is Disabled")
+                        .setContentText("On GPS")
+                        .setContentIntent(pendingIntent)
+                        .setAutoCancel(true)
+                        .build();
+                notificationManager.notify(1,notification);
             }
         };
 
