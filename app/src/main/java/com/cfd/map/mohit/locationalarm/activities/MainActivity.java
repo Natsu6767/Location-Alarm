@@ -39,17 +39,17 @@ public class MainActivity extends AppCompatActivity {
     private static final int MY_PERMISSIONS_REQUEST_FINE_LOCATION = 12;
     static AlarmDatabase alarmDatabase;
     final Context context = MainActivity.this;
+    public static boolean active = false;
     final private int REQUEST_CODE = 1;
     double lati, lang;
     RecyclerView mRecyclerView;
-    private GeoService geoService;
     private GeoAlarmAdapter mAdapter;
     static public ArrayList<GeoAlarm> mAlarms;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        geoService = new GeoService();
+        active = true;
         //Button used to set the alarm
         FloatingActionButton setAlarm = (FloatingActionButton) findViewById(R.id.set_alarm);
         //On click listener for setting the alarm button
@@ -142,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
                         cursor.moveToFirst();
                         while (!cursor.isAfterLast()) {
                             ringtones.put(cursor.getString(RingtoneManager.TITLE_COLUMN_INDEX),
-                                    manager.getRingtone(cursor.getPosition()).toString());
+                                    manager.getRingtoneUri(cursor.getPosition()).toString());
                             cursor.moveToNext();
                         }
 
@@ -169,11 +169,7 @@ public class MainActivity extends AppCompatActivity {
                                                 mAlarms.get(position).setRingtone(ringtoneSelect.getSelectedItem().toString(),
                                                         ringtones.get(ringtoneSelect.getSelectedItem()));
                                                 mAlarms.get(position).setVibration(vibration.isChecked());
-                                                if(!range.getText().toString().equals("")){
-                                                    mAlarms.get(position).setRadius(Integer.parseInt(range.getText().toString()));
-                                                }else{
-                                                    mAlarms.get(position).setRadius(100);
-                                                }
+                                                mAlarms.get(position).setRadius(Integer.parseInt(range.getText().toString()));
                                                 mAlarms.get(position).setMessage("" + message.getText());
                                                 mAdapter.refreshItem(position);
                                             }
@@ -185,10 +181,23 @@ public class MainActivity extends AppCompatActivity {
                                             }
                                         });
                         // create alert dialog
-                        AlertDialog alertDialog = alertDialogBuilder.create();
+                        final AlertDialog alertDialog = alertDialogBuilder.create();
 
                         // show it
                         alertDialog.show();
+
+                        range.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                            @Override
+                            public void onFocusChange(View view, boolean b) {
+                                if(Integer.parseInt(range.getText().toString())<100){
+                                    Toast.makeText(MainActivity.this, "Range must be greater than 100", Toast.LENGTH_SHORT).show();
+                                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(false);
+                                }
+                                else {
+                                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(true);
+                                }
+                            }
+                        });
 
                     }
                 }
@@ -236,7 +245,8 @@ public class MainActivity extends AppCompatActivity {
                 Cursor cursor = manager.getCursor();
                 cursor.moveToFirst();
                 while (!cursor.isAfterLast()) {
-                    ringtones.put(cursor.getString(RingtoneManager.TITLE_COLUMN_INDEX), manager.getRingtoneUri(cursor.getPosition()).toString());
+                    ringtones.put(cursor.getString(RingtoneManager.TITLE_COLUMN_INDEX),
+                            manager.getRingtoneUri(cursor.getPosition()).toString());
                     cursor.moveToNext();
                 }
 
@@ -260,18 +270,15 @@ public class MainActivity extends AppCompatActivity {
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
                                         //Sets the alarm. Code needs to be entered
-                                        if(range.getText().toString().equals("")){
-                                            range.setText(""+100);
-                                        }
                                         setAlarm(userInput.getText().toString(),
                                                 new LocationCoordiante(lati, lang), vibration.isChecked(),
                                                 ringtones.get(ringtoneSelect.getSelectedItem()), ringtoneSelect.getSelectedItem().toString(),
                                                 Integer.parseInt(range.getText().toString()), "" + message.getText());
-
                                         //stopService(new Intent(context,GeoService.class));
                                         Intent intent = new Intent(context,GeoService.class);
                                         startService(intent);
                                     }
+                                    
                                 })
                         .setNegativeButton("Cancel",
                                 new DialogInterface.OnClickListener() {
@@ -281,11 +288,23 @@ public class MainActivity extends AppCompatActivity {
                                 });
 
                 // create alert dialog
-                AlertDialog alertDialog = alertDialogBuilder.create();
+
+                final AlertDialog alertDialog = alertDialogBuilder.create();
 
                 // show it
                 alertDialog.show();
-
+                range.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                    @Override
+                    public void onFocusChange(View view, boolean b) {
+                        if(Integer.parseInt(range.getText().toString())<100){
+                            Toast.makeText(MainActivity.this, "Range must be greater than 100", Toast.LENGTH_SHORT).show();
+                            alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(false);
+                        }
+                        else {
+                            alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(true);
+                        }
+                    }
+                });
                 locationShow.setText("" + lati + ", " + lang);
                 userInput.setText(data.getStringExtra("address"));
             }
@@ -345,5 +364,11 @@ public class MainActivity extends AppCompatActivity {
 
             }
         }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        active = false;
     }
 }
