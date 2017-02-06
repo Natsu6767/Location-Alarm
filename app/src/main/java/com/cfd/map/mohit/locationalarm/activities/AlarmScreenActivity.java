@@ -1,9 +1,11 @@
 package com.cfd.map.mohit.locationalarm.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
@@ -15,6 +17,7 @@ import java.io.IOException;
 public class AlarmScreenActivity extends AppCompatActivity {
     private GeoAlarm geoAlarm;
     private MediaPlayer player;
+    private  Vibrator v;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,12 @@ public class AlarmScreenActivity extends AppCompatActivity {
         }
         message.setText("" + geoAlarm.getMessage());
 
+        if (geoAlarm.getVibration()) {
+            v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+            long[] pattern = {0, 100, 1000};//to set vibration for 100 millisecond and pause of 1000 milliseconds
+            v.vibrate(pattern, 0);//starts indefinite vibration
+        }
+
         player = new MediaPlayer();
         try {
             player.setDataSource(this, Uri.parse(geoAlarm.getRingtoneUri()));
@@ -59,6 +68,7 @@ public class AlarmScreenActivity extends AppCompatActivity {
             player.stop();
             player.reset();
         }
+        v.cancel();//stops vibration
         startService(new Intent(getApplicationContext(), GeoService.class));
         finish();
     }
