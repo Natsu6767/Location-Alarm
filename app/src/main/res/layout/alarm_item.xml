@@ -45,7 +45,7 @@
         android:layout_marginTop="10dp"
         android:text="Vibration"
         android:textColor="#fff"
-        android:button="@drawable/ic_crop_square_white_18dp"/>
+        android:buttonTint="#fff" />
 
     <ImageView
         android:id="@+id/ringtone"
