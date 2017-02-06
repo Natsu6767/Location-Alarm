@@ -222,6 +222,7 @@ public class MainActivity extends AppCompatActivity {
                 final Spinner ringtoneSelect = (Spinner) promptsView.findViewById(R.id.ringtone);
                 final CheckBox vibration = (CheckBox) promptsView.findViewById(R.id.vibration);
                 final EditText message = (EditText) promptsView.findViewById(R.id.message);
+                userInput.setText(data.getStringExtra("address"));
 
 
 
@@ -281,6 +282,7 @@ public class MainActivity extends AppCompatActivity {
                 alertDialog.show();
 
                 locationShow.setText("" + lati + ", " + lang);
+                userInput.setText(data.getStringExtra("address"));
             }
         }
     }
