@@ -48,8 +48,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
         geoService = new GeoService();
         //Button used to set the alarm
@@ -171,7 +169,11 @@ public class MainActivity extends AppCompatActivity {
                                                 mAlarms.get(position).setRingtone(ringtoneSelect.getSelectedItem().toString(),
                                                         ringtones.get(ringtoneSelect.getSelectedItem()));
                                                 mAlarms.get(position).setVibration(vibration.isChecked());
-                                                mAlarms.get(position).setRadius(Integer.parseInt(range.getText().toString()));
+                                                if(!range.getText().toString().equals("")){
+                                                    mAlarms.get(position).setRadius(Integer.parseInt(range.getText().toString()));
+                                                }else{
+                                                    mAlarms.get(position).setRadius(100);
+                                                }
                                                 mAlarms.get(position).setMessage("" + message.getText());
                                                 mAdapter.refreshItem(position);
                                             }
@@ -222,6 +224,7 @@ public class MainActivity extends AppCompatActivity {
                 final Spinner ringtoneSelect = (Spinner) promptsView.findViewById(R.id.ringtone);
                 final CheckBox vibration = (CheckBox) promptsView.findViewById(R.id.vibration);
                 final EditText message = (EditText) promptsView.findViewById(R.id.message);
+                userInput.setText(data.getStringExtra("address"));
 
 
 
@@ -257,6 +260,9 @@ public class MainActivity extends AppCompatActivity {
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
                                         //Sets the alarm. Code needs to be entered
+                                        if(range.getText().toString().equals("")){
+                                            range.setText(""+100);
+                                        }
                                         setAlarm(userInput.getText().toString(),
                                                 new LocationCoordiante(lati, lang), vibration.isChecked(),
                                                 ringtones.get(ringtoneSelect.getSelectedItem()), ringtoneSelect.getSelectedItem().toString(),
@@ -281,6 +287,7 @@ public class MainActivity extends AppCompatActivity {
                 alertDialog.show();
 
                 locationShow.setText("" + lati + ", " + lang);
+                userInput.setText(data.getStringExtra("address"));
             }
         }
     }

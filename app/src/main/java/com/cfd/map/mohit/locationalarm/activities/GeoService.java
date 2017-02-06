@@ -29,14 +29,8 @@ public class GeoService extends Service {
     LocationListener locationListener;
     LocationManager locationManager;
     private ArrayList<GeoAlarm> geoAlarms;
-    private RingtoneManager ringtoneManager;
-    private MediaPlayer ringtone;
-    private Uri uri;
     private boolean shouldStop;
     NotificationManager notificationManager;
-    private SharedPreferences sharedPreferences;
-    private boolean inUse;
-
     public GeoService() {
     }
 
@@ -93,10 +87,10 @@ public class GeoService extends Service {
                                    // ringtoneManager = new RingtoneManager(GeoService.this);
                                    // ringtoneManager.setType(RingtoneManager.TYPE_ALARM);
                                     Log.d("Service", "playing alarms");
-                                    //uri = Uri.parse(geoAlarm.getRingtoneUri());
                                     playAlarm(i);
                                     Toast.makeText(GeoService.this, "" + "You Have Arrived", Toast.LENGTH_SHORT).show();
                                     geoAlarms.remove(geoAlarm);
+                                    stopSelf();
                                     break;
                                 }
                             }
@@ -141,13 +135,8 @@ public class GeoService extends Service {
         Toast.makeText(this, "Stopping Service", Toast.LENGTH_SHORT).show();
         Log.d("Service", "stopping service");
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
-                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED ) {
             locationManager.removeUpdates(locationListener);
-        }
-        if(ringtone!=null) {
-            ringtone.stop();
-            ringtone.reset();
         }
     }
 
@@ -173,10 +162,8 @@ public class GeoService extends Service {
     public void playAlarm(int pos) {
         Intent intent1 = new Intent(getApplicationContext(),AlarmScreenActivity.class);
         intent1.putExtra("geoAlarm",geoAlarms.get(pos));
-        PendingIntent pendingIntent = PendingIntent.getActivity(this.getApplicationContext(),0,intent1,PendingIntent.FLAG_UPDATE_CURRENT);
         intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent1);
-        stopSelf();
     }
 
 }
