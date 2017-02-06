@@ -22,12 +22,6 @@ public class AlarmScreenActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // remove title
-        /***************
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        ********/
         setContentView(R.layout.activity_alarm_screen);
         geoAlarm = (GeoAlarm) getIntent().getSerializableExtra("geoAlarm");
 
@@ -66,10 +60,8 @@ public class AlarmScreenActivity extends AppCompatActivity {
         AlarmDatabase database = new AlarmDatabase(getApplicationContext());
         database.updateData(geoAlarm);
         startActivity(new Intent(AlarmScreenActivity.this, MainActivity.class));
-        if (player.isPlaying()) {
             player.stop();
             player.reset();
-        }
         v.cancel();//stops vibration
         startService(new Intent(getApplicationContext(), GeoService.class));
         finish();
