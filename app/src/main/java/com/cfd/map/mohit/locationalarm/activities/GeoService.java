@@ -19,9 +19,9 @@ import android.os.IBinder;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.widget.Toast;
+
 import com.google.android.gms.maps.model.LatLng;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class GeoService extends Service {
@@ -90,10 +90,10 @@ public class GeoService extends Service {
                                 System.out.println(calculateDis(geoAlarm.getLatLang(), loc) + "");
                                 System.out.println(geoAlarm.getLatLang() + "");
                                 if (calculateDis(geoAlarm.getLatLang(), loc) < geoAlarm.getRadius()) {
-                                    ringtoneManager = new RingtoneManager(GeoService.this);
-                                    ringtoneManager.setType(RingtoneManager.TYPE_ALARM);
+                                   // ringtoneManager = new RingtoneManager(GeoService.this);
+                                   // ringtoneManager.setType(RingtoneManager.TYPE_ALARM);
                                     Log.d("Service", "playing alarms");
-                                    uri = Uri.parse(geoAlarm.getRingtoneUri());
+                                    //uri = Uri.parse(geoAlarm.getRingtoneUri());
                                     playAlarm(i);
                                     Toast.makeText(GeoService.this, "" + "You Have Arrived", Toast.LENGTH_SHORT).show();
                                     geoAlarms.remove(geoAlarm);
