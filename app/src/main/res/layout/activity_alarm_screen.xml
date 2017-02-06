@@ -4,12 +4,14 @@
     android:id="@+id/activity_alarm_screen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     tools:context="com.cfd.map.mohit.locationalarm.activities.AlarmScreenActivity">
 
 <Button
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="Off"
+    android:layout_gravity="center"
     android:id="@+id/off_btn"
     android:onClick="offAlarm"/>
 </LinearLayout>

@@ -39,9 +39,8 @@
             android:exported="true"
             android:stopWithTask="false" />
 
-        <receiver android:name=".activities.AlarmReceiver" />
-
-        <activity android:name=".activities.AlarmScreenActivity"></activity>
+        <activity android:name=".activities.AlarmScreenActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

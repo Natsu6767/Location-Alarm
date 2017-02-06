@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.cfd.map.mohit.locationalarm.R;
 
@@ -22,11 +23,11 @@ public class AlarmScreenActivity extends AppCompatActivity {
         geoAlarm = (GeoAlarm) getIntent().getSerializableExtra("geoAlarm");
         player = new MediaPlayer();
         try {
-            player.setDataSource(this, Uri.parse(geoAlarm.getRingtoneUri()));
+            player.setDataSource(this,Uri.parse(geoAlarm.getRingtoneUri()));
             player.setLooping(true);
             player.prepare();
             player.start();
-        } catch (IOException e) {
+        } catch (IOException e){
             e.printStackTrace();
         }
     }
@@ -42,7 +43,6 @@ public class AlarmScreenActivity extends AppCompatActivity {
         startService(new Intent(getApplicationContext(),GeoService.class));
         finish();
     }
-
     @Override
     public void onBackPressed() {
 
