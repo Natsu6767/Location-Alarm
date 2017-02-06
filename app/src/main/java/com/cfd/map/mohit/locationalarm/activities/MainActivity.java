@@ -15,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
@@ -110,6 +111,10 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onItemClick(final int position, View v) {
                         //On click event for row items
+
+                        //Adds Haptic Feedback
+                        View view = findViewById(R.id.activity_main);
+                        view.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                         //Creates the dialog for configuring the new alarm
                         LayoutInflater li = LayoutInflater.from(context);
                         View promptsView = li.inflate(R.layout.location_alarm_dialog, null);
@@ -245,7 +250,7 @@ public class MainActivity extends AppCompatActivity {
                 ringtoneSelect.setAdapter(dataAdapter);
 
 
-                // set dialog message
+                // set dialog box
                 alertDialogBuilder
                         .setCancelable(true)
                         .setPositiveButton("OK",
