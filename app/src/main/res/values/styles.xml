@@ -12,5 +12,9 @@
         <item name="android:windowFullscreen">true</item>
         <item name="windowActionBar">false</item>
     </style>
+    <style name="AppTheme.Custom" parent="AppTheme">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+    </style>
 
 </resources>

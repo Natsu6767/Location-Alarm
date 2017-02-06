@@ -90,6 +90,7 @@ public class GeoService extends Service {
                                     playAlarm(i);
                                     Toast.makeText(GeoService.this, "" + "You Have Arrived", Toast.LENGTH_SHORT).show();
                                     geoAlarms.remove(geoAlarm);
+                                    stopSelf();
                                     break;
                                 }
                             }
@@ -163,7 +164,6 @@ public class GeoService extends Service {
         intent1.putExtra("geoAlarm",geoAlarms.get(pos));
         intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent1);
-        stopSelf();
     }
 
 }

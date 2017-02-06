@@ -16,7 +16,7 @@
         android:textSize="24sp"
         android:textStyle="bold"
         tools:text="Name"
-        android:textColor="#fff"/>
+        android:textColor="@color/textColor"/>
 
     <ImageView
         android:id="@+id/destinaion"
