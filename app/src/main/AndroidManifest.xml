@@ -41,7 +41,10 @@
 
         <receiver android:name=".activities.AlarmReceiver" />
 
-        <activity android:name=".activities.AlarmScreenActivity"></activity>
+        <activity
+            android:name=".activities.AlarmScreenActivity"
+            android:label="Alarm Ringing"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
     </application>
 
 </manifest>

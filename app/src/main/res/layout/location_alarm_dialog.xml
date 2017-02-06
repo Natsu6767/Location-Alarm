@@ -36,6 +36,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="serif-monospace"
             android:text="Label: "
+            android:textColor="#1976D2"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -58,6 +59,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="serif-monospace"
             android:text="Ringtone: "
+            android:textColor="#1976D2"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -85,6 +87,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="serif-monospace"
             android:text="Range: "
+            android:textColor="#1976D2"
             android:textSize="20sp"
             android:textStyle="bold" />
 

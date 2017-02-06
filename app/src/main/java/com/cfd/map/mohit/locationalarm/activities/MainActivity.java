@@ -92,8 +92,8 @@ public class MainActivity extends AppCompatActivity {
 
     //Use to set info for new alarm
     public void setAlarm(String name, LocationCoordiante location, boolean vibrate,
-                         String ringtone, String ringtoneName, int range) {
-        GeoAlarm geoAlarm = new GeoAlarm(name, location, vibrate, ringtone, ringtoneName, range);
+                         String ringtone, String ringtoneName, int range, String message) {
+        GeoAlarm geoAlarm = new GeoAlarm(name, location, vibrate, ringtone, ringtoneName, range, message);
         geoAlarm.setStatus(true);
         alarmDatabase.insertData(geoAlarm);
         geoAlarm.setmId(alarmDatabase.getId());
@@ -128,6 +128,8 @@ public class MainActivity extends AppCompatActivity {
                         userInput.setText(mAlarms.get(position).getName());
                         final EditText range = (EditText) promptsView.findViewById(R.id.range);
                         range.setText("" + mAlarms.get(position).getRadius());
+                        final EditText message = (EditText) promptsView.findViewById(R.id.message);
+                        message.setText("" + mAlarms.get(position).getMessage());
 
                         //Use to retreive ringtones from the phone
                         final Map<String, String> ringtones = new HashMap<>();
@@ -165,6 +167,7 @@ public class MainActivity extends AppCompatActivity {
                                                         ringtones.get(ringtoneSelect.getSelectedItem()));
                                                 mAlarms.get(position).setVibration(vibration.isChecked());
                                                 mAlarms.get(position).setRadius(Integer.parseInt(range.getText().toString()));
+                                                mAlarms.get(position).setMessage("" + message.getText());
                                                 mAdapter.refreshItem(position);
                                             }
                                         })
@@ -213,6 +216,7 @@ public class MainActivity extends AppCompatActivity {
                 final EditText range = (EditText) promptsView.findViewById(R.id.range);
                 final Spinner ringtoneSelect = (Spinner) promptsView.findViewById(R.id.ringtone);
                 final CheckBox vibration = (CheckBox) promptsView.findViewById(R.id.vibration);
+                final EditText message = (EditText) promptsView.findViewById(R.id.message);
 
 
 
@@ -251,7 +255,7 @@ public class MainActivity extends AppCompatActivity {
                                         setAlarm(userInput.getText().toString(),
                                                 new LocationCoordiante(lati, lang), vibration.isChecked(),
                                                 ringtones.get(ringtoneSelect.getSelectedItem()), ringtoneSelect.getSelectedItem().toString(),
-                                                Integer.parseInt(range.getText().toString()));
+                                                Integer.parseInt(range.getText().toString()), "" + message.getText());
 
                                         //stopService(new Intent(context,GeoService.class));
                                         Intent intent = new Intent(context,GeoService.class);

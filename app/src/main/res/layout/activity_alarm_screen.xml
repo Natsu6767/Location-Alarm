@@ -4,7 +4,47 @@
     android:id="@+id/activity_alarm_screen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#76FF03"
+    android:padding="16dp"
     tools:context="com.cfd.map.mohit.locationalarm.activities.AlarmScreenActivity">
+
+    <LinearLayout
+        android:id="@+id/arrived"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="YOU HAVE ARRIVED "
+            android:textColor="#311B92"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/show_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAllCaps="true"
+            android:textColor="#311B92"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:text="Name" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/show_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/arrived"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:text="18sp"
+        android:textColor="#673AB7"
+        android:textStyle="italic"
+        tools:text="MESSAGE" />
 
     <ImageView
         android:layout_width="125dp"
@@ -19,6 +59,9 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="50dp"
+        android:background="#FF3D00"
         android:onClick="offAlarm"
-        android:text="Off" />
+        android:text="Off"
+        android:textSize="24dp"
+        android:textStyle="bold" />
 </RelativeLayout>

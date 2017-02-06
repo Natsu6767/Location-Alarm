@@ -4,6 +4,7 @@
     android:id="@+id/activity_custom_pp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#000"
     android:orientation="vertical"
     tools:context="com.cfd.map.mohit.locationalarm.activities.CustomPlacePicker">
 
@@ -24,6 +25,9 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:background="#64DD17"
         android:onClick="setLocation"
-        android:text="Select This Location" />
+        android:text="Select Location"
+        android:textAllCaps="true"
+        android:textSize="25dp" />
 </LinearLayout>
