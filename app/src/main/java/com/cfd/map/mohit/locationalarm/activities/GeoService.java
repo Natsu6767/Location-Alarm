@@ -36,8 +36,6 @@ public class GeoService extends Service {
     NotificationManager notificationManager;
     public GeoService() {
     }
-
-
     @Override
     public IBinder onBind(Intent intent) {
         // TODO: Return the communication channel to the service.
@@ -69,15 +67,16 @@ public class GeoService extends Service {
         if(shouldStop){
             stopSelf();
         }
-        Toast.makeText(this, "starting services", Toast.LENGTH_LONG).show();
         notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+        Log.d("Service", "manager");
         locationListener = new LocationListener() {
             public void onLocationChanged(Location location) {
                 // Called when a new location is found by the network location provider.
                 //makeUseOfNewLocation(location);
                 LatLng loc = new LatLng(location.getLatitude(), location.getLongitude());
 
+                Log.d("Service", loc.toString());
                 if (geoAlarms != null) {
                     if (!geoAlarms.isEmpty()) {
                         for (int i=0;i<geoAlarms.size();i++) {
@@ -87,8 +86,6 @@ public class GeoService extends Service {
                                 System.out.println(calculateDis(geoAlarm.getLatLang(), loc) + "");
                                 System.out.println(geoAlarm.getLatLang() + "");
                                 if (calculateDis(geoAlarm.getLatLang(), loc) < geoAlarm.getRadius()) {
-                                   // ringtoneManager = new RingtoneManager(GeoService.this);
-                                   // ringtoneManager.setType(RingtoneManager.TYPE_ALARM);
                                     Log.d("Service", "playing alarms");
                                     playAlarm(i);
                                     Toast.makeText(GeoService.this, "" + "You Have Arrived", Toast.LENGTH_SHORT).show();
@@ -139,17 +136,14 @@ public class GeoService extends Service {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, locationListener);
+            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 0, locationListener);
         }
-
-
-        Toast.makeText(this, "Service Started", Toast.LENGTH_SHORT).show();
         return START_STICKY;
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Toast.makeText(this, "Stopping Service", Toast.LENGTH_SHORT).show();
         Log.d("Service", "stopping service");
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED ) {

@@ -100,7 +100,6 @@ public class GeoAlarmAdapter extends RecyclerView.Adapter<GeoAlarmAdapter.AlarmH
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-
                     mAlarms.get(position).setStatus(isChecked);
 
                 } else {

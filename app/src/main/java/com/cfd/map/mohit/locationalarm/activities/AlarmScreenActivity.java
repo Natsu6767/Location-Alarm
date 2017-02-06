@@ -1,5 +1,6 @@
 package com.cfd.map.mohit.locationalarm.activities;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -22,12 +23,6 @@ public class AlarmScreenActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // remove title
-        /***************
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        ********/
         setContentView(R.layout.activity_alarm_screen);
         geoAlarm = (GeoAlarm) getIntent().getSerializableExtra("geoAlarm");
 
@@ -45,8 +40,7 @@ public class AlarmScreenActivity extends AppCompatActivity {
         message.setText("" + geoAlarm.getMessage());
 
         if (geoAlarm.getVibration()) {
-
-            long[] pattern = {0, 100, 1000};//to set vibration for 100 millisecond and pause of 1000 milliseconds
+            long[] pattern = {0, 1000, 100};//to set vibration for 100 millisecond and pause of 1000 milliseconds
             v.vibrate(pattern, 0);//starts indefinite vibration
         }
 
@@ -65,12 +59,13 @@ public class AlarmScreenActivity extends AppCompatActivity {
         geoAlarm.setStatus(false);
         AlarmDatabase database = new AlarmDatabase(getApplicationContext());
         database.updateData(geoAlarm);
-        startActivity(new Intent(AlarmScreenActivity.this, MainActivity.class));
-        if (player.isPlaying()) {
+        while (player.isPlaying()){
             player.stop();
-            player.reset();
         }
         v.cancel();//stops vibration
+        if(MainActivity.active){
+
+        }
         startService(new Intent(getApplicationContext(), GeoService.class));
         finish();
     }
@@ -78,4 +73,5 @@ public class AlarmScreenActivity extends AppCompatActivity {
     public void onBackPressed() {
 
     }
+
 }

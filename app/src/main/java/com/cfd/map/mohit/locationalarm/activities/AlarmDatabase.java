@@ -99,7 +99,6 @@ public class AlarmDatabase extends SQLiteOpenHelper {
                     alarms.add(geoAlarm);
                 }
                 while (cursor.moveToNext());
-
             }
         }
         // show all data
