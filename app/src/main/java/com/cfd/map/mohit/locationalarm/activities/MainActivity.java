@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.media.AudioManager;
 import android.media.RingtoneManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -14,15 +15,10 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.HapticFeedbackConstants;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -42,17 +38,20 @@ public class MainActivity extends AppCompatActivity {
     private static final int MY_PERMISSIONS_REQUEST_FINE_LOCATION = 12;
     static AlarmDatabase alarmDatabase;
     final Context context = MainActivity.this;
-    public static boolean active = false;
     final private int REQUEST_CODE = 1;
     double lati, lang;
     RecyclerView mRecyclerView;
     private GeoAlarmAdapter mAdapter;
     static public ArrayList<GeoAlarm> mAlarms;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        active = true;
+        //sets volume controls to handle alarm volume
+        this.setVolumeControlStream(AudioManager.STREAM_ALARM);
+
+
         //Button used to set the alarm
         FloatingActionButton setAlarm = (FloatingActionButton) findViewById(R.id.set_alarm);
         //On click listener for setting the alarm button
@@ -86,8 +85,8 @@ public class MainActivity extends AppCompatActivity {
         alarmDatabase = new AlarmDatabase(getApplicationContext());
         //shows all of the alarms present in the database
         showAlarms();
-       stopService(new Intent(this,GeoService.class));
-       startService(new Intent(this,GeoService.class));
+        stopService(new Intent(this, GeoService.class));
+        startService(new Intent(this, GeoService.class));
 
     }
 
@@ -167,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
                                         new DialogInterface.OnClickListener() {
                                             public void onClick(DialogInterface dialog, int id) {
                                                 //Sets the alarm. Code needs to be entered
-                                               }
+                                            }
                                         })
                                 .setNegativeButton("Cancel",
                                         new DialogInterface.OnClickListener() {
@@ -183,13 +182,11 @@ public class MainActivity extends AppCompatActivity {
                         alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                if(range.getText().toString().equals("")){
+                                if (range.getText().toString().equals("")) {
                                     Toast.makeText(MainActivity.this, "Please enter the range", Toast.LENGTH_SHORT).show();
-                                }
-                                else if(Integer.parseInt(range.getText().toString())<100){
+                                } else if (Integer.parseInt(range.getText().toString()) < 100) {
                                     Toast.makeText(MainActivity.this, "Range must be greater than or equal to 100", Toast.LENGTH_SHORT).show();
-                                }
-                                else {
+                                } else {
                                     mAlarms.get(position).setName(userInput.getText().toString());
                                     mAlarms.get(position).setRingtone(ringtoneSelect.getSelectedItem().toString(),
                                             ringtones.get(ringtoneSelect.getSelectedItem()));
@@ -239,8 +236,6 @@ public class MainActivity extends AppCompatActivity {
                 userInput.setText(data.getStringExtra("address"));
 
 
-
-
 //Use to retreive ringtones from the phone
                 final Map<String, String> ringtones = new HashMap<>();
                 RingtoneManager manager = new RingtoneManager(MainActivity.this);
@@ -275,7 +270,7 @@ public class MainActivity extends AppCompatActivity {
                                         //Sets the alarm. Code needs to be entered
 
                                     }
-                                    
+
                                 })
                         .setNegativeButton("Cancel",
                                 new DialogInterface.OnClickListener() {
@@ -293,19 +288,17 @@ public class MainActivity extends AppCompatActivity {
                 alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if(range.getText().toString().equals("")){
+                        if (range.getText().toString().equals("")) {
                             Toast.makeText(MainActivity.this, "Please enter the range", Toast.LENGTH_SHORT).show();
-                        }
-                        else if(Integer.parseInt(range.getText().toString())<100){
+                        } else if (Integer.parseInt(range.getText().toString()) < 100) {
                             Toast.makeText(MainActivity.this, "Range must be greater than or equal to 100", Toast.LENGTH_SHORT).show();
-                        }
-                        else {
+                        } else {
                             setAlarm(userInput.getText().toString(),
                                     new LocationCoordiante(lati, lang), vibration.isChecked(),
                                     ringtones.get(ringtoneSelect.getSelectedItem()), ringtoneSelect.getSelectedItem().toString(),
                                     Integer.parseInt(range.getText().toString()), "" + message.getText());
                             //stopService(new Intent(context,GeoService.class));
-                            Intent intent = new Intent(context,GeoService.class);
+                            Intent intent = new Intent(context, GeoService.class);
                             startService(intent);
                             alertDialog.dismiss();
                         }
@@ -333,7 +326,8 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-    private void requestPermission(){
+
+    private void requestPermission() {
         if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this,
                     Manifest.permission.ACCESS_FINE_LOCATION)) {
@@ -366,11 +360,5 @@ public class MainActivity extends AppCompatActivity {
 
             }
         }
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        active = false;
     }
 }
