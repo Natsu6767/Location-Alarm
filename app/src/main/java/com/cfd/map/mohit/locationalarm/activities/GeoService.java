@@ -34,6 +34,7 @@ public class GeoService extends Service {
     private ArrayList<GeoAlarm> geoAlarms;
     private boolean shouldStop;
     NotificationManager notificationManager;
+    Notification notification;
     public GeoService() {
     }
     @Override
@@ -54,6 +55,7 @@ public class GeoService extends Service {
     public int onStartCommand(final Intent intent, int flags, int startId) {
         super.onStartCommand(intent, flags, startId);
         loadAlarms();
+
         shouldStop = true;
         if(geoAlarms !=null && !geoAlarms.isEmpty()){
             for(GeoAlarm geoAlarm:geoAlarms){
@@ -66,25 +68,33 @@ public class GeoService extends Service {
         if(shouldStop){
             stopSelf();
         }
+
+        Intent intent23 = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+        PendingIntent pendingIntent = PendingIntent.getActivity(getApplication(),11,intent23,0);
         notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        notification = new Notification.Builder(GeoService.this)
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setContentTitle("GPS is Disabled")
+                .setContentText("On GPS")
+                .setContentIntent(pendingIntent)
+                .setAutoCancel(true)
+                .setOngoing(true)
+                .build();
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         locationListener = new LocationListener() {
             public void onLocationChanged(Location location) {
                 // Called when a new location is found by the network location provider.
-                //makeUseOfNewLocation(location);
                 LatLng loc = new LatLng(location.getLatitude(), location.getLongitude());
 
                 if (geoAlarms != null) {
                     if (!geoAlarms.isEmpty()) {
                         for (int i=0;i<geoAlarms.size();i++) {
                             GeoAlarm geoAlarm = geoAlarms.get(i);
-                            Log.d("Service", "checking alarms");
                             if (geoAlarm.getStatus()){
                                 System.out.println(calculateDis(geoAlarm.getLatLang(), loc) + "");
                                 System.out.println(geoAlarm.getLatLang() + "");
                                 if (calculateDis(geoAlarm.getLatLang(), loc) < geoAlarm.getRadius()) {
                                     playAlarm(i);
-                                    Toast.makeText(GeoService.this, "" + "You Have Arrived", Toast.LENGTH_SHORT).show();
                                     geoAlarms.remove(geoAlarm);
                                     stopSelf();
                                     break;
@@ -109,11 +119,12 @@ public class GeoService extends Service {
 
             public void onProviderEnabled(String provider) {
                 Log.d("Provider","Enabled");
+                notificationManager.cancel(1);
             }
 
             public void onProviderDisabled(String provider) {
                 Log.d("Provider","Disabled");
-                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                /*Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
                 PendingIntent pendingIntent = PendingIntent.getActivity(getApplication(),11,intent,0);
                 NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
                 Notification notification = new Notification.Builder(GeoService.this)
@@ -122,7 +133,7 @@ public class GeoService extends Service {
                         .setContentText("On GPS")
                         .setContentIntent(pendingIntent)
                         .setAutoCancel(true)
-                        .build();
+                        .build();*/
                 notificationManager.notify(1,notification);
             }
         };
