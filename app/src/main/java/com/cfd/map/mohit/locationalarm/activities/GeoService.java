@@ -54,7 +54,6 @@ public class GeoService extends Service {
     public int onStartCommand(final Intent intent, int flags, int startId) {
         super.onStartCommand(intent, flags, startId);
         loadAlarms();
-        Log.d("Service", "loading alarms");
         shouldStop = true;
         if(geoAlarms !=null && !geoAlarms.isEmpty()){
             for(GeoAlarm geoAlarm:geoAlarms){
@@ -69,14 +68,12 @@ public class GeoService extends Service {
         }
         notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-        Log.d("Service", "manager");
         locationListener = new LocationListener() {
             public void onLocationChanged(Location location) {
                 // Called when a new location is found by the network location provider.
                 //makeUseOfNewLocation(location);
                 LatLng loc = new LatLng(location.getLatitude(), location.getLongitude());
 
-                Log.d("Service", loc.toString());
                 if (geoAlarms != null) {
                     if (!geoAlarms.isEmpty()) {
                         for (int i=0;i<geoAlarms.size();i++) {
@@ -86,7 +83,6 @@ public class GeoService extends Service {
                                 System.out.println(calculateDis(geoAlarm.getLatLang(), loc) + "");
                                 System.out.println(geoAlarm.getLatLang() + "");
                                 if (calculateDis(geoAlarm.getLatLang(), loc) < geoAlarm.getRadius()) {
-                                    Log.d("Service", "playing alarms");
                                     playAlarm(i);
                                     Toast.makeText(GeoService.this, "" + "You Have Arrived", Toast.LENGTH_SHORT).show();
                                     geoAlarms.remove(geoAlarm);
@@ -144,8 +140,6 @@ public class GeoService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.d("Service", "stopping service");
-
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED ) {
             locationManager.removeUpdates(locationListener);
         }

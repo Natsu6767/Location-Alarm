@@ -58,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
         setAlarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "" + alarmDatabase.getAllData(), Toast.LENGTH_SHORT).show();
                 requestPermission();
             }
         });
@@ -185,8 +184,8 @@ public class MainActivity extends AppCompatActivity {
                             public void onClick(View view) {
                                 if (range.getText().toString().equals("")) {
                                     Toast.makeText(MainActivity.this, "Please enter the range", Toast.LENGTH_SHORT).show();
-                                } else if (Integer.parseInt(range.getText().toString()) < 100) {
-                                    Toast.makeText(MainActivity.this, "Range must be greater than or equal to 100", Toast.LENGTH_SHORT).show();
+                                } else if (Integer.parseInt(range.getText().toString()) < 50) {
+                                    Toast.makeText(MainActivity.this, "Range must be greater than or equal to 50", Toast.LENGTH_SHORT).show();
                                 } else {
                                     mAlarms.get(position).setName(userInput.getText().toString());
                                     mAlarms.get(position).setRingtone(ringtoneSelect.getSelectedItem().toString(),
@@ -291,8 +290,8 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View view) {
                         if (range.getText().toString().equals("")) {
                             Toast.makeText(MainActivity.this, "Please enter the range", Toast.LENGTH_SHORT).show();
-                        } else if (Integer.parseInt(range.getText().toString()) < 100) {
-                            Toast.makeText(MainActivity.this, "Range must be greater than or equal to 100", Toast.LENGTH_SHORT).show();
+                        } else if (Integer.parseInt(range.getText().toString()) < 50) {
+                            Toast.makeText(MainActivity.this, "Range must be greater than or equal to 50", Toast.LENGTH_SHORT).show();
                         } else {
                             setAlarm(userInput.getText().toString(),
                                     new LocationCoordiante(lati, lang), vibration.isChecked(),
@@ -330,16 +329,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void requestPermission() {
         if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
             if (ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this,
                     Manifest.permission.ACCESS_FINE_LOCATION)) {
-                Log.d("permission", "You have to ask for it");
                 ActivityCompat.requestPermissions(MainActivity.this,
                         new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                         MY_PERMISSIONS_REQUEST_FINE_LOCATION);
-
             } else {
-                Log.d("permission", "You do not need  to ask for it");
                 // No explanation needed, we can request the permission.
                 ActivityCompat.requestPermissions(MainActivity.this,
                         new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
@@ -355,11 +350,8 @@ public class MainActivity extends AppCompatActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == MY_PERMISSIONS_REQUEST_FINE_LOCATION) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Log.d("permission", "You have fine permission");
 
                 if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                    Log.d("permission", "all things are fine");
-                    //mMap.setMyLocationEnabled(true);
                     startActivityForResult(new Intent(MainActivity.this, CustomPlacePicker.class), REQUEST_CODE);
                 }
 
