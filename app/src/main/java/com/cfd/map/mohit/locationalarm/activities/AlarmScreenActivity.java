@@ -1,6 +1,5 @@
 package com.cfd.map.mohit.locationalarm.activities;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
@@ -11,6 +10,7 @@ import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.cfd.map.mohit.locationalarm.R;
@@ -20,11 +20,16 @@ import java.io.IOException;
 public class AlarmScreenActivity extends AppCompatActivity {
     private GeoAlarm geoAlarm;
     private MediaPlayer player;
-    private  Vibrator v;
+    private Vibrator v;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //Allows the activty to be visible in lock screen
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON |
+                WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD |
+                WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED |
+                WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
         setContentView(R.layout.activity_alarm_screen);
         geoAlarm = (GeoAlarm) getIntent().getSerializableExtra("geoAlarm");
 
@@ -47,13 +52,13 @@ public class AlarmScreenActivity extends AppCompatActivity {
         }
 
         player = new MediaPlayer();
+        player.setAudioStreamType(AudioManager.STREAM_ALARM);
         try {
             player.setDataSource(this,Uri.parse(geoAlarm.getRingtoneUri()));
-            player.setAudioStreamType(AudioManager.STREAM_ALARM);
             player.setLooping(true);
             player.prepare();
             player.start();
-        } catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -62,16 +67,17 @@ public class AlarmScreenActivity extends AppCompatActivity {
         geoAlarm.setStatus(false);
         AlarmDatabase database = new AlarmDatabase(getApplicationContext());
         database.updateData(geoAlarm);
-        while (player.isPlaying()){
+        while (player.isPlaying()) {
             player.stop();
         }
         v.cancel();//stops vibration
-        if(MainActivity.active){
+        if (MainActivity.active) {
 
         }
         startService(new Intent(getApplicationContext(), GeoService.class));
         finish();
     }
+
     @Override
     public void onBackPressed() {
 
