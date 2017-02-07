@@ -3,8 +3,10 @@ package com.cfd.map.mohit.locationalarm.activities;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.net.rtp.AudioStream;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
@@ -47,6 +49,7 @@ public class AlarmScreenActivity extends AppCompatActivity {
         player = new MediaPlayer();
         try {
             player.setDataSource(this,Uri.parse(geoAlarm.getRingtoneUri()));
+            player.setAudioStreamType(AudioManager.STREAM_ALARM);
             player.setLooping(true);
             player.prepare();
             player.start();
