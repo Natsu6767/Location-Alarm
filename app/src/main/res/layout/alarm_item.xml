@@ -88,7 +88,6 @@
         tools:text="100"
         android:textSize="15sp"
         android:textColor="#faebd7"/>
-
     <ToggleButton
         android:id="@+id/on_off"
         android:layout_width="wrap_content"

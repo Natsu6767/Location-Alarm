@@ -3,15 +3,6 @@
 
     <item
         is-multidex="false"
-        jar="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.1.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="0fb891e8f0cfba0513043a7bb357513d229ca2cd">
-        <dex dex="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-utils-25.1.1_d0ad0d59dd490dec01baf438eb2c0aff463326e6.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="C:\Users\Arihant Jain\AppData\Local\Android\Sdk\extras\android\m2repository\com\android\support\support-annotations\25.1.1\support-annotations-25.1.1.jar"
         jumboMode="false"
         optimize="true"
@@ -48,6 +39,33 @@
     </item>
     <item
         is-multidex="false"
+        jar="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\25.1.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ecb496cc08dd52551fc5ec6db3bc0632e95a89bb">
+        <dex dex="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-25.1.1_7f50e798bb9a066cb59bc05193eb7d228a3a1d29.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\25.1.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c9649557905bf7a80fca9e0d54cbcb7662627860">
+        <dex dex="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\pre-dexed\debug\com.android.support-recyclerview-v7-25.1.1_63b241d2517f62642877e58cfd994bbeba2b2a23.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.1.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0fb891e8f0cfba0513043a7bb357513d229ca2cd">
+        <dex dex="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-utils-25.1.1_d0ad0d59dd490dec01baf438eb2c0aff463326e6.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\25.1.1\jars\classes.jar"
         jumboMode="false"
         optimize="true"
@@ -63,15 +81,6 @@
         revision="25.0.2"
         sha1="3e04ac8ca644ea7baddf6fdcf72e15c79e9df94a">
         <dex dex="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-ui-25.1.1_dc58f6f198546ac2026bbb3f6f15c93b9daa32e4.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\25.1.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="ecb496cc08dd52551fc5ec6db3bc0632e95a89bb">
-        <dex dex="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-25.1.1_7f50e798bb9a066cb59bc05193eb7d228a3a1d29.jar" />
     </item>
     <item
         is-multidex="false"
@@ -144,15 +153,6 @@
         revision="25.0.2"
         sha1="02741d05d4b697fba5e279e9881aaa1da0ca7c7f">
         <dex dex="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\pre-dexed\debug\com.android.support-support-compat-25.1.1_cf3c92f5bed5d34769f79abe7d03f496c99717db.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\25.1.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="c9649557905bf7a80fca9e0d54cbcb7662627860">
-        <dex dex="C:\Users\Arihant Jain\AndroidStudioProjects\Location-Alarm\app\build\intermediates\pre-dexed\debug\com.android.support-recyclerview-v7-25.1.1_63b241d2517f62642877e58cfd994bbeba2b2a23.jar" />
     </item>
     <item
         is-multidex="false"
