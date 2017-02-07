@@ -100,7 +100,7 @@
             android:textSize="15sp"
             tools:text="my Range"
             android:text="100"
-            android:hint="In meter"/>
+            android:hint="In meter" />
 
     </LinearLayout>
 
