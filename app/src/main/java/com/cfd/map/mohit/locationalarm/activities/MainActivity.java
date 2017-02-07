@@ -14,8 +14,11 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.HapticFeedbackConstants;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
@@ -165,14 +168,7 @@ public class MainActivity extends AppCompatActivity {
                                         new DialogInterface.OnClickListener() {
                                             public void onClick(DialogInterface dialog, int id) {
                                                 //Sets the alarm. Code needs to be entered
-                                                mAlarms.get(position).setName(userInput.getText().toString());
-                                                mAlarms.get(position).setRingtone(ringtoneSelect.getSelectedItem().toString(),
-                                                        ringtones.get(ringtoneSelect.getSelectedItem()));
-                                                mAlarms.get(position).setVibration(vibration.isChecked());
-                                                mAlarms.get(position).setRadius(Integer.parseInt(range.getText().toString()));
-                                                mAlarms.get(position).setMessage("" + message.getText());
-                                                mAdapter.refreshItem(position);
-                                            }
+                                               }
                                         })
                                 .setNegativeButton("Cancel",
                                         new DialogInterface.OnClickListener() {
@@ -185,16 +181,24 @@ public class MainActivity extends AppCompatActivity {
 
                         // show it
                         alertDialog.show();
-
-                        range.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                        alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
                             @Override
-                            public void onFocusChange(View view, boolean b) {
-                                if(Integer.parseInt(range.getText().toString())<100){
-                                    Toast.makeText(MainActivity.this, "Range must be greater than 100", Toast.LENGTH_SHORT).show();
-                                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(false);
+                            public void onClick(View view) {
+                                if(range.getText().toString().equals("")){
+                                    Toast.makeText(MainActivity.this, "Please enter the range", Toast.LENGTH_SHORT).show();
+                                }
+                                else if(Integer.parseInt(range.getText().toString())<100){
+                                    Toast.makeText(MainActivity.this, "Range must be greater than or equal to 100", Toast.LENGTH_SHORT).show();
                                 }
                                 else {
-                                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(true);
+                                    mAlarms.get(position).setName(userInput.getText().toString());
+                                    mAlarms.get(position).setRingtone(ringtoneSelect.getSelectedItem().toString(),
+                                            ringtones.get(ringtoneSelect.getSelectedItem()));
+                                    mAlarms.get(position).setVibration(vibration.isChecked());
+                                    mAlarms.get(position).setRadius(Integer.parseInt(range.getText().toString()));
+                                    mAlarms.get(position).setMessage("" + message.getText());
+                                    mAdapter.refreshItem(position);
+                                    alertDialog.dismiss();
                                 }
                             }
                         });
@@ -270,13 +274,7 @@ public class MainActivity extends AppCompatActivity {
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
                                         //Sets the alarm. Code needs to be entered
-                                        setAlarm(userInput.getText().toString(),
-                                                new LocationCoordiante(lati, lang), vibration.isChecked(),
-                                                ringtones.get(ringtoneSelect.getSelectedItem()), ringtoneSelect.getSelectedItem().toString(),
-                                                Integer.parseInt(range.getText().toString()), "" + message.getText());
-                                        //stopService(new Intent(context,GeoService.class));
-                                        Intent intent = new Intent(context,GeoService.class);
-                                        startService(intent);
+
                                     }
                                     
                                 })
@@ -293,15 +291,24 @@ public class MainActivity extends AppCompatActivity {
 
                 // show it
                 alertDialog.show();
-                range.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onFocusChange(View view, boolean b) {
-                        if(Integer.parseInt(range.getText().toString())<100){
-                            Toast.makeText(MainActivity.this, "Range must be greater than 100", Toast.LENGTH_SHORT).show();
-                            alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(false);
+                    public void onClick(View view) {
+                        if(range.getText().toString().equals("")){
+                            Toast.makeText(MainActivity.this, "Please enter the range", Toast.LENGTH_SHORT).show();
+                        }
+                        else if(Integer.parseInt(range.getText().toString())<100){
+                            Toast.makeText(MainActivity.this, "Range must be greater than or equal to 100", Toast.LENGTH_SHORT).show();
                         }
                         else {
-                            alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(true);
+                            setAlarm(userInput.getText().toString(),
+                                    new LocationCoordiante(lati, lang), vibration.isChecked(),
+                                    ringtones.get(ringtoneSelect.getSelectedItem()), ringtoneSelect.getSelectedItem().toString(),
+                                    Integer.parseInt(range.getText().toString()), "" + message.getText());
+                            //stopService(new Intent(context,GeoService.class));
+                            Intent intent = new Intent(context,GeoService.class);
+                            startService(intent);
+                            alertDialog.dismiss();
                         }
                     }
                 });
