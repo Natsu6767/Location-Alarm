@@ -184,8 +184,8 @@ public class MainActivity extends AppCompatActivity {
                             public void onClick(View view) {
                                 if (range.getText().toString().equals("")) {
                                     Toast.makeText(MainActivity.this, "Please enter the range", Toast.LENGTH_SHORT).show();
-                                } else if (Integer.parseInt(range.getText().toString()) < 100) {
-                                    Toast.makeText(MainActivity.this, "Range must be greater than or equal to 100", Toast.LENGTH_SHORT).show();
+                                } else if (Integer.parseInt(range.getText().toString()) < 50) {
+                                    Toast.makeText(MainActivity.this, "Range must be greater than or equal to 50", Toast.LENGTH_SHORT).show();
                                 } else {
                                     mAlarms.get(position).setName(userInput.getText().toString());
                                     mAlarms.get(position).setRingtone(ringtoneSelect.getSelectedItem().toString(),
@@ -290,8 +290,8 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View view) {
                         if (range.getText().toString().equals("")) {
                             Toast.makeText(MainActivity.this, "Please enter the range", Toast.LENGTH_SHORT).show();
-                        } else if (Integer.parseInt(range.getText().toString()) < 100) {
-                            Toast.makeText(MainActivity.this, "Range must be greater than or equal to 100", Toast.LENGTH_SHORT).show();
+                        } else if (Integer.parseInt(range.getText().toString()) < 50) {
+                            Toast.makeText(MainActivity.this, "Range must be greater than or equal to 50", Toast.LENGTH_SHORT).show();
                         } else {
                             setAlarm(userInput.getText().toString(),
                                     new LocationCoordiante(lati, lang), vibration.isChecked(),
