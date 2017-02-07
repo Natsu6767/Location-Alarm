@@ -31,6 +31,8 @@ public class AlarmScreenActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
         setContentView(R.layout.activity_alarm_screen);
         geoAlarm = (GeoAlarm) getIntent().getSerializableExtra("geoAlarm");
+        //sets volume controls to handle alarm volume
+        this.setVolumeControlStream(AudioManager.STREAM_ALARM);
 
         v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
@@ -70,9 +72,7 @@ public class AlarmScreenActivity extends AppCompatActivity {
             player.stop();
         }
         v.cancel();//stops vibration
-        if (MainActivity.active) {
 
-        }
         startService(new Intent(getApplicationContext(), GeoService.class));
         finish();
     }
