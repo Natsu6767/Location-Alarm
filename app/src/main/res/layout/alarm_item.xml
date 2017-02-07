@@ -38,7 +38,7 @@
         tools:text="Location Coordinates"
         android:textColor="#faebd7" />
 
-    <CheckBox
+    <android.support.v7.widget.AppCompatCheckBox
         android:id="@+id/alarm_vibration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -46,7 +46,7 @@
         android:layout_marginTop="10dp"
         android:text="Vibration"
         android:textColor="#fff"
-        android:buttonTint="#fff" />
+        android:buttonTint="#fff"/>
 
     <ImageView
         android:id="@+id/ringtone"

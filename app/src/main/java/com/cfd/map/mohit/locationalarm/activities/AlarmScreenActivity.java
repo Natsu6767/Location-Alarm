@@ -33,8 +33,10 @@ public class AlarmScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_alarm_screen);
         geoAlarm = (GeoAlarm) getIntent().getSerializableExtra("geoAlarm");
         //sets volume controls to handle alarm volume
-        this.setVolumeControlStream(AudioManager.STREAM_ALARM);
 
+        AudioManager mgr = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
+        mgr.setStreamVolume(AudioManager.STREAM_MUSIC, mgr.getStreamMaxVolume(AudioManager.STREAM_ALARM), 0);
+        this.setVolumeControlStream(AudioManager.STREAM_ALARM);
         v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
         TextView name, message;

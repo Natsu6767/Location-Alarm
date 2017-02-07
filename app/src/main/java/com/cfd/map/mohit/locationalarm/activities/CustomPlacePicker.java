@@ -87,7 +87,8 @@ public class CustomPlacePicker extends AppCompatActivity implements OnMapReadyCa
         geocoder = new Geocoder(this, Locale.getDefault());
 
         try {
-            addresses = geocoder.getFromLocation(marker.getPosition().latitude, marker.getPosition().longitude, 1);// Here 1 represent max location result to returned, by documents it recommended 1 to 5
+            addresses = geocoder.getFromLocation(marker.getPosition().latitude, marker.getPosition().longitude, 1);
+            // Here 1 represent max location result to returned, by documents it recommended 1 to 5
         } catch (IOException e) {
             e.printStackTrace();
         }
