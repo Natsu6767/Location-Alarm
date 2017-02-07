@@ -5,12 +5,14 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.cfd.map.mohit.locationalarm.R;
 import com.google.android.gms.common.api.Status;
@@ -70,9 +72,7 @@ public class CustomPlacePicker extends AppCompatActivity implements OnMapReadyCa
                 marker.setPosition(lat);
             }
         });
-        if (ActivityCompat.checkSelfPermission(CustomPlacePicker.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            mMap.setMyLocationEnabled(true);
-        }
+        checkAndSetLocation();
         Log.d("permission", "already have permission");
 
     }
@@ -98,5 +98,16 @@ public class CustomPlacePicker extends AppCompatActivity implements OnMapReadyCa
         intent.putExtra("address", address);
         setResult(RESULT_OK, intent);
         finish();
+    }
+    public void checkAndSetLocation(){
+        LocationManager locationManager= (LocationManager) getSystemService(LOCATION_SERVICE);
+        if(!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) && !locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)){
+            Toast.makeText(this, "Please Enable Your GPS", Toast.LENGTH_SHORT).show();
+        }else {
+            if (ActivityCompat.checkSelfPermission(CustomPlacePicker.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+
+                mMap.setMyLocationEnabled(true);
+            }
+        }
     }
 }

@@ -59,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
         setAlarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "" + alarmDatabase.getAllData(), Toast.LENGTH_SHORT).show();
                 requestPermission();
             }
         });
@@ -336,16 +335,12 @@ public class MainActivity extends AppCompatActivity {
     }
     private void requestPermission(){
         if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
             if (ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this,
                     Manifest.permission.ACCESS_FINE_LOCATION)) {
-                Log.d("permission", "You have to ask for it");
                 ActivityCompat.requestPermissions(MainActivity.this,
                         new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                         MY_PERMISSIONS_REQUEST_FINE_LOCATION);
-
             } else {
-                Log.d("permission", "You do not need  to ask for it");
                 // No explanation needed, we can request the permission.
                 ActivityCompat.requestPermissions(MainActivity.this,
                         new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
