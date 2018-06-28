@@ -5,4 +5,4 @@ Useful for situations where a reminder is needed but time is variable, such as t
 
 ## Contributing
 
-Pull Requests related to current bug fixes or new additions are most welcome!
+Pull Requests related to bug fixes or new additions are most welcome!
