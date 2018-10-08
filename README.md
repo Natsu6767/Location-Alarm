@@ -1,7 +1,7 @@
 # Location Alarm
 
 This is an Androip app which is used to set an alarm based a locations GPS information instead of time.
-Useful for situations where a reminder is needed but time is variable, such as travelling.
+Useful for situations where a reminder is needed but time is a variable, such as travelling.
 
 ## Contributing
 
